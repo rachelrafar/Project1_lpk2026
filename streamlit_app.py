@@ -23,13 +23,29 @@ font-family:'Segoe UI',sans-serif !important;
 background:linear-gradient(to bottom,#edf4ff,#ffffff);
 }
 
-[data-testid="collapsedControl"]{
-display:none;
+<style>
+
+[data-testid="collapsedControl"] {
+display: none !important;
 }
 
-button[kind="header"]{
-display:none;
+button[kind="header"] {
+display: none !important;
 }
+
+header {
+visibility: hidden;
+}
+
+#MainMenu {
+visibility: hidden;
+}
+
+section[data-testid="stSidebar"] > div:first-child {
+width: 280px;
+}
+
+</style>
 
 .header{
 padding:45px;
