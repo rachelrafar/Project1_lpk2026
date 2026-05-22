@@ -1,52 +1,52 @@
 import streamlit as st
 import math
 
-# ==========================================
+# ==================================================
 # KONFIGURASI
-# ==========================================
+# ==================================================
 
 st.set_page_config(
-    page_title="ChemAssist Pro",
+    page_title="ChemAssist",
     page_icon="🧪",
     layout="centered"
 )
 
-# ==========================================
+# ==================================================
 # CSS
-# ==========================================
+# ==================================================
 
 st.markdown("""
 <style>
 
 .stApp{
-background:linear-gradient(to bottom,#dbeafe,#ffffff);
+background:linear-gradient(to bottom,#eaf3ff,#ffffff);
 }
 
 section[data-testid="stSidebar"]{
-background:linear-gradient(to bottom,#bfdbfe,#dbeafe);
+background:#dbeafe;
 }
 
-.judul{
+.header{
 padding:25px;
 border-radius:20px;
 background:white;
 text-align:center;
-box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+box-shadow:0px 4px 15px rgba(0,0,0,.1);
 margin-bottom:20px;
 }
 
 .card{
-padding:20px;
-border-radius:20px;
+padding:15px;
 background:white;
+border-radius:15px;
 box-shadow:0px 4px 10px rgba(0,0,0,.1);
 text-align:center;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 div[data-testid="stMetric"]{
 background:white;
-padding:15px;
+padding:10px;
 border-radius:15px;
 box-shadow:0px 4px 10px rgba(0,0,0,.1);
 }
@@ -54,134 +54,137 @@ box-shadow:0px 4px 10px rgba(0,0,0,.1);
 .stButton>button{
 width:100%;
 height:50px;
-border-radius:15px;
-font-size:15px;
+border-radius:12px;
 font-weight:bold;
 }
 
 </style>
 """,unsafe_allow_html=True)
 
-# ==========================================
+# ==================================================
 # SESSION
-# ==========================================
+# ==================================================
 
 if "page" not in st.session_state:
-    st.session_state.page="🏠 Home"
+    st.session_state.page="Home"
 
-# ==========================================
+# ==================================================
 # SIDEBAR
-# ==========================================
+# ==================================================
 
-st.sidebar.title("🧪 ChemAssist Pro")
+st.sidebar.title("ChemAssist")
 
 menu=st.sidebar.radio(
 "Menu",
 [
-"🏠 Home",
-"💧 Pembuatan Larutan",
-"🧬 Kalkulator pH",
-"📦 Database Bahan"
+"Home",
+"Pembuatan Larutan",
+"Kalkulator pH",
+"Database Bahan"
 ],
 index=[
-"🏠 Home",
-"💧 Pembuatan Larutan",
-"🧬 Kalkulator pH",
-"📦 Database Bahan"
+"Home",
+"Pembuatan Larutan",
+"Kalkulator pH",
+"Database Bahan"
 ].index(st.session_state.page)
 )
 
 st.session_state.page=menu
 
-# ==========================================
+# ==================================================
 # HOME
-# ==========================================
+# ==================================================
 
-if menu=="🏠 Home":
+if menu=="Home":
 
     st.markdown("""
-    <div class='judul'>
-    <h1>🧪 ChemAssist Pro</h1>
-    <h4>All in One Chemistry Laboratory Assistant</h4>
+    <div class='header'>
+    <h1>ChemAssist</h1>
+    <p>Laboratory Chemistry Assistant</p>
     </div>
     """,unsafe_allow_html=True)
 
     c1,c2,c3=st.columns(3)
 
     with c1:
-        st.metric("📚 Database","20+")
+        st.metric("Database","40+")
 
     with c2:
-        st.metric("🧮 Kalkulator","8")
+        st.metric("Kalkulator","8")
 
     with c3:
-        st.metric("⚡ Version","3.0")
+        st.metric("Version","3.0")
 
     st.write("")
 
     a,b,c=st.columns(3)
 
     with a:
-
         st.markdown("""
         <div class='card'>
-        <h2>💧 Larutan</h2>
-        Molaritas, Normalitas, ppm
+        <h3>Larutan</h3>
+        Molaritas, Normalitas, ppm, Pengenceran
         </div>
         """,unsafe_allow_html=True)
 
         if st.button("Buka Larutan"):
-            st.session_state.page="💧 Pembuatan Larutan"
+            st.session_state.page="Pembuatan Larutan"
             st.rerun()
 
     with b:
-
         st.markdown("""
         <div class='card'>
-        <h2>🧬 pH</h2>
+        <h3>pH</h3>
         Asam/Basa kuat dan lemah
         </div>
         """,unsafe_allow_html=True)
 
         if st.button("Buka pH"):
-            st.session_state.page="🧬 Kalkulator pH"
+            st.session_state.page="Kalkulator pH"
             st.rerun()
 
     with c:
-
         st.markdown("""
         <div class='card'>
-        <h2>📦 Database</h2>
-        Rumus, Mr, Bahaya
+        <h3>Database</h3>
+        Mr dan informasi bahan
         </div>
         """,unsafe_allow_html=True)
 
         if st.button("Buka Database"):
-            st.session_state.page="📦 Database Bahan"
+            st.session_state.page="Database Bahan"
             st.rerun()
 
-# ==========================================
+# ==================================================
 # PEMBUATAN LARUTAN
-# ==========================================
+# ==================================================
 
-elif menu=="💧 Pembuatan Larutan":
+elif menu=="Pembuatan Larutan":
 
-    if st.button("⬅ Back ke Home"):
-        st.session_state.page="🏠 Home"
+    if st.button("←"):
+        st.session_state.page="Home"
         st.rerun()
 
-    st.header("💧 Kalkulator Larutan")
+    st.header("Kalkulator Larutan")
 
-    menu_larutan=st.radio(
-    "Pilih",
-    ["Menentukan Massa","Pengenceran"]
+    menu2=st.radio(
+    "Pilih Menu",
+    [
+    "Menentukan Massa",
+    "Pengenceran"
+    ]
     )
 
-    if menu_larutan=="Menentukan Massa":
+    if menu2=="Menentukan Massa":
 
         sub=st.selectbox(
-        "Metode",
-        ["Molaritas","Normalitas","ppm"]
+        "Jenis",
+        [
+        "Molaritas",
+        "Normalitas",
+        "ppm"
+        ]
         )
 
         if sub=="Molaritas":
@@ -201,7 +204,7 @@ elif menu=="💧 Pembuatan Larutan":
             value=100.0
             )
 
-            if st.button("Hitung Massa"):
+            if st.button("Hitung"):
 
                 massa=(M*Mr*V)/1000
 
@@ -212,7 +215,7 @@ elif menu=="💧 Pembuatan Larutan":
         elif sub=="Normalitas":
 
             BE=st.number_input(
-            "Berat Ekivalen",
+            "Berat ekivalen",
             value=40.0
             )
 
@@ -234,7 +237,7 @@ elif menu=="💧 Pembuatan Larutan":
                 f"Massa = {massa:.4f} gram"
                 )
 
-        else:
+        elif sub=="ppm":
 
             ppm=st.number_input(
             "ppm",
@@ -256,38 +259,42 @@ elif menu=="💧 Pembuatan Larutan":
 
     else:
 
-        metode=st.selectbox(
-        "Metode Pengenceran",
-        ["Molaritas","Normalitas"]
+        C1=st.number_input(
+        "Konsentrasi awal",
+        value=10.0
         )
 
-        if metode=="Molaritas":
+        C2=st.number_input(
+        "Konsentrasi akhir",
+        value=1.0
+        )
 
-            M1=st.number_input("M1",value=10.0)
-            M2=st.number_input("M2",value=1.0)
-            V2=st.number_input("V2",value=100.0)
+        V2=st.number_input(
+        "Volume akhir",
+        value=100.0
+        )
 
-            if st.button("Hitung"):
+        if st.button("Hitung Pengenceran"):
 
-                V1=(M2*V2)/M1
+            V1=(C2*V2)/C1
 
-                st.success(
-                f"Volume stok={V1:.2f} mL"
-                )
+            st.success(
+            f"Volume stok = {V1:.2f} mL"
+            )
 
-# ==========================================
+# ==================================================
 # KALKULATOR PH
-# ==========================================
+# ==================================================
 
-elif menu=="🧬 Kalkulator pH":
+elif menu=="Kalkulator pH":
 
-    if st.button("⬅ Back ke Home"):
-        st.session_state.page="🏠 Home"
+    if st.button("←"):
+        st.session_state.page="Home"
         st.rerun()
 
-    st.header("🧬 Kalkulator pH")
+    st.header("Kalkulator pH")
 
-data_ph={
+    data_ph={
 
 # ASAM KUAT
 "HCl":{"jenis":"Asam kuat","valensi":1},
@@ -331,52 +338,49 @@ data_ph={
 }
 
     senyawa=st.selectbox(
-    "Pilih Senyawa",
+    "Pilih senyawa",
     list(data_ph.keys())
     )
 
     info=data_ph[senyawa]
 
-    st.write(
-    f"Jenis : {info['jenis']}"
+    st.info(
+    f"Jenis: {info['jenis']}"
     )
 
     konsentrasi=st.number_input(
-    "Konsentrasi",
+    "Konsentrasi (M)",
     value=0.01
     )
 
     if st.button("Hitung pH"):
 
-        jenis=info["jenis"]
-        valensi=info["valensi"]
+        if info["jenis"]=="Asam kuat":
 
-        if jenis=="Asam kuat":
-
-            H=konsentrasi*valensi
+            H=konsentrasi*info["valensi"]
             ph=-math.log10(H)
 
-        elif jenis=="Basa kuat":
+        elif info["jenis"]=="Basa kuat":
 
-            OH=konsentrasi*valensi
+            OH=konsentrasi*info["valensi"]
             ph=14+math.log10(OH)
 
-        elif jenis=="Asam lemah":
+        elif info["jenis"]=="Asam lemah":
 
             H=math.sqrt(
             info["Ka"]*
             konsentrasi*
-            valensi
+            info["valensi"]
             )
 
             ph=-math.log10(H)
 
-        elif jenis=="Basa lemah":
+        else:
 
             OH=math.sqrt(
             info["Kb"]*
             konsentrasi*
-            valensi
+            info["valensi"]
             )
 
             ph=14+math.log10(OH)
@@ -386,40 +390,79 @@ data_ph={
         f"{ph:.2f}"
         )
 
-        st.info(
-        f"Sifat : {jenis}"
-        )
-
-# ==========================================
+# ==================================================
 # DATABASE
-# ==========================================
+# ==================================================
 
-elif menu=="📦 Database Bahan":
+elif menu=="Database Bahan":
 
-    if st.button("⬅ Back ke Home"):
-        st.session_state.page="🏠 Home"
+    if st.button("←"):
+        st.session_state.page="Home"
         st.rerun()
 
-    st.header("📦 Database Bahan")
+    st.header("Database Bahan")
 
     data={
 
 "HCl":{"Mr":36.46,"Bahaya":"Korosif"},
-"H₂SO₄":{"Mr":98.07,"Bahaya":"Korosif"},
-"NaOH":{"Mr":40,"Bahaya":"Korosif"},
+"H₂SO₄":{"Mr":98.07,"Bahaya":"Korosif kuat"},
+"HNO₃":{"Mr":63.01,"Bahaya":"Oksidator"},
+"H₃PO₄":{"Mr":98.00,"Bahaya":"Iritasi"},
+"NaOH":{"Mr":40.00,"Bahaya":"Korosif"},
+"KOH":{"Mr":56.11,"Bahaya":"Korosif"},
 "NH₃":{"Mr":17.03,"Bahaya":"Iritasi"},
-"Etanol":{"Mr":46.07,"Bahaya":"Mudah terbakar"},
-"Metanol":{"Mr":32.04,"Bahaya":"Toksik"},
-"CuSO₄":{"Mr":159.61,"Bahaya":"Bahaya lingkungan"}
+"NH₄OH":{"Mr":35.04,"Bahaya":"Iritasi"},
+"NaCl":{"Mr":58.44,"Bahaya":"Rendah"},
+"KCl":{"Mr":74.55,"Bahaya":"Rendah"},
+"KMnO₄":{"Mr":158.03,"Bahaya":"Oksidator"},
+"K₂Cr₂O₇":{"Mr":294.18,"Bahaya":"Toksik"},
+"AgNO₃":{"Mr":169.87,"Bahaya":"Oksidator"},
+"CuSO₄":{"Mr":159.61,"Bahaya":"Bahaya lingkungan"},
+"FeCl₃":{"Mr":162.20,"Bahaya":"Iritasi"},
+"FeSO₄":{"Mr":151.91,"Bahaya":"Iritasi"},
+"ZnSO₄":{"Mr":161.44,"Bahaya":"Bahaya lingkungan"},
+"MgSO₄":{"Mr":120.36,"Bahaya":"Rendah"},
+"CaCO₃":{"Mr":100.09,"Bahaya":"Rendah"},
+"Na₂CO₃":{"Mr":105.99,"Bahaya":"Iritasi"},
+"NaHCO₃":{"Mr":84.01,"Bahaya":"Rendah"},
+"CH₃COOH":{"Mr":60.05,"Bahaya":"Korosif"},
+"C₂H₅OH":{"Mr":46.07,"Bahaya":"Mudah terbakar"},
+"CH₃OH":{"Mr":32.04,"Bahaya":"Toksik"},
+"C₃H₆O":{"Mr":58.08,"Bahaya":"Mudah terbakar"},
+"C₆H₆":{"Mr":78.11,"Bahaya":"Karsinogenik"},
+"C₇H₈":{"Mr":92.14,"Bahaya":"Mudah terbakar"},
+"C₆H₁₂O₆":{"Mr":180.16,"Bahaya":"Aman"},
+"H₂O":{"Mr":18.02,"Bahaya":"Aman"},
+"Na₂SO₄":{"Mr":142.04,"Bahaya":"Rendah"},
+"KNO₃":{"Mr":101.10,"Bahaya":"Oksidator"},
+"Pb(NO₃)₂":{"Mr":331.21,"Bahaya":"Toksik"},
+"HgCl₂":{"Mr":271.50,"Bahaya":"Sangat toksik"},
+"BaCl₂":{"Mr":208.23,"Bahaya":"Toksik"},
+"AlCl₃":{"Mr":133.34,"Bahaya":"Korosif"},
+"KI":{"Mr":166.00,"Bahaya":"Rendah"},
+"NaI":{"Mr":149.89,"Bahaya":"Rendah"},
+"CuCl₂":{"Mr":134.45,"Bahaya":"Bahaya lingkungan"},
+"MnSO₄":{"Mr":151.00,"Bahaya":"Iritasi"},
+"CdCl₂":{"Mr":183.32,"Bahaya":"Toksik"}
 
 }
 
+    cari=st.text_input(
+    "Cari bahan"
+    )
+
+    if cari:
+        hasil=[x for x in data if cari.lower() in x.lower()]
+    else:
+        hasil=list(data.keys())
+
     pilih=st.selectbox(
     "Pilih bahan",
-    list(data.keys())
+    hasil
     )
 
     x=data[pilih]
 
+    st.write(f"Rumus : {pilih}")
     st.write(f"Mr : {x['Mr']} g/mol")
     st.warning(f"Bahaya : {x['Bahaya']}")
