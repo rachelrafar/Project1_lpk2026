@@ -344,67 +344,140 @@ elif menu=="🧬 Kalkulator pH":
     )
 
     konsentrasi=st.number_input(
-    "Konsentrasi",
-    value=0.01
+    "Konsentrasi (M)",
+    min_value=0.000001,
+    value=0.01,
+    format="%.6f"
     )
+
+    ph=0
+
+# ======================
+# ASAM KUAT
+# ======================
 
     if jenis=="Asam kuat":
 
         valensi=st.number_input(
-        "Valensi H+",
+        "Valensi H⁺",
+        min_value=1,
         value=1
         )
 
-        H=konsentrasi*valensi
-        ph=-math.log10(H)
+        if st.button("Hitung pH"):
+
+            H=konsentrasi*valensi
+
+            ph=-math.log10(H)
+
+            st.metric(
+            "Nilai pH",
+            f"{ph:.2f}"
+            )
+
+            st.error("Sifat : Asam kuat")
+
+
+# ======================
+# BASA KUAT
+# ======================
 
     elif jenis=="Basa kuat":
 
         valensi=st.number_input(
-        "Valensi OH-",
+        "Valensi OH⁻",
+        min_value=1,
         value=1
         )
 
-        OH=konsentrasi*valensi
-        poh=-math.log10(OH)
-        ph=14-poh
+        if st.button("Hitung pH"):
+
+            OH=konsentrasi*valensi
+
+            poh=-math.log10(OH)
+
+            ph=14-poh
+
+            st.metric(
+            "Nilai pH",
+            f"{ph:.2f}"
+            )
+
+            st.success("Sifat : Basa kuat")
+
+# ======================
+# ASAM LEMAH
+# ======================
 
     elif jenis=="Asam lemah":
 
         Ka=st.number_input(
         "Ka",
+        min_value=0.0,
         value=1.8e-5,
         format="%e"
         )
 
-        H=math.sqrt(Ka*konsentrasi)
-        ph=-math.log10(H)
+        valensi=st.number_input(
+        "Valensi H⁺",
+        min_value=1,
+        value=1
+        )
+
+        if st.button("Hitung pH"):
+
+            H=math.sqrt(
+            Ka*konsentrasi*valensi
+            )
+
+            ph=-math.log10(H)
+
+            st.metric(
+            "Nilai pH",
+            f"{ph:.2f}"
+            )
+
+            st.warning(
+            "Sifat : Asam lemah"
+            )
+
+# ======================
+# BASA LEMAH
+# ======================
 
     elif jenis=="Basa lemah":
 
         Kb=st.number_input(
         "Kb",
+        min_value=0.0,
         value=1.8e-5,
         format="%e"
         )
 
-        OH=math.sqrt(Kb*konsentrasi)
-
-        poh=-math.log10(OH)
-
-        ph=14-poh
-
-    if st.button("Hitung pH"):
-
-        st.metric(
-        "Nilai pH",
-        f"{ph:.2f}"
+        valensi=st.number_input(
+        "Valensi OH⁻",
+        min_value=1,
+        value=1
         )
 
-        st.info(
-        f"Jenis Larutan : {jenis}"
-        )
+        if st.button("Hitung pH"):
 
+            OH=math.sqrt(
+            Kb*konsentrasi*valensi
+            )
+
+            poh=-math.log10(OH)
+
+            ph=14-poh
+
+            st.metric(
+            "Nilai pH",
+            f"{ph:.2f}"
+            )
+
+            st.info(
+            "Sifat : Basa lemah"
+            )
 # ====================================
 # DATABASE
 # ====================================
