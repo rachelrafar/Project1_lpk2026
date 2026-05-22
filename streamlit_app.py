@@ -180,7 +180,7 @@ elif menu=="💧 Pembuatan Larutan":
 # MENENTUKAN MASSA
 # ====================
 
-    if menu_larutan=="Menentukan Massa":
+    if menu_larutan=="Menentukan Massa Yang Akan Ditimbang":
 
         sub=st.selectbox(
         "Jenis Perhitungan",
