@@ -11,30 +11,6 @@ st.set_page_config(
     layout="centered"
 )
 
-# ================= HIDE KEYBOARD DOUBLE =================
-
-st.markdown("""
-<style>
-
-[data-testid="collapsedControl"] svg {
-display: none !important;
-}
-
-[data-testid="collapsedControl"] {
-background: transparent !important;
-border: none !important;
-width: 0px !important;
-height: 0px !important;
-padding: 0px !important;
-margin: 0px !important;
-min-width: 0px !important;
-min-height: 0px !important;
-box-shadow:none !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # ================= STYLE =================
 
 st.markdown("""
