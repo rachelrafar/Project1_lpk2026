@@ -71,21 +71,28 @@ font-weight:bold;
 # SIDEBAR MENU
 # ======================================
 
-st.sidebar.title("🧪 ChemAssist Pro")
-
 menu=st.sidebar.radio(
 "Menu",
 [
 "🏠 Home",
-"💧 Pembuatan Larutan",
+"💧 Pembuatan Larutan dan Pengenceran",
 "🧬 Kalkulator pH",
-"📦 Database Bahan"
-]
+"📦 Info Bahan Kimia"
+],
+index=[
+"🏠 Home",
+"💧 Pembuatan Larutan dan Pengenceran",
+"🧬 Kalkulator pH",
+"📦 Info Bahan Kimia"
+].index(st.session_state.page)
 )
 
 # ======================================
 # HOME
 # ======================================
+
+if "page" not in st.session_state:
+    st.session_state.page="🏠 Home"
 
 if menu=="🏠 Home":
 
@@ -109,31 +116,46 @@ if menu=="🏠 Home":
 
     st.write("")
 
-    a,b,c=st.columns(3)
+    c1,c2,c3=st.columns(3)
 
-    with a:
+    with c1:
+
         st.markdown("""
         <div class='card'>
-        <h3>💧 Larutan</h3>
+        <h2>💧 Larutan</h2>
         Molaritas, Normalitas, ppm, Pengenceran
         </div>
         """,unsafe_allow_html=True)
 
-    with b:
+        if st.button("Buka Menu Larutan"):
+            st.session_state.page="💧 Pembuatan Larutan"
+            st.rerun()
+
+    with c2:
+
         st.markdown("""
         <div class='card'>
-        <h3>🧬 pH</h3>
+        <h2>🧬 pH</h2>
         Asam/Basa kuat dan lemah
         </div>
         """,unsafe_allow_html=True)
 
-    with c:
+        if st.button("Buka Menu pH"):
+            st.session_state.page="🧬 Kalkulator pH"
+            st.rerun()
+
+    with c3:
+
         st.markdown("""
         <div class='card'>
-        <h3>📦 Database</h3>
+        <h2>📦 Database</h2>
         Mr, rumus dan bahaya bahan
         </div>
         """,unsafe_allow_html=True)
+
+        if st.button("Buka Database"):
+            st.session_state.page="📦 Database Bahan"
+            st.rerun()
 
     st.info(
     "ChemAssist membantu perhitungan laboratorium menjadi lebih cepat dan praktis."
