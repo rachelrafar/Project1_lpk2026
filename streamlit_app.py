@@ -360,10 +360,13 @@ elif menu=="Kalkulator pH":
     value=0.01
     )
 
-    if st.button("Hitung pH"):
+if st.button("Hitung pH"):
 
-    if konsentrasi<=0:
-        st.error("Konsentrasi harus lebih besar dari 0")
+    if konsentrasi <= 0:
+
+        st.error(
+        "Konsentrasi harus lebih besar dari 0"
+        )
 
     else:
 
@@ -375,9 +378,7 @@ elif menu=="Kalkulator pH":
         elif info["jenis"]=="Basa kuat":
 
             OH=konsentrasi*info["valensi"]
-
-            pOH=-math.log10(OH)
-            ph=14-pOH
+            ph=14+math.log10(OH)
 
         elif info["jenis"]=="Asam lemah":
 
@@ -397,16 +398,11 @@ elif menu=="Kalkulator pH":
             info["valensi"]
             )
 
-            pOH=-math.log10(OH)
-            ph=14-pOH
+            ph=14+math.log10(OH)
 
         st.metric(
         "Nilai pH",
         f"{ph:.2f}"
-        )
-
-        st.info(
-        f"Sifat : {info['jenis']}"
         )
 
 # ==================================================
