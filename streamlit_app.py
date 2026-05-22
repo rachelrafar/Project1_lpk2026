@@ -130,7 +130,7 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("Buka Larutan"):
+        if st.button("Larutan"):
             st.session_state.page="💧 Pembuatan Larutan"
             st.rerun()
 
@@ -143,7 +143,7 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("Buka pH"):
+        if st.button("pH"):
             st.session_state.page="🧬 Kalkulator pH"
             st.rerun()
 
@@ -156,7 +156,7 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("Buka Database"):
+        if st.button("Database"):
             st.session_state.page="📦 Database Bahan"
             st.rerun()
 
@@ -171,7 +171,7 @@ elif menu=="💧 Pembuatan Larutan":
     menu_larutan=st.radio(
     "Pilih",
     [
-    "Menentukan Massa",
+    "Menentukan Massa Yang Akan Ditimbang",
     "Pengenceran"
     ]
     )
