@@ -268,7 +268,7 @@ if menu=="Home":
         st.markdown("""
         <div class='card'>
         <div class='feature-title'>📚 Chemical Information</div>
-        <p>Complete compound data with molar mass, hazards, and structure</p>
+        <p>Data senyawa lengkap dengan Mr, bahaya, dan struktur</p>
         </div>
         """, unsafe_allow_html=True)
 
