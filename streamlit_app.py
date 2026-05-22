@@ -274,18 +274,21 @@ elif menu=="Pembuatan Larutan":
         value=100.0
         )
 
-        if st.button("Hitung Pengenceran"):
+if st.button("Hitung Pengenceran"):
 
     if C1==0:
-        st.error("Konsentrasi awal tidak boleh 0")
+
+        st.error(
+        "Konsentrasi awal tidak boleh 0"
+        )
 
     else:
+
         V1=(C2*V2)/C1
 
         st.success(
         f"Volume stok = {V1:.2f} mL"
         )
-
 # ==================================================
 # KALKULATOR PH
 # ==================================================
