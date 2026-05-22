@@ -15,15 +15,55 @@ st.set_page_config(
 # ==========================================
 st.markdown("""
 <style>
-.main{
-    padding-top:20px;
+
+/* Background utama */
+.stApp{
+    background: linear-gradient(to bottom,#e3f2fd,#ffffff);
 }
 
-div[data-testid="stMetric"]{
-    border-radius:15px;
-    padding:15px;
-    border:1px solid #ddd;
+/* Judul */
+.judul{
+    text-align:center;
+    padding:20px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+    margin-bottom:25px;
 }
+
+/* Kartu fitur */
+.card{
+    padding:20px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+    text-align:center;
+    margin:10px;
+}
+
+/* Tombol */
+.stButton>button{
+    width:100%;
+    border-radius:15px;
+    height:50px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Metric */
+div[data-testid="stMetric"]{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Tab */
+button[data-baseweb="tab"]{
+    font-size:16px;
+    border-radius:10px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
