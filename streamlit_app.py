@@ -71,11 +71,64 @@ button[data-baseweb="tab"]{
 # TAB
 # ==========================================
 tab0, tab1, tab2, tab3 = st.tabs([
-    "🏠 Home",
-    "💧 Pembuatan Larutan",
-    "🧬 Kalkulator pH",
-    "📦 Database Bahan Kimia"
-])
+with tab0:
+
+    st.markdown("""
+    <div class='judul'>
+    <h1>🧪 ChemAssist Pro</h1>
+    <h4>All in One Chemistry Laboratory Assistant</h4>
+    </div>
+    """,unsafe_allow_html=True)
+
+    col1,col2,col3=st.columns(3)
+
+    with col1:
+        st.metric(
+        "📚 Database",
+        "15+"
+        )
+
+    with col2:
+        st.metric(
+        "🧮 Fitur",
+        "6"
+        )
+
+    with col3:
+        st.metric(
+        "⚡ Version",
+        "2.0"
+        )
+
+    st.write("")
+
+    c1,c2,c3=st.columns(3)
+
+    with c1:
+        st.markdown("""
+        <div class='card'>
+        <h3>💧 Larutan</h3>
+        Hitung Molaritas, Normalitas, ppm dan Pengenceran
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c2:
+        st.markdown("""
+        <div class='card'>
+        <h3>🧬 pH</h3>
+        Asam kuat, basa kuat, asam lemah, basa lemah
+        </div>
+        """,unsafe_allow_html=True)
+
+    with c3:
+        st.markdown("""
+        <div class='card'>
+        <h3>📦 MSDS Mini</h3>
+        Informasi bahan dan tingkat bahaya
+        </div>
+        """,unsafe_allow_html=True)
+
+    st.info("💡 ChemAssist membantu perhitungan praktikum kimia menjadi lebih cepat dan praktis")
 
 with tab0:
 
