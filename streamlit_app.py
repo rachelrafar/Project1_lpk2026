@@ -232,17 +232,31 @@ elif menu=="⚗️ Kalkulator pH":
 
     # Asam lemah (>25)
 
-    asam_lemah=[
-    "CH3COOH","HF","HCOOH","HCN",
-    "H2CO3","H3PO4","H2S","HClO",
-    "C6H8O7","C4H6O6","C2H2O4",
-    "HNO2","C3H6O3","C7H6O2",
-    "C6H5COOH","HIO","HBrO",
-    "H2SO3","HBO2","H3BO3",
-    "CH3CH2COOH","C4H8O2",
-    "C5H10O2","C6H12O2",
-    "C7H14O2"
-    ]
+    # ASAM LEMAH
+
+    data_ph.update({
+
+"CH3COOH":{"jenis":"Asam lemah","Ka":1.8e-5,"valensi":1},
+"HF":{"jenis":"Asam lemah","Ka":6.8e-4,"valensi":1},
+"HCOOH":{"jenis":"Asam lemah","Ka":1.8e-4,"valensi":1},
+"HCN":{"jenis":"Asam lemah","Ka":4.9e-10,"valensi":1},
+"H2CO3":{"jenis":"Asam lemah","Ka":4.3e-7,"valensi":2},
+"H3PO4":{"jenis":"Asam lemah","Ka":7.5e-3,"valensi":3},
+"H2S":{"jenis":"Asam lemah","Ka":1e-7,"valensi":2},
+"HClO":{"jenis":"Asam lemah","Ka":3e-8,"valensi":1},
+"C6H8O7":{"jenis":"Asam lemah","Ka":7.4e-4,"valensi":3},
+"C4H6O6":{"jenis":"Asam lemah","Ka":9.2e-4,"valensi":2},
+"C2H2O4":{"jenis":"Asam lemah","Ka":5.9e-2,"valensi":2},
+"HNO2":{"jenis":"Asam lemah","Ka":4.5e-4,"valensi":1},
+"C3H6O3":{"jenis":"Asam lemah","Ka":1.4e-4,"valensi":1},
+"C7H6O2":{"jenis":"Asam lemah","Ka":6.5e-5,"valensi":1},
+"C6H5COOH":{"jenis":"Asam lemah","Ka":6.3e-5,"valensi":1},
+"HIO":{"jenis":"Asam lemah","Ka":2.3e-11,"valensi":1},
+"HBrO":{"jenis":"Asam lemah","Ka":2.5e-9,"valensi":1},
+"H2SO3":{"jenis":"Asam lemah","Ka":1.5e-2,"valensi":2},
+"H3BO3":{"jenis":"Asam lemah","Ka":5.8e-10,"valensi":1}
+
+})
 
     for x in asam_lemah:
         data_ph[x]={
