@@ -1,6 +1,5 @@
 import streamlit as st
 import math
-import time
 import random
 
 # ================= CONFIG =================
@@ -8,7 +7,7 @@ import random
 st.set_page_config(
     page_title="ChemAssist Pro",
     page_icon="🧪",
-    layout="centered"
+    layout="wide"
 )
 
 # ================= STYLE =================
@@ -22,6 +21,14 @@ font-family:'Segoe UI',sans-serif !important;
 
 .stApp{
 background:linear-gradient(to bottom,#edf4ff,#ffffff);
+}
+
+[data-testid="collapsedControl"]{
+display:none;
+}
+
+button[kind="header"]{
+display:none;
 }
 
 .header{
@@ -69,12 +76,12 @@ font-family:'Segoe UI',sans-serif !important;
 }
 
 .home-title{
-font-size:48px;
+font-size:52px;
 font-weight:bold;
 }
 
 .home-sub{
-font-size:18px;
+font-size:20px;
 opacity:0.95;
 }
 
@@ -82,6 +89,14 @@ opacity:0.95;
 font-size:20px;
 font-weight:bold;
 color:#0f4c81;
+}
+
+.metric-box{
+padding:20px;
+background:white;
+border-radius:20px;
+text-align:center;
+box-shadow:0px 4px 12px rgba(0,0,0,.08);
 }
 
 </style>
@@ -103,6 +118,7 @@ data_ph={
 "HBr":{"nama":"Asam Bromida","jenis":"Asam kuat","valensi":1,"Mr":80.91},
 "HI":{"nama":"Asam Iodida","jenis":"Asam kuat","valensi":1,"Mr":127.91},
 "HClO3":{"nama":"Asam Klorat","jenis":"Asam kuat","valensi":1,"Mr":84.46},
+
 "HClO":{"nama":"Asam Hipoklorit","jenis":"Asam lemah","Ka":3e-8,"Mr":52.46},
 "CH3COOH":{"nama":"Asam Asetat","jenis":"Asam lemah","Ka":1.8e-5,"Mr":60.05},
 "HF":{"nama":"Asam Fluorida","jenis":"Asam lemah","Ka":6.8e-4,"Mr":20.01},
@@ -193,17 +209,37 @@ if menu=="Home":
     </div>
     """, unsafe_allow_html=True)
 
-    c1,c2,c3=st.columns(3)
+    a,b,c=st.columns(3)
 
-    c1.metric("📚 Informasi Kimia",f"{len(db)} Senyawa")
-    c2.metric("⚗️ Sistem pH",f"{len(data_ph)} Data")
-    c3.metric("🚀 Version","4.0")
+    with a:
+        st.markdown("""
+        <div class='metric-box'>
+        <h2>📚 30+</h2>
+        <p>Informasi Senyawa</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with b:
+        st.markdown("""
+        <div class='metric-box'>
+        <h2>⚗️ 29</h2>
+        <p>Data pH Senyawa</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with c:
+        st.markdown("""
+        <div class='metric-box'>
+        <h2>🚀 4.0</h2>
+        <p>Application Version</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("## 🔥 Main Features")
 
-    a,b=st.columns(2)
+    c1,c2=st.columns(2)
 
-    with a:
+    with c1:
 
         st.markdown("""
         <div class='card'>
@@ -216,7 +252,7 @@ if menu=="Home":
             st.session_state.page="Larutan"
             st.rerun()
 
-    with b:
+    with c2:
 
         st.markdown("""
         <div class='card'>
@@ -229,9 +265,9 @@ if menu=="Home":
             st.session_state.page="pH"
             st.rerun()
 
-    c,d=st.columns(2)
+    c3,c4=st.columns(2)
 
-    with c:
+    with c3:
 
         st.markdown("""
         <div class='card'>
@@ -244,7 +280,7 @@ if menu=="Home":
             st.session_state.page="Informasi Bahan Kimia"
             st.rerun()
 
-    with d:
+    with c4:
 
         st.markdown("""
         <div class='card'>
@@ -506,13 +542,9 @@ Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
     fakta=random.choice([
 
     "Larutan asam kuat terionisasi sempurna di dalam air.",
-
     "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
-
     "H2SO4 digunakan pada baterai kendaraan.",
-
     "Etanol digunakan sebagai antiseptik.",
-
     "pH menentukan tingkat keasaman larutan."
 
     ])
