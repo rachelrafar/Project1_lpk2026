@@ -8,8 +8,19 @@ import random
 st.set_page_config(
     page_title="ChemAssist Pro",
     page_icon="🧪",
-    layout="centered"
+    layout="centered",
+    initial_sidebar_state="expanded"
 )
+
+st.markdown("""
+<style>
+
+button[kind="header"]{
+display:none;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ================= STYLE =================
 
