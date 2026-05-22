@@ -4,7 +4,16 @@ import math
 # ==========================================
 # KONFIGURASI
 # ==========================================
-    st.markdown("""
+st.set_page_config(
+    page_title="ChemAssist Pro",
+    page_icon="🧪",
+    layout="centered"
+)
+
+# ==========================================
+# CSS TAMBAHAN
+# ==========================================
+st.markdown("""
 <style>
 .main{
     padding-top:20px;
@@ -17,10 +26,9 @@ div[data-testid="stMetric"]{
 }
 </style>
 """, unsafe_allow_html=True)
-)
 
 # ==========================================
-# HOME
+# TAB
 # ==========================================
 tab0, tab1, tab2, tab3 = st.tabs([
     "🏠 Home",
