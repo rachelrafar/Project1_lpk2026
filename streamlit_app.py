@@ -163,7 +163,7 @@ with tab0:
     st.image(
         "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69",
         width=700
-    )
+        ])
 
 # ==========================================
 # TAB PEMBUATAN LARUTAN
