@@ -1,9 +1,9 @@
 import streamlit as st
 import math
 
-# ====================================
+# ==========================================
 # KONFIGURASI
-# ====================================
+# ==========================================
 
 st.set_page_config(
     page_title="ChemAssist Pro",
@@ -11,9 +11,9 @@ st.set_page_config(
     layout="centered"
 )
 
-# ====================================
+# ==========================================
 # CSS
-# ====================================
+# ==========================================
 
 st.markdown("""
 <style>
@@ -23,11 +23,11 @@ background:linear-gradient(to bottom,#dbeafe,#ffffff);
 }
 
 section[data-testid="stSidebar"]{
-background:linear-gradient(to bottom,#93c5fd,#dbeafe);
+background:linear-gradient(to bottom,#bfdbfe,#dbeafe);
 }
 
 .judul{
-padding:20px;
+padding:25px;
 border-radius:20px;
 background:white;
 text-align:center;
@@ -39,16 +39,16 @@ margin-bottom:20px;
 padding:20px;
 border-radius:20px;
 background:white;
-box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+box-shadow:0px 4px 10px rgba(0,0,0,.1);
 text-align:center;
 margin-bottom:10px;
 }
 
 div[data-testid="stMetric"]{
 background:white;
-padding:10px;
+padding:15px;
 border-radius:15px;
-box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+box-shadow:0px 4px 10px rgba(0,0,0,.1);
 }
 
 .stButton>button{
@@ -62,16 +62,16 @@ font-weight:bold;
 </style>
 """,unsafe_allow_html=True)
 
-# ====================================
+# ==========================================
 # SESSION
-# ====================================
+# ==========================================
 
 if "page" not in st.session_state:
     st.session_state.page="🏠 Home"
 
-# ====================================
+# ==========================================
 # SIDEBAR
-# ====================================
+# ==========================================
 
 st.sidebar.title("🧪 ChemAssist Pro")
 
@@ -93,9 +93,9 @@ index=[
 
 st.session_state.page=menu
 
-# ====================================
+# ==========================================
 # HOME
-# ====================================
+# ==========================================
 
 if menu=="🏠 Home":
 
@@ -109,13 +109,13 @@ if menu=="🏠 Home":
     c1,c2,c3=st.columns(3)
 
     with c1:
-        st.metric("📚 Database","15+")
+        st.metric("📚 Database","20+")
 
     with c2:
         st.metric("🧮 Kalkulator","8")
 
     with c3:
-        st.metric("⚡ Version","2.1")
+        st.metric("⚡ Version","3.0")
 
     st.write("")
 
@@ -130,7 +130,7 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("Larutan"):
+        if st.button("Buka Larutan"):
             st.session_state.page="💧 Pembuatan Larutan"
             st.rerun()
 
@@ -143,7 +143,7 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("pH"):
+        if st.button("Buka pH"):
             st.session_state.page="🧬 Kalkulator pH"
             st.rerun()
 
@@ -156,39 +156,32 @@ if menu=="🏠 Home":
         </div>
         """,unsafe_allow_html=True)
 
-        if st.button("Database"):
+        if st.button("Buka Database"):
             st.session_state.page="📦 Database Bahan"
             st.rerun()
 
-# ====================================
-# LARUTAN
-# ====================================
+# ==========================================
+# PEMBUATAN LARUTAN
+# ==========================================
 
 elif menu=="💧 Pembuatan Larutan":
+
+    if st.button("⬅ Back ke Home"):
+        st.session_state.page="🏠 Home"
+        st.rerun()
 
     st.header("💧 Kalkulator Larutan")
 
     menu_larutan=st.radio(
     "Pilih",
-    [
-    "Menentukan Massa Yang Akan Ditimbang",
-    "Pengenceran"
-    ]
+    ["Menentukan Massa","Pengenceran"]
     )
 
-# ====================
-# MENENTUKAN MASSA
-# ====================
-
-    if menu_larutan=="Menentukan Massa Yang Akan Ditimbang":
+    if menu_larutan=="Menentukan Massa":
 
         sub=st.selectbox(
-        "Jenis Perhitungan",
-        [
-        "Molaritas",
-        "Normalitas",
-        "ppm"
-        ]
+        "Metode",
+        ["Molaritas","Normalitas","ppm"]
         )
 
         if sub=="Molaritas":
@@ -208,7 +201,7 @@ elif menu=="💧 Pembuatan Larutan":
             value=100.0
             )
 
-            if st.button("Hitung"):
+            if st.button("Hitung Massa"):
 
                 massa=(M*Mr*V)/1000
 
@@ -241,7 +234,7 @@ elif menu=="💧 Pembuatan Larutan":
                 f"Massa = {massa:.4f} gram"
                 )
 
-        elif sub=="ppm":
+        else:
 
             ppm=st.number_input(
             "ppm",
@@ -261,228 +254,120 @@ elif menu=="💧 Pembuatan Larutan":
                 f"Massa = {massa:.2f} mg"
                 )
 
-# ====================
-# PENGENCERAN
-# ====================
+    else:
 
-    elif menu_larutan=="Pengenceran":
-
-        sub2=st.selectbox(
-        "Jenis Pengenceran",
-        [
-        "Molaritas",
-        "Normalitas"
-        ]
+        metode=st.selectbox(
+        "Metode Pengenceran",
+        ["Molaritas","Normalitas"]
         )
 
-        if sub2=="Molaritas":
+        if metode=="Molaritas":
 
-            M1=st.number_input(
-            "M1",
-            value=10.0
-            )
+            M1=st.number_input("M1",value=10.0)
+            M2=st.number_input("M2",value=1.0)
+            V2=st.number_input("V2",value=100.0)
 
-            M2=st.number_input(
-            "M2",
-            value=1.0
-            )
-
-            V2=st.number_input(
-            "V2 (mL)",
-            value=100.0
-            )
-
-            if st.button("Hitung Pengenceran"):
+            if st.button("Hitung"):
 
                 V1=(M2*V2)/M1
 
                 st.success(
-                f"V1 = {V1:.2f} mL"
+                f"Volume stok={V1:.2f} mL"
                 )
 
-        elif sub2=="Normalitas":
-
-            N1=st.number_input(
-            "N1",
-            value=10.0
-            )
-
-            N2=st.number_input(
-            "N2",
-            value=1.0
-            )
-
-            V2=st.number_input(
-            "V2 (mL)",
-            value=100.0
-            )
-
-            if st.button("Hitung"):
-
-                V1=(N2*V2)/N1
-
-                st.success(
-                f"V1 = {V1:.2f} mL"
-                )
-
-# ====================================
+# ==========================================
 # KALKULATOR PH
-# ====================================
+# ==========================================
 
 elif menu=="🧬 Kalkulator pH":
 
+    if st.button("⬅ Back ke Home"):
+        st.session_state.page="🏠 Home"
+        st.rerun()
+
     st.header("🧬 Kalkulator pH")
 
-    jenis=st.selectbox(
-    "Jenis Larutan",
-    [
-    "Asam kuat",
-    "Basa kuat",
-    "Asam lemah",
-    "Basa lemah"
-    ]
+    data_ph={
+
+"HCl":{"jenis":"Asam kuat","valensi":1},
+"H₂SO₄":{"jenis":"Asam kuat","valensi":2},
+"NaOH":{"jenis":"Basa kuat","valensi":1},
+"KOH":{"jenis":"Basa kuat","valensi":1},
+"CH₃COOH":{"jenis":"Asam lemah","Ka":1.8e-5,"valensi":1},
+"HF":{"jenis":"Asam lemah","Ka":6.8e-4,"valensi":1},
+"NH₄OH":{"jenis":"Basa lemah","Kb":1.8e-5,"valensi":1}
+
+}
+
+    senyawa=st.selectbox(
+    "Pilih Senyawa",
+    list(data_ph.keys())
+    )
+
+    info=data_ph[senyawa]
+
+    st.write(
+    f"Jenis : {info['jenis']}"
     )
 
     konsentrasi=st.number_input(
-    "Konsentrasi (M)",
-    min_value=0.000001,
-    value=0.01,
-    format="%.6f"
+    "Konsentrasi",
+    value=0.01
     )
 
-    ph=0
+    if st.button("Hitung pH"):
 
-# ======================
-# ASAM KUAT
-# ======================
+        jenis=info["jenis"]
+        valensi=info["valensi"]
 
-    if jenis=="Asam kuat":
-
-        valensi=st.number_input(
-        "Valensi H⁺",
-        min_value=1,
-        value=1
-        )
-
-        if st.button("Hitung pH"):
+        if jenis=="Asam kuat":
 
             H=konsentrasi*valensi
-
             ph=-math.log10(H)
 
-            st.metric(
-            "Nilai pH",
-            f"{ph:.2f}"
-            )
-
-            st.error("Sifat : Asam kuat")
-
-
-# ======================
-# BASA KUAT
-# ======================
-
-    elif jenis=="Basa kuat":
-
-        valensi=st.number_input(
-        "Valensi OH⁻",
-        min_value=1,
-        value=1
-        )
-
-        if st.button("Hitung pH"):
+        elif jenis=="Basa kuat":
 
             OH=konsentrasi*valensi
+            ph=14+math.log10(OH)
 
-            poh=-math.log10(OH)
-
-            ph=14-poh
-
-            st.metric(
-            "Nilai pH",
-            f"{ph:.2f}"
-            )
-
-            st.success("Sifat : Basa kuat")
-
-# ======================
-# ASAM LEMAH
-# ======================
-
-    elif jenis=="Asam lemah":
-
-        Ka=st.number_input(
-        "Ka",
-        min_value=0.0,
-        value=1.8e-5,
-        format="%e"
-        )
-
-        valensi=st.number_input(
-        "Valensi H⁺",
-        min_value=1,
-        value=1
-        )
-
-        if st.button("Hitung pH"):
+        elif jenis=="Asam lemah":
 
             H=math.sqrt(
-            Ka*konsentrasi*valensi
+            info["Ka"]*
+            konsentrasi*
+            valensi
             )
 
             ph=-math.log10(H)
 
-            st.metric(
-            "Nilai pH",
-            f"{ph:.2f}"
-            )
-
-            st.warning(
-            "Sifat : Asam lemah"
-            )
-
-# ======================
-# BASA LEMAH
-# ======================
-
-    elif jenis=="Basa lemah":
-
-        Kb=st.number_input(
-        "Kb",
-        min_value=0.0,
-        value=1.8e-5,
-        format="%e"
-        )
-
-        valensi=st.number_input(
-        "Valensi OH⁻",
-        min_value=1,
-        value=1
-        )
-
-        if st.button("Hitung pH"):
+        elif jenis=="Basa lemah":
 
             OH=math.sqrt(
-            Kb*konsentrasi*valensi
+            info["Kb"]*
+            konsentrasi*
+            valensi
             )
 
-            poh=-math.log10(OH)
+            ph=14+math.log10(OH)
 
-            ph=14-poh
+        st.metric(
+        "Nilai pH",
+        f"{ph:.2f}"
+        )
 
-            st.metric(
-            "Nilai pH",
-            f"{ph:.2f}"
-            )
+        st.info(
+        f"Sifat : {jenis}"
+        )
 
-            st.info(
-            "Sifat : Basa lemah"
-            )
-# ====================================
+# ==========================================
 # DATABASE
-# ====================================
+# ==========================================
 
 elif menu=="📦 Database Bahan":
+
+    if st.button("⬅ Back ke Home"):
+        st.session_state.page="🏠 Home"
+        st.rerun()
 
     st.header("📦 Database Bahan")
 
@@ -494,23 +379,16 @@ elif menu=="📦 Database Bahan":
 "NH₃":{"Mr":17.03,"Bahaya":"Iritasi"},
 "Etanol":{"Mr":46.07,"Bahaya":"Mudah terbakar"},
 "Metanol":{"Mr":32.04,"Bahaya":"Toksik"},
-"KMnO₄":{"Mr":158.03,"Bahaya":"Oksidator"},
-"AgNO₃":{"Mr":169.87,"Bahaya":"Oksidator"},
 "CuSO₄":{"Mr":159.61,"Bahaya":"Bahaya lingkungan"}
 
 }
 
     pilih=st.selectbox(
-    "Pilih Bahan",
+    "Pilih bahan",
     list(data.keys())
     )
 
     x=data[pilih]
 
-    st.write(
-    f"Mr : {x['Mr']} g/mol"
-    )
-
-    st.warning(
-    f"Bahaya : {x['Bahaya']}"
-    )
+    st.write(f"Mr : {x['Mr']} g/mol")
+    st.warning(f"Bahaya : {x['Bahaya']}")
