@@ -4,9 +4,6 @@ import math
 # ==========================================
 # KONFIGURASI
 # ==========================================
-st.set_page_config(
-    page_title="ChemAssist Pro",
-    page_icon="🧪",
     st.markdown("""
 <style>
 .main{
