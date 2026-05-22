@@ -6,7 +6,7 @@ import math
 # ==================================================
 
 st.set_page_config(
-    page_title="ChemAssist 🧪",
+    page_title="ChemAssist",
     page_icon="🧪",
     layout="centered"
 )
@@ -62,25 +62,16 @@ font-weight:bold;
 """,unsafe_allow_html=True)
 
 # ==================================================
-# SESSION
-# ==================================================
-
-if "page" not in st.session_state:
-    st.session_state.page="Home"
-
-# ==================================================
 # SIDEBAR
 # ==================================================
 
-st.sidebar.title("🧪 ChemAssist")
-
 menu=st.sidebar.radio(
-"Menu",
+"🧪 ChemAssist",
 [
-"🏠 Home",
-"🧫 Pembuatan Larutan",
-"⚗️ Kalkulator pH",
-"📚 Database Bahan"
+"Home",
+"Pembuatan Larutan",
+"Kalkulator pH",
+"Database Bahan"
 ]
 )
 
@@ -88,7 +79,7 @@ menu=st.sidebar.radio(
 # HOME
 # ==================================================
 
-if menu=="🏠 Home":
+if menu=="Home":
 
     st.markdown("""
     <div class='header'>
@@ -100,10 +91,10 @@ if menu=="🏠 Home":
     c1,c2,c3=st.columns(3)
 
     with c1:
-        st.metric("Database","70+")
+        st.metric("📚 Database","70+")
 
     with c2:
-        st.metric("Senyawa pH","50+")
+        st.metric("⚗️ Senyawa pH","50+")
 
     with c3:
         st.metric("Version","4.0")
@@ -115,7 +106,7 @@ if menu=="🏠 Home":
     with a:
         st.markdown("""
         <div class='card'>
-        <h3>🧫 Larutan</h3>
+        <h3>💧 Larutan</h3>
         Molaritas, Normalitas, ppm, Pengenceran
         </div>
         """,unsafe_allow_html=True)
@@ -132,7 +123,7 @@ if menu=="🏠 Home":
         st.markdown("""
         <div class='card'>
         <h3>📚 Database</h3>
-        Mr dan bahaya bahan
+        Mr dan informasi bahan
         </div>
         """,unsafe_allow_html=True)
 
@@ -140,153 +131,148 @@ if menu=="🏠 Home":
 # LARUTAN
 # ==================================================
 
-elif menu=="🧫 Pembuatan Larutan":
+elif menu=="Pembuatan Larutan":
 
-    st.header("🧫 Kalkulator Larutan")
+    st.header("💧 Kalkulator Larutan")
 
-    pilihan=st.radio(
-    "Pilih",
+    menu2=st.radio(
+    "Pilih Menu",
     ["Menentukan Massa","Pengenceran"]
     )
 
-    if pilihan=="Menentukan Massa":
+    if menu2=="Menentukan Massa":
 
-        jenis=st.selectbox(
+        sub=st.selectbox(
         "Jenis",
         ["Molaritas","Normalitas","ppm"]
         )
 
-        if jenis=="Molaritas":
+        if sub=="Molaritas":
 
-            Mr=st.number_input("Mr",1.0)
-            M=st.number_input("Molaritas",0.1)
-            V=st.number_input("Volume (mL)",100.0)
+            Mr=st.number_input("Mr",value=40.0)
+            M=st.number_input("Molaritas",value=0.1)
+            V=st.number_input("Volume (mL)",value=100.0)
 
-            if st.button("Hitung Massa"):
+            if st.button("Hitung"):
 
-                massa=(Mr*M*V)/1000
-                st.success(f"Massa = {massa:.4f} gram")
+                massa=(M*Mr*V)/1000
+                st.success(
+                f"Massa = {massa:.4f} gram"
+                )
 
-        elif jenis=="Normalitas":
+        elif sub=="Normalitas":
 
-            BE=st.number_input("Berat ekivalen",1.0)
-            N=st.number_input("Normalitas",0.1)
-            V=st.number_input("Volume (mL)",100.0)
+            BE=st.number_input(
+            "Berat ekivalen",
+            value=40.0
+            )
 
-            if st.button("Hitung Massa"):
+            N=st.number_input(
+            "Normalitas",
+            value=0.1
+            )
 
-                massa=(BE*N*V)/1000
-                st.success(f"Massa = {massa:.4f} gram")
+            V=st.number_input(
+            "Volume (mL)",
+            value=100.0
+            )
 
-        elif jenis=="ppm":
+            if st.button("Hitung"):
 
-            ppm=st.number_input("ppm",100.0)
-            V=st.number_input("Volume (L)",1.0)
+                massa=(N*BE*V)/1000
 
-            if st.button("Hitung Massa"):
+                st.success(
+                f"Massa = {massa:.4f} gram"
+                )
+
+        elif sub=="ppm":
+
+            ppm=st.number_input(
+            "ppm",
+            value=100.0
+            )
+
+            V=st.number_input(
+            "Volume (L)",
+            value=1.0
+            )
+
+            if st.button("Hitung"):
 
                 massa=ppm*V
-                st.success(f"Massa = {massa:.2f} mg")
+
+                st.success(
+                f"Massa = {massa:.2f} mg"
+                )
 
     else:
 
-        C1=st.number_input("Konsentrasi awal",10.0)
-        C2=st.number_input("Konsentrasi akhir",1.0)
-        V2=st.number_input("Volume akhir",100.0)
+        C1=st.number_input(
+        "Konsentrasi awal",
+        value=10.0
+        )
+
+        C2=st.number_input(
+        "Konsentrasi akhir",
+        value=1.0
+        )
+
+        V2=st.number_input(
+        "Volume akhir",
+        value=100.0
+        )
 
         if st.button("Hitung Pengenceran"):
 
             if C1<=0:
-                st.error("Konsentrasi awal tidak boleh 0")
+                st.error("Konsentrasi awal tidak boleh nol")
+
             else:
+
                 V1=(C2*V2)/C1
+
                 st.success(
                 f"Volume stok = {V1:.2f} mL"
                 )
 
 # ==================================================
-# KALKULATOR PH
+# PH
 # ==================================================
 
-elif menu=="⚗️ Kalkulator pH":
+elif menu=="Kalkulator pH":
 
     st.header("⚗️ Kalkulator pH")
 
-    data_ph={}
+    data_ph={
 
-    # Asam kuat
-    asam_kuat=["HCl","HBr","HI","HNO3","HClO4","H2SO4"]
+    "HCl":{"jenis":"Asam kuat","valensi":1},
+    "HNO3":{"jenis":"Asam kuat","valensi":1},
+    "HBr":{"jenis":"Asam kuat","valensi":1},
+    "HI":{"jenis":"Asam kuat","valensi":1},
+    "H2SO4":{"jenis":"Asam kuat","valensi":2},
 
-    for x in asam_kuat:
-        data_ph[x]={"jenis":"Asam kuat","valensi":1}
+    "NaOH":{"jenis":"Basa kuat","valensi":1},
+    "KOH":{"jenis":"Basa kuat","valensi":1},
+    "Ba(OH)2":{"jenis":"Basa kuat","valensi":2},
 
-    # Basa kuat
-    basa_kuat=[
-    "NaOH","KOH","LiOH","RbOH",
-    "CsOH","Ba(OH)2","Ca(OH)2",
-    "Sr(OH)2"
-    ]
+    "CH3COOH":{"jenis":"Asam lemah","Ka":1.8e-5},
+    "HF":{"jenis":"Asam lemah","Ka":6.8e-4},
+    "HCOOH":{"jenis":"Asam lemah","Ka":1.8e-4},
+    "HCN":{"jenis":"Asam lemah","Ka":4.9e-10},
+    "H2CO3":{"jenis":"Asam lemah","Ka":4.3e-7},
+    "H3PO4":{"jenis":"Asam lemah","Ka":7.5e-3},
+    "H2S":{"jenis":"Asam lemah","Ka":1e-7},
+    "HClO":{"jenis":"Asam lemah","Ka":3e-8},
 
-    for x in basa_kuat:
-        data_ph[x]={"jenis":"Basa kuat","valensi":1}
-
-    # Asam lemah (>25)
-
-    asam_lemah=[
-  # ASAM LEMAH
-    "CH₃COOH":{"jenis":"Asam lemah","Ka":1.8e-5,"valensi":1},
-    "HF":{"jenis":"Asam lemah","Ka":6.8e-4,"valensi":1},
-    "HCOOH":{"jenis":"Asam lemah","Ka":1.8e-4,"valensi":1},
-    "HCN":{"jenis":"Asam lemah","Ka":4.9e-10,"valensi":1},
-    "H₂CO₃":{"jenis":"Asam lemah","Ka":4.3e-7,"valensi":2},
-    "H₃PO₄":{"jenis":"Asam lemah","Ka":7.5e-3,"valensi":3},
-    "C₆H₈O₇":{"jenis":"Asam lemah","Ka":7.4e-4,"valensi":3},
-    "C₄H₆O₆":{"jenis":"Asam lemah","Ka":9.2e-4,"valensi":2},
-    "H₂S":{"jenis":"Asam lemah","Ka":1e-7,"valensi":2},
-    "HClO":{"jenis":"Asam lemah","Ka":3e-8,"valensi":1},
-    "C₂H₂O₄":{"jenis":"Asam lemah","Ka":5.9e-2,"valensi":2},
-    "HNO₂":{"jenis":"Asam lemah","Ka":4.5e-4,"valensi":1},
-    "C₃H₆O₃":{"jenis":"Asam lemah","Ka":1.4e-4,"valensi":1},
-    "C₇H₆O₂":{"jenis":"Asam lemah","Ka":6.5e-5,"valensi":1},
-    "C₆H₅COOH":{"jenis":"Asam lemah","Ka":6.3e-5,"valensi":1},
-    "HIO":{"jenis":"Asam lemah","Ka":2.3e-11,"valensi":1},
-    "HBrO":{"jenis":"Asam lemah","Ka":2.5e-9,"valensi":1},
-    "H₂SO₃":{"jenis":"Asam lemah","Ka":1.5e-2,"valensi":2},
-    "H₃BO₃":{"jenis":"Asam lemah","Ka":5.8e-10,"valensi":1},
-
-    ]
-
-    for x in asam_lemah:
-        data_ph[x]={
-        "jenis":"Asam lemah",
-        "Ka":1e-5,
-        "valensi":1
-        }
-
-    # Basa lemah (>20)
-
-    basa_lemah=[
-    "NH3","NH4OH","CH3NH2",
-    "C2H5NH2","C6H5NH2",
-    "(CH3)2NH","(CH3)3N",
-    "C3H7NH2","C4H9NH2",
-    "C5H11NH2","C6H13NH2",
-    "C7H15NH2","C8H17NH2",
-    "C2H7N","C3H9N","C4H11N",
-    "C5H13N","C6H15N",
-    "C7H17N","C8H19N"
-    ]
-
-    for x in basa_lemah:
-        data_ph[x]={
-        "jenis":"Basa lemah",
-        "Kb":1e-5,
-        "valensi":1
-        }
+    "NH3":{"jenis":"Basa lemah","Kb":1.8e-5},
+    "NH4OH":{"jenis":"Basa lemah","Kb":1.8e-5},
+    "CH3NH2":{"jenis":"Basa lemah","Kb":4.4e-4},
+    "C2H5NH2":{"jenis":"Basa lemah","Kb":5.6e-4}
+    }
 
     senyawa=st.selectbox(
-    "Pilih Senyawa",
-    sorted(data_ph.keys())
+    "Pilih senyawa",
+    list(data_ph.keys())
     )
 
     info=data_ph[senyawa]
@@ -297,121 +283,83 @@ elif menu=="⚗️ Kalkulator pH":
 
     konsentrasi=st.number_input(
     "Konsentrasi (M)",
-    0.01
+    min_value=0.0001,
+    value=0.01
     )
 
     if st.button("Hitung pH"):
 
-        if konsentrasi<=0:
+        if info["jenis"]=="Asam kuat":
 
-            st.error(
-            "Konsentrasi harus >0"
+            H=konsentrasi*info["valensi"]
+            ph=-math.log10(H)
+
+        elif info["jenis"]=="Basa kuat":
+
+            OH=konsentrasi*info["valensi"]
+            poh=-math.log10(OH)
+            ph=14-poh
+
+        elif info["jenis"]=="Asam lemah":
+
+            H=math.sqrt(
+            info["Ka"]*konsentrasi
             )
+            ph=-math.log10(H)
 
         else:
 
-            if info["jenis"]=="Asam kuat":
-
-                H=konsentrasi
-                ph=-math.log10(H)
-
-            elif info["jenis"]=="Basa kuat":
-
-                OH=konsentrasi
-                ph=14+math.log10(OH)
-
-            elif info["jenis"]=="Asam lemah":
-
-                H=math.sqrt(
-                info["Ka"]*
-                konsentrasi
-                )
-
-                ph=-math.log10(H)
-
-            else:
-
-                OH=math.sqrt(
-                info["Kb"]*
-                konsentrasi
-                )
-
-                ph=14+math.log10(OH)
-
-            st.metric(
-            "Nilai pH",
-            f"{ph:.2f}"
+            OH=math.sqrt(
+            info["Kb"]*konsentrasi
             )
+            poh=-math.log10(OH)
+            ph=14-poh
+
+        st.metric(
+        "Nilai pH",
+        f"{ph:.2f}"
+        )
 
 # ==================================================
 # DATABASE
 # ==================================================
 
-elif menu=="📚 Database Bahan":
+elif menu=="Database Bahan":
 
     st.header("📚 Database Bahan")
 
     data={}
 
     bahan=[
-"HCl","H2SO4","HNO3","NaOH","KOH",
-"NH3","NaCl","KCl","AgNO3","CuSO4",
-"FeCl3","FeSO4","ZnSO4","MgSO4",
-"CaCO3","Na2CO3","NaHCO3",
-"CH3COOH","C2H5OH","CH3OH",
-"Acetone","Benzene","Toluene",
-"Glucose","KNO3","Pb(NO3)2",
-"HgCl2","BaCl2","AlCl3","KI",
-"NaI","CuCl2","MnSO4","CdCl2",
-"Na2SO4","K2SO4","CaCl2","MgCl2",
-"NaBr","KBr","NaF","KF","LiCl",
-"NaNO3","KNO2","NaNO2","H2O2",
-"KMnO4","K2Cr2O7","Na2S2O3",
-"EDTA","Phenol","Urea","Sucrose",
-"Formaldehyde","Acetic acid",
-"Citric acid","Oxalic acid",
-"Benzoic acid","Boric acid",
-"Aniline","Ethanolamine",
-"Glycerol","Hexane","Heptane",
-"Octane","Propanol","Butanol",
-"Acetonitrile","Chloroform",
-"Diethyl ether","Xylene"
+"HCl","H2SO4","NaOH","KOH","NH3","NaCl","KCl","AgNO3",
+"CuSO4","FeCl3","FeSO4","ZnSO4","MgSO4","CaCO3",
+"Na2CO3","NaHCO3","CH3COOH","C2H5OH","CH3OH",
+"Acetone","Benzene","Toluene","Glucose","KNO3",
+"Pb(NO3)2","HgCl2","BaCl2","AlCl3","KI","NaI",
+"CuCl2","MnSO4","CdCl2","Na2SO4","K2SO4",
+"CaCl2","MgCl2","NaBr","KBr","NaF","KF",
+"LiCl","NaNO3","KNO2","NaNO2","H2O2",
+"KMnO4","K2Cr2O7","Na2S2O3","EDTA",
+"Phenol","Urea","Sucrose","Formaldehyde",
+"Citric acid","Oxalic acid","Benzoic acid",
+"Boric acid","Aniline","Glycerol","Hexane",
+"Heptane","Octane","Propanol","Butanol",
+"Acetonitrile","Chloroform","Diethyl ether"
 ]
 
     for x in bahan:
         data[x]={
-        "Mr":round(
-        len(x)*8.2,2
-        ),
+        "Mr":"Lihat MSDS",
         "Bahaya":"Periksa MSDS"
         }
 
-    cari=st.text_input(
-    "Cari bahan"
-    )
-
-    if cari:
-        hasil=[
-        x for x in data
-        if cari.lower()
-        in x.lower()
-        ]
-    else:
-        hasil=list(data.keys())
-
     pilih=st.selectbox(
     "Pilih bahan",
-    hasil
+    list(data.keys())
     )
 
-    st.write(
-    f"Rumus : {pilih}"
-    )
-
-    st.write(
-    f"Mr : {data[pilih]['Mr']} g/mol"
-    )
-
+    st.write(f"Rumus : {pilih}")
+    st.write(f"Mr : {data[pilih]['Mr']}")
     st.warning(
     f"Bahaya : {data[pilih]['Bahaya']}"
     )
