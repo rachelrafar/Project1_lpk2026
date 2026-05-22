@@ -15,16 +15,21 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+html, body, [class*="css"]{
+font-family:'Segoe UI',sans-serif;
+}
+
 .stApp{
-background:linear-gradient(to bottom,#eef4ff,#ffffff);
+background:linear-gradient(to bottom,#edf4ff,#ffffff);
+font-family:'Segoe UI',sans-serif;
 }
 
 .header{
-padding:30px;
+padding:35px;
 border-radius:25px;
 background:white;
 text-align:center;
-box-shadow:0px 5px 18px rgba(0,0,0,.1);
+box-shadow:0px 6px 18px rgba(0,0,0,.12);
 margin-bottom:20px;
 }
 
@@ -32,9 +37,14 @@ margin-bottom:20px;
 padding:20px;
 background:white;
 border-radius:20px;
-box-shadow:0px 4px 12px rgba(0,0,0,.1);
+box-shadow:0px 4px 14px rgba(0,0,0,.10);
 text-align:center;
 margin-bottom:15px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.02);
 }
 
 .info-box{
@@ -47,10 +57,27 @@ margin-top:10px;
 
 .stButton>button{
 width:100%;
-height:50px;
+height:52px;
 border-radius:14px;
 font-size:16px;
 font-weight:bold;
+border:none;
+font-family:'Segoe UI',sans-serif;
+}
+
+.stCode{
+font-family:'Segoe UI',sans-serif !important;
+font-size:15px !important;
+border-radius:15px;
+}
+
+code{
+font-family:'Segoe UI',sans-serif !important;
+}
+
+.small-font{
+font-size:14px;
+color:gray;
 }
 
 </style>
@@ -69,136 +96,119 @@ data_ph={
 "nama":"Asam Klorida",
 "jenis":"Asam kuat",
 "valensi":1,
-"Mr":36.46,
-"kegunaan":"Pembersih logam dan analisis laboratorium"
+"Mr":36.46
 },
 
 "H2SO4":{
 "nama":"Asam Sulfat",
 "jenis":"Asam kuat",
 "valensi":2,
-"Mr":98.08,
-"kegunaan":"Elektrolit aki dan industri pupuk"
+"Mr":98.08
 },
 
 "HNO3":{
 "nama":"Asam Nitrat",
 "jenis":"Asam kuat",
 "valensi":1,
-"Mr":63.01,
-"kegunaan":"Pembuatan pupuk dan bahan peledak"
+"Mr":63.01
 },
 
 "HClO4":{
 "nama":"Asam Perklorat",
 "jenis":"Asam kuat",
 "valensi":1,
-"Mr":100.46,
-"kegunaan":"Reagen analisis kimia"
+"Mr":100.46
 },
 
 "CH3COOH":{
 "nama":"Asam Asetat",
 "jenis":"Asam lemah",
 "Ka":1.8e-5,
-"Mr":60.05,
-"kegunaan":"Bahan dasar cuka"
+"Mr":60.05
 },
 
 "HF":{
 "nama":"Asam Fluorida",
 "jenis":"Asam lemah",
 "Ka":6.8e-4,
-"Mr":20.01,
-"kegunaan":"Etsa kaca"
+"Mr":20.01
 },
 
 "HCOOH":{
 "nama":"Asam Format",
 "jenis":"Asam lemah",
 "Ka":1.8e-4,
-"Mr":46.03,
-"kegunaan":"Industri tekstil dan karet"
+"Mr":46.03
 },
 
 "H3PO4":{
 "nama":"Asam Fosfat",
 "jenis":"Asam lemah",
 "Ka":7.5e-3,
-"Mr":98.00,
-"kegunaan":"Pembuatan pupuk"
+"Mr":98.00
 },
 
 "H2CO3":{
 "nama":"Asam Karbonat",
 "jenis":"Asam lemah",
 "Ka":4.3e-7,
-"Mr":62.03,
-"kegunaan":"Minuman bersoda"
+"Mr":62.03
 },
 
 "NaOH":{
 "nama":"Natrium Hidroksida",
 "jenis":"Basa kuat",
 "valensi":1,
-"Mr":40.00,
-"kegunaan":"Pembuatan sabun"
+"Mr":40.00
 },
 
 "KOH":{
 "nama":"Kalium Hidroksida",
 "jenis":"Basa kuat",
 "valensi":1,
-"Mr":56.11,
-"kegunaan":"Elektrolit baterai"
+"Mr":56.11
 },
 
 "Ba(OH)2":{
 "nama":"Barium Hidroksida",
 "jenis":"Basa kuat",
 "valensi":2,
-"Mr":171.34,
-"kegunaan":"Analisis kimia"
+"Mr":171.34
 },
 
 "Ca(OH)2":{
 "nama":"Kalsium Hidroksida",
 "jenis":"Basa kuat",
 "valensi":2,
-"Mr":74.09,
-"kegunaan":"Penjernihan air"
+"Mr":74.09
 },
 
 "NH3":{
 "nama":"Amonia",
 "jenis":"Basa lemah",
 "Kb":1.8e-5,
-"Mr":17.03,
-"kegunaan":"Pembuatan pupuk"
+"Mr":17.03
 },
 
 "NH4OH":{
 "nama":"Amonium Hidroksida",
 "jenis":"Basa lemah",
 "Kb":1.8e-5,
-"Mr":35.05,
-"kegunaan":"Pembersih rumah tangga"
+"Mr":35.05
 },
 
 "CH3NH2":{
 "nama":"Metilamina",
 "jenis":"Basa lemah",
 "Kb":4.4e-4,
-"Mr":31.06,
-"kegunaan":"Industri farmasi"
+"Mr":31.06
 },
 
 "C2H5NH2":{
 "nama":"Etilamina",
 "jenis":"Basa lemah",
 "Kb":5.6e-4,
-"Mr":45.08,
-"kegunaan":"Pembuatan pestisida"
+"Mr":45.08
 }
 
 }
@@ -207,61 +217,61 @@ data_ph={
 
 db={
 
-"HCl":["Asam Klorida","Asam kuat","36.46 g/mol","Korosif dan menyebabkan iritasi","Pembersih logam"],
+"HCl":["Asam Klorida","Asam kuat","36.46 g/mol","Korosif dan menyebabkan iritasi"],
 
-"H2SO4":["Asam Sulfat","Asam kuat","98.08 g/mol","Sangat korosif","Industri pupuk"],
+"H2SO4":["Asam Sulfat","Asam kuat","98.08 g/mol","Sangat korosif"],
 
-"HNO3":["Asam Nitrat","Asam kuat","63.01 g/mol","Oksidator kuat","Pembuatan pupuk"],
+"HNO3":["Asam Nitrat","Asam kuat","63.01 g/mol","Oksidator kuat"],
 
-"HClO4":["Asam Perklorat","Asam kuat","100.46 g/mol","Korosif","Reagen laboratorium"],
+"HClO4":["Asam Perklorat","Asam kuat","100.46 g/mol","Korosif"],
 
-"CH3COOH":["Asam Asetat","Asam lemah","60.05 g/mol","Iritasi mata","Pembuatan cuka"],
+"CH3COOH":["Asam Asetat","Asam lemah","60.05 g/mol","Iritasi mata"],
 
-"HF":["Asam Fluorida","Asam lemah","20.01 g/mol","Sangat beracun","Etsa kaca"],
+"HF":["Asam Fluorida","Asam lemah","20.01 g/mol","Sangat beracun"],
 
-"HCOOH":["Asam Format","Asam lemah","46.03 g/mol","Korosif","Industri tekstil"],
+"HCOOH":["Asam Format","Asam lemah","46.03 g/mol","Korosif"],
 
-"H3PO4":["Asam Fosfat","Asam lemah","98.00 g/mol","Iritasi kulit","Pembuatan pupuk"],
+"H3PO4":["Asam Fosfat","Asam lemah","98.00 g/mol","Iritasi kulit"],
 
-"NaOH":["Natrium Hidroksida","Basa kuat","40.00 g/mol","Korosif","Pembuatan sabun"],
+"NaOH":["Natrium Hidroksida","Basa kuat","40.00 g/mol","Korosif"],
 
-"KOH":["Kalium Hidroksida","Basa kuat","56.11 g/mol","Korosif","Elektrolit baterai"],
+"KOH":["Kalium Hidroksida","Basa kuat","56.11 g/mol","Korosif"],
 
-"Ba(OH)2":["Barium Hidroksida","Basa kuat","171.34 g/mol","Berbahaya","Analisis kimia"],
+"Ba(OH)2":["Barium Hidroksida","Basa kuat","171.34 g/mol","Berbahaya"],
 
-"Ca(OH)2":["Kalsium Hidroksida","Basa kuat","74.09 g/mol","Iritasi","Penjernihan air"],
+"Ca(OH)2":["Kalsium Hidroksida","Basa kuat","74.09 g/mol","Iritasi"],
 
-"NH3":["Amonia","Basa lemah","17.03 g/mol","Gas beracun","Pembuatan pupuk"],
+"NH3":["Amonia","Basa lemah","17.03 g/mol","Gas beracun"],
 
-"NH4OH":["Amonium Hidroksida","Basa lemah","35.05 g/mol","Iritasi paru-paru","Pembersih"],
+"NH4OH":["Amonium Hidroksida","Basa lemah","35.05 g/mol","Iritasi paru-paru"],
 
-"NaCl":["Natrium Klorida","Garam","58.44 g/mol","Relatif aman","Garam dapur"],
+"NaCl":["Natrium Klorida","Garam","58.44 g/mol","Relatif aman"],
 
-"KCl":["Kalium Klorida","Garam","74.55 g/mol","Iritasi ringan","Pupuk"],
+"KCl":["Kalium Klorida","Garam","74.55 g/mol","Iritasi ringan"],
 
-"AgNO3":["Perak Nitrat","Garam","169.87 g/mol","Oksidator","Analisis laboratorium"],
+"AgNO3":["Perak Nitrat","Garam","169.87 g/mol","Oksidator"],
 
-"CuSO4":["Tembaga Sulfat","Garam","159.61 g/mol","Beracun","Fungisida"],
+"CuSO4":["Tembaga Sulfat","Garam","159.61 g/mol","Beracun"],
 
-"FeCl3":["Besi(III) Klorida","Garam","162.20 g/mol","Korosif","Pengolahan limbah"],
+"FeCl3":["Besi(III) Klorida","Garam","162.20 g/mol","Korosif"],
 
-"MgSO4":["Magnesium Sulfat","Garam","120.37 g/mol","Iritasi ringan","Farmasi"],
+"MgSO4":["Magnesium Sulfat","Garam","120.37 g/mol","Iritasi ringan"],
 
-"Na2CO3":["Natrium Karbonat","Garam basa","105.99 g/mol","Iritasi kulit","Industri kaca"],
+"Na2CO3":["Natrium Karbonat","Garam basa","105.99 g/mol","Iritasi kulit"],
 
-"NaHCO3":["Natrium Bikarbonat","Garam basa","84.01 g/mol","Relatif aman","Baking soda"],
+"NaHCO3":["Natrium Bikarbonat","Garam basa","84.01 g/mol","Relatif aman"],
 
-"C2H5OH":["Etanol","Alkohol","46.07 g/mol","Mudah terbakar","Desinfektan"],
+"C2H5OH":["Etanol","Alkohol","46.07 g/mol","Mudah terbakar"],
 
-"CH3OH":["Metanol","Alkohol","32.04 g/mol","Beracun","Pelarut"],
+"CH3OH":["Metanol","Alkohol","32.04 g/mol","Beracun"],
 
-"Acetone":["Aseton","Keton","58.08 g/mol","Sangat mudah terbakar","Pembersih kuteks"],
+"Acetone":["Aseton","Keton","58.08 g/mol","Sangat mudah terbakar"],
 
-"Benzene":["Benzena","Aromatik","78.11 g/mol","Karsinogen","Industri kimia"],
+"Benzene":["Benzena","Aromatik","78.11 g/mol","Karsinogen"],
 
-"Toluene":["Toluena","Aromatik","92.14 g/mol","Beracun","Pelarut cat"],
+"Toluene":["Toluena","Aromatik","92.14 g/mol","Beracun"],
 
-"Glucose":["Glukosa","Karbohidrat","180.16 g/mol","Relatif aman","Sumber energi"]
+"Glucose":["Glukosa","Karbohidrat","180.16 g/mol","Relatif aman"]
 
 }
 
@@ -284,7 +294,9 @@ if menu=="Home":
     st.markdown("""
     <div class='header'>
     <h1>🧪 ChemAssist Pro</h1>
-    <p>Smart Laboratory Chemistry Assistant</p>
+    <p class='small-font'>
+    Smart Laboratory Chemistry Assistant
+    </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -292,9 +304,9 @@ if menu=="Home":
 
     c1.metric("📚 Database",f"{len(db)} Senyawa")
     c2.metric("⚗️ Sistem pH",f"{len(data_ph)} Data")
-    c3.metric("🚀 Version","12.0")
+    c3.metric("🚀 Version","15.0")
 
-    st.markdown("## 🔥 Fitur Utama")
+    st.markdown("## 🔥 Main Features")
 
     a,b,c=st.columns(3)
 
@@ -303,7 +315,9 @@ if menu=="Home":
         st.markdown("""
         <div class='card'>
         <h3>💧 Smart Solution Maker</h3>
-        <p>Pembuatan larutan otomatis lengkap dengan langkah kerja laboratorium</p>
+        <p>
+        Menghitung massa senyawa dan pengenceran larutan otomatis
+        </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -316,7 +330,9 @@ if menu=="Home":
         st.markdown("""
         <div class='card'>
         <h3>⚗️ Smart pH Calculator</h3>
-        <p>Perhitungan pH asam dan basa otomatis</p>
+        <p>
+        Menghitung pH asam kuat, basa kuat, asam lemah, dan basa lemah
+        </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -329,7 +345,9 @@ if menu=="Home":
         st.markdown("""
         <div class='card'>
         <h3>📚 Chemical Database</h3>
-        <p>Informasi lengkap bahan kimia laboratorium</p>
+        <p>
+        Database senyawa kimia lengkap beserta Mr dan bahayanya
+        </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -361,22 +379,19 @@ elif menu=="Larutan":
 📌 Rumus Kimia : {senyawa}
 
 ⚖️ Mr : {info['Mr']} g/mol
-
-🏭 Kegunaan :
-{info['kegunaan']}
 """)
 
     metode=st.selectbox(
     "Pilih Jenis Perhitungan",
-    ["Molaritas","Pengenceran"]
+    ["Pembuatan Larutan","Pengenceran"]
     )
 
-    if metode=="Molaritas":
+    if metode=="Pembuatan Larutan":
 
         M=st.number_input("Konsentrasi Larutan (M)",0.1)
         V=st.number_input("Volume Larutan (mL)",100.0)
 
-        if st.button("Hitung Massa"):
+        if st.button("Hitung Massa Senyawa"):
 
             with st.spinner("Menghitung massa senyawa..."):
                 time.sleep(1)
@@ -388,8 +403,10 @@ elif menu=="Larutan":
 {massa:.4f} gram
 """)
 
+            st.progress(100)
+
             st.code(f"""
-Langkah Pembuatan Larutan:
+Langkah Pembuatan Larutan
 
 1. Timbang {massa:.4f} gram {info['nama']}
 2. Larutkan dengan sedikit akuades
@@ -413,8 +430,10 @@ Langkah Pembuatan Larutan:
 {V2:.2f} mL
 """)
 
+            st.progress(100)
+
             st.code(f"""
-Langkah Pengenceran:
+Langkah Pengenceran
 
 1. Ambil {V1:.2f} mL larutan stok
 2. Masukkan ke labu ukur
@@ -446,9 +465,6 @@ elif menu=="pH":
 📌 Jenis : {info['jenis']}
 
 ⚖️ Mr : {info['Mr']} g/mol
-
-🏭 Kegunaan :
-{info['kegunaan']}
 """)
 
     C=st.number_input("Masukkan Konsentrasi (M)",0.01)
@@ -483,23 +499,18 @@ elif menu=="pH":
         st.progress(int((ph/14)*100))
 
         if ph < 3:
-
             st.error("🔴 Sangat Asam")
 
         elif ph < 7:
-
             st.warning("🟠 Asam")
 
         elif ph == 7:
-
             st.info("🟢 Netral")
 
         elif ph <= 11:
-
             st.success("🔵 Basa")
 
         else:
-
             st.success("🟣 Sangat Basa")
 
 # ================= DATABASE =================
@@ -539,22 +550,19 @@ elif menu=="Database":
 
 ⚠️ Bahaya :
 {data[3]}
-
-🏭 Kegunaan :
-{data[4]}
 """)
 
-    st.markdown("### 📋 Daftar Senyawa")
+    st.markdown("## 📋 Daftar Senyawa")
 
     for senyawa in db:
 
         st.markdown(f"""
 <div class='info-box'>
 
-<b>{senyawa}</b> — {db[senyawa][0]}
+<h4>{senyawa}</h4>
 
-Jenis : {db[senyawa][1]}
-
+Nama : {db[senyawa][0]} <br>
+Jenis : {db[senyawa][1]} <br>
 Mr : {db[senyawa][2]}
 
 </div>
@@ -569,28 +577,27 @@ elif menu=="Tentang":
     st.markdown("""
 <div class='info-box'>
 
-### 🧪 ChemAssist Pro
+<h3>🧪 ChemAssist Pro</h3>
 
 Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
 
-### 🚀 Fitur Utama
+<h4>🚀 Fitur Utama</h4>
 
-- Smart Solution Maker
-- Smart pH Calculator
-- Chemical Database
-- Perhitungan Pengenceran
-- Database senyawa lengkap
-- Progress indikator pH
-- Interface modern dan interaktif
+<ul>
+<li>Smart Solution Maker</li>
+<li>Smart pH Calculator</li>
+<li>Chemical Database</li>
+<li>Perhitungan Pengenceran</li>
+<li>Database Senyawa Lengkap</li>
+<li>Interface Modern</li>
+</ul>
 
-### 🎓 Tujuan
+<h4>👨‍💻 Teknologi</h4>
 
-Membantu pembelajaran dan praktikum kimia secara digital dan efisien.
-
-### 👨‍💻 Teknologi
-
-- Python
-- Streamlit
+<ul>
+<li>Python</li>
+<li>Streamlit</li>
+</ul>
 
 </div>
 """, unsafe_allow_html=True)
