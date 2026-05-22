@@ -287,15 +287,46 @@ elif menu=="🧬 Kalkulator pH":
 
     st.header("🧬 Kalkulator pH")
 
-    data_ph={
+data_ph={
 
+# ASAM KUAT
 "HCl":{"jenis":"Asam kuat","valensi":1},
+"HBr":{"jenis":"Asam kuat","valensi":1},
+"HI":{"jenis":"Asam kuat","valensi":1},
+"HNO₃":{"jenis":"Asam kuat","valensi":1},
+"HClO₄":{"jenis":"Asam kuat","valensi":1},
 "H₂SO₄":{"jenis":"Asam kuat","valensi":2},
+
+# BASA KUAT
 "NaOH":{"jenis":"Basa kuat","valensi":1},
 "KOH":{"jenis":"Basa kuat","valensi":1},
+"LiOH":{"jenis":"Basa kuat","valensi":1},
+"RbOH":{"jenis":"Basa kuat","valensi":1},
+"CsOH":{"jenis":"Basa kuat","valensi":1},
+"Ba(OH)₂":{"jenis":"Basa kuat","valensi":2},
+"Ca(OH)₂":{"jenis":"Basa kuat","valensi":2},
+"Sr(OH)₂":{"jenis":"Basa kuat","valensi":2},
+
+# ASAM LEMAH
 "CH₃COOH":{"jenis":"Asam lemah","Ka":1.8e-5,"valensi":1},
 "HF":{"jenis":"Asam lemah","Ka":6.8e-4,"valensi":1},
-"NH₄OH":{"jenis":"Basa lemah","Kb":1.8e-5,"valensi":1}
+"HCOOH":{"jenis":"Asam lemah","Ka":1.8e-4,"valensi":1},
+"HCN":{"jenis":"Asam lemah","Ka":4.9e-10,"valensi":1},
+"H₂CO₃":{"jenis":"Asam lemah","Ka":4.3e-7,"valensi":2},
+"H₃PO₄":{"jenis":"Asam lemah","Ka":7.5e-3,"valensi":3},
+"C₆H₈O₇":{"jenis":"Asam lemah","Ka":7.4e-4,"valensi":3},
+"C₄H₆O₆":{"jenis":"Asam lemah","Ka":9.2e-4,"valensi":2},
+"H₂S":{"jenis":"Asam lemah","Ka":1e-7,"valensi":2},
+"HClO":{"jenis":"Asam lemah","Ka":3e-8,"valensi":1},
+
+# BASA LEMAH
+"NH₄OH":{"jenis":"Basa lemah","Kb":1.8e-5,"valensi":1},
+"NH₃":{"jenis":"Basa lemah","Kb":1.8e-5,"valensi":1},
+"CH₃NH₂":{"jenis":"Basa lemah","Kb":4.4e-4,"valensi":1},
+"C₂H₅NH₂":{"jenis":"Basa lemah","Kb":5.6e-4,"valensi":1},
+"C₆H₅NH₂":{"jenis":"Basa lemah","Kb":4.3e-10,"valensi":1},
+"(CH₃)₂NH":{"jenis":"Basa lemah","Kb":5.4e-4,"valensi":1},
+"(CH₃)₃N":{"jenis":"Basa lemah","Kb":6.3e-5,"valensi":1}
 
 }
 
