@@ -7,14 +7,32 @@ import random
 st.set_page_config(
     page_title="ChemAssist Pro",
     page_icon="🧪",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
+
+# ================= FIX SIDEBAR =================
 
 st.markdown("""
 <style>
-[data-testid="collapsedControl"] {
-display:none
+
+[data-testid="collapsedControl"]{
+display:none !important;
+visibility:hidden !important;
 }
+
+header{
+visibility:hidden;
+}
+
+#MainMenu{
+visibility:hidden;
+}
+
+footer{
+visibility:hidden;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -31,13 +49,11 @@ font-family:'Segoe UI',sans-serif !important;
 background:linear-gradient(to bottom,#edf4ff,#ffffff);
 }
 
-[data-testid="collapsedControl"]{
-display:none;
+section[data-testid="stSidebar"]{
+background:#f4f7fc;
 }
 
-button[kind="header"]{
-display:none;
-}
+/* HEADER */
 
 .header{
 padding:45px;
@@ -48,6 +64,18 @@ box-shadow:0px 6px 20px rgba(0,0,0,.15);
 margin-bottom:25px;
 color:white;
 }
+
+.home-title{
+font-size:56px;
+font-weight:bold;
+}
+
+.home-sub{
+font-size:20px;
+opacity:0.95;
+}
+
+/* CARD */
 
 .card{
 padding:22px;
@@ -63,13 +91,17 @@ transition:0.3s;
 transform:scale(1.03);
 }
 
-.info-box{
+/* METRIC */
+
+.metric-box{
 padding:20px;
 background:white;
 border-radius:20px;
-box-shadow:0px 4px 12px rgba(0,0,0,.1);
-margin-top:10px;
+text-align:center;
+box-shadow:0px 4px 12px rgba(0,0,0,.08);
 }
+
+/* BUTTON */
 
 .stButton>button{
 width:100%;
@@ -83,14 +115,14 @@ color:white;
 font-family:'Segoe UI',sans-serif !important;
 }
 
-.home-title{
-font-size:52px;
-font-weight:bold;
-}
+/* INFO */
 
-.home-sub{
-font-size:20px;
-opacity:0.95;
+.info-box{
+padding:20px;
+background:white;
+border-radius:20px;
+box-shadow:0px 4px 12px rgba(0,0,0,.08);
+margin-top:10px;
 }
 
 .feature-title{
@@ -99,21 +131,8 @@ font-weight:bold;
 color:#0f4c81;
 }
 
-.metric-box{
-padding:20px;
-background:white;
-border-radius:20px;
-text-align:center;
-box-shadow:0px 4px 12px rgba(0,0,0,.08);
-}
-
 </style>
 """, unsafe_allow_html=True)
-
-# ================= SESSION =================
-
-if "page" not in st.session_state:
-    st.session_state.page="Home"
 
 # ================= DATA PH =================
 
@@ -125,31 +144,25 @@ data_ph={
 "HClO4":{"nama":"Asam Perklorat","jenis":"Asam kuat","valensi":1,"Mr":100.46},
 "HBr":{"nama":"Asam Bromida","jenis":"Asam kuat","valensi":1,"Mr":80.91},
 "HI":{"nama":"Asam Iodida","jenis":"Asam kuat","valensi":1,"Mr":127.91},
-"HClO3":{"nama":"Asam Klorat","jenis":"Asam kuat","valensi":1,"Mr":84.46},
 
-"HClO":{"nama":"Asam Hipoklorit","jenis":"Asam lemah","Ka":3e-8,"Mr":52.46},
 "CH3COOH":{"nama":"Asam Asetat","jenis":"Asam lemah","Ka":1.8e-5,"Mr":60.05},
 "HF":{"nama":"Asam Fluorida","jenis":"Asam lemah","Ka":6.8e-4,"Mr":20.01},
 "HCOOH":{"nama":"Asam Format","jenis":"Asam lemah","Ka":1.8e-4,"Mr":46.03},
 "H3PO4":{"nama":"Asam Fosfat","jenis":"Asam lemah","Ka":7.5e-3,"Mr":98.00},
 "H2CO3":{"nama":"Asam Karbonat","jenis":"Asam lemah","Ka":4.3e-7,"Mr":62.03},
 "HCN":{"nama":"Asam Sianida","jenis":"Asam lemah","Ka":4.9e-10,"Mr":27.03},
-"H2S":{"nama":"Asam Sulfida","jenis":"Asam lemah","Ka":1e-7,"Mr":34.08},
 
 "NaOH":{"nama":"Natrium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":40.00},
 "KOH":{"nama":"Kalium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":56.11},
 "Ba(OH)2":{"nama":"Barium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":171.34},
 "Ca(OH)2":{"nama":"Kalsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":74.09},
-"Sr(OH)2":{"nama":"Stronsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":121.63},
 "LiOH":{"nama":"Litium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":23.95},
-"RbOH":{"nama":"Rubidium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":102.47},
 
 "NH3":{"nama":"Amonia","jenis":"Basa lemah","Kb":1.8e-5,"Mr":17.03},
 "NH4OH":{"nama":"Amonium Hidroksida","jenis":"Basa lemah","Kb":1.8e-5,"Mr":35.05},
 "CH3NH2":{"nama":"Metilamina","jenis":"Basa lemah","Kb":4.4e-4,"Mr":31.06},
 "C2H5NH2":{"nama":"Etilamina","jenis":"Basa lemah","Kb":5.6e-4,"Mr":45.08},
-"C5H5N":{"nama":"Piridina","jenis":"Basa lemah","Kb":1.7e-9,"Mr":79.10},
-"Al(OH)3":{"nama":"Aluminium Hidroksida","jenis":"Basa lemah","Kb":1e-9,"Mr":78.00}
+"C5H5N":{"nama":"Piridina","jenis":"Basa lemah","Kb":1.7e-9,"Mr":79.10}
 
 }
 
@@ -196,13 +209,8 @@ db={
 
 menu=st.sidebar.radio(
 "🧪 ChemAssist Pro",
-["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"],
-index=["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"].index(
-st.session_state.page
+["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"]
 )
-)
-
-st.session_state.page=menu
 
 # ================= HOME =================
 
@@ -230,7 +238,7 @@ if menu=="Home":
     with b:
         st.markdown("""
         <div class='metric-box'>
-        <h2>⚗️ 29</h2>
+        <h2>⚗️ 20+</h2>
         <p>Data pH Senyawa</p>
         </div>
         """, unsafe_allow_html=True)
@@ -243,78 +251,16 @@ if menu=="Home":
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("## 🔥 Main Features")
-
-    c1,c2=st.columns(2)
-
-    with c1:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>💧 Smart Solution Maker</div>
-        <p>Perhitungan pembuatan larutan dan pengenceran otomatis</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("Buka Menu Larutan"):
-            st.session_state.page="Larutan"
-            st.rerun()
-
-    with c2:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>⚗️ Smart pH Calculator</div>
-        <p>Analisis pH asam dan basa secara cepat dan akurat</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("Buka Kalkulator pH"):
-            st.session_state.page="pH"
-            st.rerun()
-
-    c3,c4=st.columns(2)
-
-    with c3:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>📚 Informasi Bahan Kimia</div>
-        <p>Data senyawa lengkap dengan Mr, bahaya, dan struktur</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("Buka Informasi Bahan"):
-            st.session_state.page="Informasi Bahan Kimia"
-            st.rerun()
-
-    with c4:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>🧪 Smart Chemical Analysis</div>
-        <p>Interpretasi sifat dan karakteristik senyawa kimia</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("Buka Analisis Kimia"):
-            st.session_state.page="Analisis Kimia"
-            st.rerun()
-
 # ================= LARUTAN =================
 
 elif menu=="Larutan":
 
     st.title("💧 Smart Solution Maker")
 
-    if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
-        st.rerun()
-
     senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(data_ph.keys()),
-    format_func=lambda x:f"{data_ph[x]['nama']} ({x})"
+        "Pilih Senyawa",
+        list(data_ph.keys()),
+        format_func=lambda x:f"{data_ph[x]['nama']} ({x})"
     )
 
     info=data_ph[senyawa]
@@ -328,8 +274,8 @@ elif menu=="Larutan":
 """)
 
     metode=st.selectbox(
-    "Pilih Jenis Perhitungan",
-    ["Pembuatan Larutan","Pengenceran"]
+        "Pilih Jenis Perhitungan",
+        ["Pembuatan Larutan","Pengenceran"]
     )
 
     if metode=="Pembuatan Larutan":
@@ -341,20 +287,7 @@ elif menu=="Larutan":
 
             massa=(info['Mr']*M*V)/1000
 
-            st.success(f"""
-✅ Massa senyawa yang diperlukan:
-{massa:.4f} gram
-""")
-
-            st.code(f"""
-Langkah Pembuatan Larutan
-
-1. Timbang {massa:.4f} gram {info['nama']}
-2. Larutkan dengan sedikit akuades
-3. Masukkan ke labu ukur {V} mL
-4. Tambahkan akuades hingga tanda batas
-5. Homogenkan larutan
-""")
+            st.success(f"Massa senyawa yang diperlukan = {massa:.4f} gram")
 
     else:
 
@@ -366,10 +299,7 @@ Langkah Pembuatan Larutan
 
             V2=(M1*V1)/M2
 
-            st.success(f"""
-✅ Volume akhir larutan:
-{V2:.2f} mL
-""")
+            st.success(f"Volume akhir larutan = {V2:.2f} mL")
 
 # ================= PH =================
 
@@ -377,68 +307,52 @@ elif menu=="pH":
 
     st.title("⚗️ Smart pH Calculator")
 
-    if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
-        st.rerun()
-
     senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(data_ph.keys()),
-    format_func=lambda x:f"{data_ph[x]['nama']} ({x})"
+        "Pilih Senyawa",
+        list(data_ph.keys()),
+        format_func=lambda x:f"{data_ph[x]['nama']} ({x})"
     )
 
     info=data_ph[senyawa]
-
-    st.info(f"""
-🧪 Nama Senyawa : {info['nama']}
-
-📌 Jenis : {info['jenis']}
-
-⚖️ Mr : {info['Mr']} g/mol
-""")
 
     C=st.number_input("Masukkan Konsentrasi (M)",0.01)
 
     if st.button("Hitung pH"):
 
         if "Asam kuat" in info["jenis"]:
-
             ph=-math.log10(C*info["valensi"])
 
         elif "Basa kuat" in info["jenis"]:
-
             poh=-math.log10(C*info["valensi"])
             ph=14-poh
 
         elif "Asam lemah" in info["jenis"]:
-
             H=math.sqrt(info["Ka"]*C)
             ph=-math.log10(H)
 
         else:
-
             OH=math.sqrt(info["Kb"]*C)
             poh=-math.log10(OH)
             ph=14-poh
 
-        st.metric("📊 Nilai pH",f"{ph:.2f}")
+        st.metric("Nilai pH",f"{ph:.2f}")
 
-        if ph <= 1:
+        if ph<=1:
             st.error("🔴 Sangat Asam")
 
-        elif ph <= 3:
+        elif ph<=3:
             st.warning("🟠 Asam")
 
-        elif ph <= 6:
+        elif ph<=6:
             st.info("🟡 Asam Lemah")
 
-        elif ph == 7:
+        elif ph==7:
             st.success("🟢 Netral")
 
-        elif ph <= 11:
+        elif ph<=11:
             st.info("🔵 Basa Lemah")
 
-        elif ph <= 13:
+        elif ph<=13:
             st.warning("🟣 Basa")
 
         else:
@@ -450,19 +364,7 @@ elif menu=="Informasi Bahan Kimia":
 
     st.title("📚 Informasi Bahan Kimia")
 
-    if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
-        st.rerun()
-
-    cari=st.text_input("🔎 Cari nama atau rumus senyawa")
-
-    hasil=[
-    x for x in db
-    if cari.lower() in x.lower()
-    or cari.lower() in db[x][0].lower()
-    ] if cari else list(db.keys())
-
-    pilih=st.selectbox("Pilih Senyawa",hasil)
+    pilih=st.selectbox("Pilih Senyawa",list(db.keys()))
 
     data=db[pilih]
 
@@ -482,79 +384,18 @@ elif menu=="Informasi Bahan Kimia":
 🧬 Struktur Molekul : {data[5]}
 """)
 
-# ================= ANALISIS KIMIA =================
+# ================= ANALISIS =================
 
 elif menu=="Analisis Kimia":
 
     st.title("🧪 Smart Chemical Analysis")
 
-    if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
-        st.rerun()
-
-    senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(db.keys())
-    )
-
-    data=db[senyawa]
-
-    st.markdown(f"""
-<div class='info-box'>
-
-<h3>📊 Hasil Analisis Senyawa</h3>
-
-<b>🧪 Nama :</b> {data[0]} <br><br>
-
-<b>📌 Rumus :</b> {senyawa} <br><br>
-
-<b>⚗️ Jenis :</b> {data[1]} <br><br>
-
-<b>⚖️ Mr :</b> {data[2]} <br><br>
-
-<b>⚠️ Bahaya :</b> {data[3]} <br><br>
-
-<b>🧬 Struktur :</b> {data[5]}
-
-</div>
-""", unsafe_allow_html=True)
-
-    st.subheader("📈 Interpretasi Kimia")
-
-    if "Asam" in data[1]:
-
-        st.success("""
-Senyawa ini bersifat asam dan menghasilkan ion H+ dalam larutan.
-Digunakan pada analisis laboratorium dan industri kimia.
-""")
-
-    elif "Basa" in data[1]:
-
-        st.info("""
-Senyawa ini bersifat basa dan menghasilkan ion OH- dalam larutan.
-Umumnya digunakan untuk netralisasi dan industri.
-""")
-
-    elif "Garam" in data[1]:
-
-        st.warning("""
-Senyawa ini termasuk golongan garam hasil reaksi asam dan basa.
-""")
-
-    else:
-
-        st.write("""
-Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
-""")
-
     fakta=random.choice([
-
-    "Larutan asam kuat terionisasi sempurna di dalam air.",
-    "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
-    "H2SO4 digunakan pada baterai kendaraan.",
-    "Etanol digunakan sebagai antiseptik.",
-    "pH menentukan tingkat keasaman larutan."
-
+        "Larutan asam kuat terionisasi sempurna di dalam air.",
+        "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
+        "H2SO4 digunakan pada baterai kendaraan.",
+        "Etanol digunakan sebagai antiseptik.",
+        "pH menentukan tingkat keasaman larutan."
     ])
 
     st.info(f"🧠 Fakta Kimia : {fakta}")
@@ -571,22 +412,6 @@ elif menu=="Tentang":
 <h3>🧪 ChemAssist Pro</h3>
 
 Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
-
-<h4>🚀 Fitur Utama</h4>
-
-<ul>
-<li>Smart Solution Maker</li>
-<li>Smart pH Calculator</li>
-<li>Informasi Bahan Kimia</li>
-<li>Smart Chemical Analysis</li>
-</ul>
-
-<h4>👨‍💻 Teknologi</h4>
-
-<ul>
-<li>Python</li>
-<li>Streamlit</li>
-</ul>
 
 </div>
 """, unsafe_allow_html=True)
