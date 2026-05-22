@@ -7,7 +7,19 @@ import math
 st.set_page_config(
     page_title="ChemAssist Pro",
     page_icon="🧪",
-    layout="wide"
+    st.markdown("""
+<style>
+.main{
+    padding-top:20px;
+}
+
+div[data-testid="stMetric"]{
+    border-radius:15px;
+    padding:15px;
+    border:1px solid #ddd;
+}
+</style>
+""", unsafe_allow_html=True)
 )
 
 # ==========================================
