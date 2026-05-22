@@ -1,9 +1,9 @@
 import streamlit as st
 import math
 
-# ==========================================
-# KONFIGURASI HALAMAN
-# ==========================================
+# ======================================
+# KONFIGURASI
+# ======================================
 
 st.set_page_config(
     page_title="ChemAssist Pro",
@@ -11,9 +11,9 @@ st.set_page_config(
     layout="centered"
 )
 
-# ==========================================
-# CUSTOM CSS
-# ==========================================
+# ======================================
+# CSS
+# ======================================
 
 st.markdown("""
 <style>
@@ -23,12 +23,17 @@ st.markdown("""
 background:linear-gradient(to bottom,#dbeafe,#ffffff);
 }
 
+/* Sidebar */
+section[data-testid="stSidebar"]{
+background:linear-gradient(to bottom,#93c5fd,#dbeafe);
+}
+
 /* Header */
 .judul{
 padding:20px;
 border-radius:20px;
-text-align:center;
 background:white;
+text-align:center;
 box-shadow:0px 4px 15px rgba(0,0,0,0.1);
 margin-bottom:20px;
 }
@@ -38,9 +43,8 @@ margin-bottom:20px;
 padding:15px;
 border-radius:20px;
 background:white;
-text-align:center;
 box-shadow:0px 4px 10px rgba(0,0,0,0.1);
-margin:5px;
+text-align:center;
 }
 
 /* Metric */
@@ -60,31 +64,30 @@ font-size:16px;
 font-weight:bold;
 }
 
-/* Tab */
-button[data-baseweb="tab"]{
-font-size:15px;
-border-radius:10px;
-}
-
 </style>
 """,unsafe_allow_html=True)
 
-# ==========================================
-# TAB
-# ==========================================
+# ======================================
+# SIDEBAR MENU
+# ======================================
 
-tab0,tab1,tab2,tab3=st.tabs([
+st.sidebar.title("🧪 ChemAssist Pro")
+
+menu=st.sidebar.radio(
+"Menu",
+[
 "🏠 Home",
 "💧 Pembuatan Larutan",
 "🧬 Kalkulator pH",
 "📦 Database Bahan"
-])
+]
+)
 
-# ==========================================
+# ======================================
 # HOME
-# ==========================================
+# ======================================
 
-with tab0:
+if menu=="🏠 Home":
 
     st.markdown("""
     <div class='judul'>
@@ -99,10 +102,10 @@ with tab0:
         st.metric("📚 Database","15+")
 
     with col2:
-        st.metric("⚡ Fitur","6")
+        st.metric("🧮 Kalkulator","6")
 
     with col3:
-        st.metric("🧮 Version","2.0")
+        st.metric("⚡ Version","2.0")
 
     st.write("")
 
@@ -120,27 +123,27 @@ with tab0:
         st.markdown("""
         <div class='card'>
         <h3>🧬 pH</h3>
-        Asam kuat/lemah dan basa kuat/lemah
+        Asam/Basa kuat dan lemah
         </div>
         """,unsafe_allow_html=True)
 
     with c:
         st.markdown("""
         <div class='card'>
-        <h3>📦 Bahan Kimia</h3>
-        Info Mr dan bahaya bahan
+        <h3>📦 Database</h3>
+        Mr, rumus dan bahaya bahan
         </div>
         """,unsafe_allow_html=True)
 
     st.info(
-    "ChemAssist membantu menghitung kebutuhan praktikum laboratorium secara cepat dan praktis."
+    "ChemAssist membantu perhitungan laboratorium menjadi lebih cepat dan praktis."
     )
 
-# ==========================================
+# ======================================
 # PEMBUATAN LARUTAN
-# ==========================================
+# ======================================
 
-with tab1:
+elif menu=="💧 Pembuatan Larutan":
 
     st.header("💧 Kalkulator Larutan")
 
@@ -154,21 +157,23 @@ with tab1:
     ]
     )
 
-    # Molaritas
     if pilihan=="Molaritas":
 
         Mr=st.number_input(
         "Mr (g/mol)",
+        min_value=0.0,
         value=40.0
         )
 
         M=st.number_input(
         "Molaritas (M)",
+        min_value=0.0,
         value=0.1
         )
 
         V=st.number_input(
         "Volume (mL)",
+        min_value=0.0,
         value=100.0
         )
 
@@ -180,21 +185,23 @@ with tab1:
             f"Massa yang dibutuhkan = {massa:.4f} gram"
             )
 
-    # Normalitas
     elif pilihan=="Normalitas":
 
         BE=st.number_input(
         "Berat Ekivalen",
+        min_value=0.0,
         value=40.0
         )
 
         N=st.number_input(
-        "Normalitas (N)",
+        "Normalitas",
+        min_value=0.0,
         value=0.1
         )
 
         V=st.number_input(
         "Volume (mL)",
+        min_value=0.0,
         value=100.0
         )
 
@@ -206,16 +213,17 @@ with tab1:
             f"Massa yang dibutuhkan = {massa:.4f} gram"
             )
 
-    # ppm
     elif pilihan=="ppm":
 
         ppm=st.number_input(
         "Nilai ppm",
+        min_value=0.0,
         value=100.0
         )
 
         V=st.number_input(
         "Volume (L)",
+        min_value=0.0,
         value=1.0
         )
 
@@ -227,21 +235,23 @@ with tab1:
             f"Massa yang dibutuhkan = {massa:.2f} mg"
             )
 
-    # Pengenceran
     else:
 
         M1=st.number_input(
         "Konsentrasi Awal",
+        min_value=0.0,
         value=10.0
         )
 
         M2=st.number_input(
         "Konsentrasi Akhir",
+        min_value=0.0,
         value=1.0
         )
 
         V2=st.number_input(
         "Volume Akhir (mL)",
+        min_value=0.0,
         value=100.0
         )
 
@@ -253,16 +263,16 @@ with tab1:
             f"Volume stok yang diperlukan = {V1:.2f} mL"
             )
 
-# ==========================================
+# ======================================
 # KALKULATOR PH
-# ==========================================
+# ======================================
 
-with tab2:
+elif menu=="🧬 Kalkulator pH":
 
     st.header("🧬 Kalkulator pH")
 
     jenis=st.selectbox(
-    "Pilih Jenis Larutan",
+    "Jenis Larutan",
     [
     "Asam kuat",
     "Basa kuat",
@@ -273,19 +283,36 @@ with tab2:
 
     konsentrasi=st.number_input(
     "Konsentrasi (M)",
-    value=0.01
+    min_value=0.000001,
+    value=0.01,
+    format="%.6f"
     )
 
     ph=0
 
     if jenis=="Asam kuat":
 
-        H=konsentrasi
+        valensi=st.number_input(
+        "Valensi H+",
+        min_value=1,
+        max_value=5,
+        value=1
+        )
+
+        H=konsentrasi*valensi
         ph=-math.log10(H)
 
     elif jenis=="Basa kuat":
 
-        poh=-math.log10(konsentrasi)
+        valensi=st.number_input(
+        "Valensi OH-",
+        min_value=1,
+        max_value=5,
+        value=1
+        )
+
+        OH=konsentrasi*valensi
+        poh=-math.log10(OH)
         ph=14-poh
 
     elif jenis=="Asam lemah":
@@ -297,7 +324,6 @@ with tab2:
         )
 
         H=math.sqrt(Ka*konsentrasi)
-
         ph=-math.log10(H)
 
     elif jenis=="Basa lemah":
@@ -311,7 +337,6 @@ with tab2:
         OH=math.sqrt(Kb*konsentrasi)
 
         poh=-math.log10(OH)
-
         ph=14-poh
 
     if st.button("Hitung pH"):
@@ -321,27 +346,29 @@ with tab2:
         f"{ph:.2f}"
         )
 
+        st.write(f"**Jenis Larutan : {jenis}**")
+
         if ph<7:
-            st.error("Larutan bersifat ASAM")
+            st.error("Sifat : Asam")
 
         elif ph>7:
-            st.success("Larutan bersifat BASA")
+            st.success("Sifat : Basa")
 
         else:
-            st.info("Larutan NETRAL")
+            st.info("Sifat : Netral")
 
-# ==========================================
-# DATABASE BAHAN KIMIA
-# ==========================================
+# ======================================
+# DATABASE BAHAN
+# ======================================
 
-with tab3:
+elif menu=="📦 Database Bahan":
 
     st.header("📦 Database Bahan Kimia")
 
     data={
 
     "HCl":{"Formula":"HCl","Mr":36.46,"Bahaya":"Korosif"},
-    "NaOH":{"Formula":"NaOH","Mr":40,"Bahaya":"Korosif"},
+    "NaOH":{"Formula":"NaOH","Mr":40.00,"Bahaya":"Korosif"},
     "H₂SO₄":{"Formula":"H₂SO₄","Mr":98.07,"Bahaya":"Korosif kuat"},
     "HNO₃":{"Formula":"HNO₃","Mr":63.01,"Bahaya":"Oksidator"},
     "NH₃":{"Formula":"NH₃","Mr":17.03,"Bahaya":"Iritasi"},
@@ -355,26 +382,17 @@ with tab3:
     "CuSO₄":{"Formula":"CuSO₄","Mr":159.61,"Bahaya":"Berbahaya bagi lingkungan"},
     "FeCl₃":{"Formula":"FeCl₃","Mr":162.2,"Bahaya":"Iritasi"},
     "Akuades":{"Formula":"H₂O","Mr":18.02,"Bahaya":"Aman"}
-
     }
 
-    pilih=st.selectbox(
-    "Pilih bahan",
+    bahan=st.selectbox(
+    "Pilih Bahan",
     list(data.keys())
     )
 
-    x=data[pilih]
+    x=data[bahan]
 
-    st.subheader(pilih)
+    st.subheader(bahan)
 
-    st.write(
-    f"**Rumus :** {x['Formula']}"
-    )
-
-    st.write(
-    f"**Mr :** {x['Mr']} g/mol"
-    )
-
-    st.warning(
-    f"⚠️ Bahaya : {x['Bahaya']}"
-    )
+    st.write(f"**Rumus :** {x['Formula']}")
+    st.write(f"**Mr :** {x['Mr']} g/mol")
+    st.warning(f"⚠️ Bahaya : {x['Bahaya']}")
