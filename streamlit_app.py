@@ -257,23 +257,38 @@ elif menu=="Pembuatan Larutan":
                 f"Massa = {massa:.2f} mg"
                 )
 
-    else:
+else:
 
-        C1=st.number_input(
-        "Konsentrasi awal",
-        value=10.0
-        )
+    C1=st.number_input(
+    "Konsentrasi awal",
+    value=10.0
+    )
 
-        C2=st.number_input(
-        "Konsentrasi akhir",
-        value=1.0
-        )
+    C2=st.number_input(
+    "Konsentrasi akhir",
+    value=1.0
+    )
 
-        V2=st.number_input(
-        "Volume akhir",
-        value=100.0
-        )
+    V2=st.number_input(
+    "Volume akhir",
+    value=100.0
+    )
 
+    if st.button("Hitung Pengenceran"):
+
+        if C1==0:
+
+            st.error(
+            "Konsentrasi awal tidak boleh 0"
+            )
+
+        else:
+
+            V1=(C2*V2)/C1
+
+            st.success(
+            f"Volume stok = {V1:.2f} mL"
+            )
 if st.button("Hitung Pengenceran"):
 
     if C1==0:
@@ -360,51 +375,55 @@ elif menu=="Kalkulator pH":
     value=0.01
     )
 
-if st.button("Hitung pH"):
+konsentrasi=st.number_input(
+"Konsentrasi (M)",
+value=0.01
+)
 
-    if konsentrasi <= 0:
+    if st.button("Hitung pH"):
 
-        st.error(
-        "Konsentrasi harus lebih besar dari 0"
-        )
+        if konsentrasi <= 0:
 
-    else:
-
-        if info["jenis"]=="Asam kuat":
-
-            H=konsentrasi*info["valensi"]
-            ph=-math.log10(H)
-
-        elif info["jenis"]=="Basa kuat":
-
-            OH=konsentrasi*info["valensi"]
-            ph=14+math.log10(OH)
-
-        elif info["jenis"]=="Asam lemah":
-
-            H=math.sqrt(
-            info["Ka"]*
-            konsentrasi*
-            info["valensi"]
+            st.error(
+            "Konsentrasi harus lebih besar dari 0"
             )
-
-            ph=-math.log10(H)
 
         else:
 
-            OH=math.sqrt(
-            info["Kb"]*
-            konsentrasi*
-            info["valensi"]
+            if info["jenis"]=="Asam kuat":
+
+                H=konsentrasi*info["valensi"]
+                ph=-math.log10(H)
+
+            elif info["jenis"]=="Basa kuat":
+
+                OH=konsentrasi*info["valensi"]
+                ph=14+math.log10(OH)
+
+            elif info["jenis"]=="Asam lemah":
+
+                H=math.sqrt(
+                info["Ka"]*
+                konsentrasi*
+                info["valensi"]
+                )
+
+                ph=-math.log10(H)
+
+            else:
+
+                OH=math.sqrt(
+                info["Kb"]*
+                konsentrasi*
+                info["valensi"]
+                )
+
+                ph=14+math.log10(OH)
+
+            st.metric(
+            "Nilai pH",
+            f"{ph:.2f}"
             )
-
-            ph=14+math.log10(OH)
-
-        st.metric(
-        "Nilai pH",
-        f"{ph:.2f}"
-        )
-
 # ==================================================
 # DATABASE
 # ==================================================
