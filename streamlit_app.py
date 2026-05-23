@@ -30,7 +30,6 @@ st.markdown("""
 
 #MainMenu {visibility:hidden;}
 footer {visibility:hidden;}
-header {visibility:hidden;}
 
 html, body, [class*="css"]{
     font-family:'Segoe UI',sans-serif;
