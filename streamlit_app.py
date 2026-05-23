@@ -405,7 +405,7 @@ st.session_state.page=menu
 
 # ================= HOME =================
 
-if menu==" Home":
+if menu=="Home":
 
     jam=datetime.now().strftime("%H:%M")
 
