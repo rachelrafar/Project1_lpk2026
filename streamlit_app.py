@@ -20,98 +20,6 @@ button[kind="header"]{
 display:none;
 }
 
-
-/* ===== MODERN ANIMATIONS ===== */
-
-.hero{
-animation:fadeUp 1s ease;
-}
-
-.card{
-animation:fadeUp 0.8s ease;
-}
-
-.metric-box{
-animation:zoomIn 0.8s ease;
-}
-
-.stButton>button{
-transition:all 0.3s ease !important;
-}
-
-.stButton>button:hover{
-transform:translateY(-4px) scale(1.03);
-box-shadow:0 10px 30px rgba(120,120,255,0.35);
-}
-
-/* GLASS EFFECT */
-
-.glass{
-background:rgba(255,255,255,0.25);
-backdrop-filter:blur(14px);
-border:1px solid rgba(255,255,255,0.4);
-border-radius:24px;
-padding:25px;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes zoomIn{
-from{
-opacity:0;
-transform:scale(0.9);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-/* MOBILE RESPONSIVE */
-
-@media(max-width:768px){
-
-.hero-title{
-font-size:38px !important;
-text-align:center;
-}
-
-.hero-sub{
-font-size:16px !important;
-text-align:center;
-}
-
-.block-container{
-padding-top:1rem !important;
-padding-left:1rem !important;
-padding-right:1rem !important;
-}
-
-.card{
-padding:18px !important;
-}
-
-.metric-box{
-padding:15px !important;
-}
-
-.stButton>button{
-height:48px !important;
-font-size:15px !important;
-}
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -488,6 +396,7 @@ menu = st.sidebar.radio(
 "💧 Larutan",
 "⚗️ pH",
 "📚 Informasi Bahan Kimia",
+"🧪 Analisis Kimia",
 "ℹ️ Tentang"
 ],
 index=[
@@ -495,6 +404,7 @@ index=[
 "💧 Larutan",
 "⚗️ pH",
 "📚 Informasi Bahan Kimia",
+"🧪 Analisis Kimia",
 "ℹ️ Tentang"
 ].index(st.session_state.current_menu)
 )
@@ -555,16 +465,6 @@ if menu=="🏠 Home":
         <p>Modern Edition</p>
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class='glass'>
-    <h2 style='color:#6b5b95;'>🚀 AI Laboratory Dashboard</h2>
-    <p style='font-size:18px;color:#7b728d;'>
-    Modern chemistry platform with smart analysis, interactive calculations,
-    futuristic UI, and laboratory-ready features.
-    </p>
-    </div>
-    """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -627,22 +527,7 @@ if menu=="🏠 Home":
         for i in range(100):
             time.sleep(0.01)
             progress.progress(i+1)
-        
         st.success("System Ready ✅")
-
-        st.markdown("""
-        <div class='glass'>
-        <h2>🧬 Upcoming Smart Features</h2>
-
-        ✅ Interactive Periodic Table<br>
-        ✅ AI Chemistry Assistant<br>
-        ✅ Smart Stoichiometry Calculator<br>
-        ✅ Molecular Visualization<br>
-        ✅ Export PDF Laboratory Report<br>
-        
-        </div>
-        """, unsafe_allow_html=True)
-
 
 # ================= LARUTAN =================
 
@@ -863,6 +748,87 @@ elif menu=="📚 Informasi Bahan Kimia":
 </div>
 """, unsafe_allow_html=True)
 
+# ================= ANALISIS KIMIA =================
+
+elif menu=="🧪 Analisis Kimia":
+
+    st.title("🧪 Smart Chemical Analysis")
+
+    if st.button("⬅ Kembali ke Home"):
+        go_to("🏠 Home")
+
+    senyawa=st.selectbox(
+    "Pilih Senyawa",
+    list(db.keys())
+    )
+
+    data=db[senyawa]
+
+    st.markdown(f"""
+    <div class='info-box'>
+    
+    <h3>📊 Hasil Analisis Senyawa</h3>
+
+    <b>🧪 Nama :</b> {data[0]} <br><br>
+
+    <b>📌 Rumus :</b> {senyawa} <br><br>
+
+    <b>⚗️ Jenis :</b> {data[1]} <br><br>
+
+    <b>⚖️ Mr :</b> {data[2]} <br><br>
+
+    <b>⚠️  Bahaya :</b> {data[3]} <br><br>
+
+    <b>🧬 Struktur :</b> {data[5]}
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.subheader("📈 Interpretasi Kimia")
+
+    if "Asam" in data[1]:
+
+        st.success("""
+Senyawa ini bersifat asam dan menghasilkan ion H+ dalam larutan.
+Digunakan pada analisis laboratorium dan industri kimia.
+""")
+
+    elif "Basa" in data[1]:
+
+        st.info("""
+Senyawa ini bersifat basa dan menghasilkan ion OH- dalam larutan.
+Umumnya digunakan untuk netralisasi dan industri.
+""")
+
+    elif "Garam" in data[1]:
+
+        st.warning("""
+Senyawa ini termasuk golongan garam hasil reaksi asam dan basa.
+""")
+
+    else:
+
+        st.write("""
+Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
+""")
+
+    fakta=random.choice([
+
+    "Larutan asam kuat terionisasi sempurna di dalam air.",
+
+    "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
+
+    "H2SO4 digunakan pada baterai kendaraan.",
+
+    "Etanol digunakan sebagai antiseptik.",
+
+    "pH menentukan tingkat keasaman larutan."
+
+    ])
+
+    st.info(f"🧠 Fakta Kimia : {fakta}")
+
+
 # ================= TENTANG =================
 
 elif menu=="ℹ️ Tentang":
@@ -882,7 +848,7 @@ elif menu=="ℹ️ Tentang":
     <li>Smart Solution Maker</li>
     <li>Smart pH Calculator</li>
     <li>Informasi Bahan Kimia</li>
-    
+    <li>Smart Chemical Analysis</li>
     </ul>
 
     <h4>👨‍💻 Teknologi</h4>
