@@ -754,19 +754,19 @@ elif menu=="🧪 Analisis Kimia":
     st.markdown(f"""
     <div class='info-box'>
     
-    <h3>  Hasil Analisis Senyawa</h3>
+    <h3>Hasil Analisis Senyawa</h3>
 
-    <b>🧪 Nama :</b> {data[0]} <br><br>
+    <b> Nama :</b> {data[0]} <br><br>
 
-    <b>📌 Rumus :</b> {senyawa} <br><br>
+    <b> Rumus :</b> {senyawa} <br><br>
 
-    <b>⚗️ Jenis :</b> {data[1]} <br><br>
+    <b> Jenis :</b> {data[1]} <br><br>
 
-    <b>⚖️ Mr :</b> {data[2]} <br><br>
+    <b> Mr :</b> {data[2]} <br><br>
 
-    <b>⚠️ Bahaya :</b> {data[3]} <br><br>
+    <b> Bahaya :</b> {data[3]} <br><br>
 
-    <b>🧬 Struktur :</b> {data[5]}
+    <b> Struktur :</b> {data[5]}
 
     </div>
     """, unsafe_allow_html=True)
