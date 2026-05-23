@@ -404,6 +404,8 @@ elif menu=="Larutan":
         V=st.number_input("Volume Larutan (mL)",100.0)
 
         if st.button("Hitung Massa Senyawa"):
+            with st.spinner("Sedang menghitung..."):
+                time.sleep(5)
 
             massa=(info['Mr']*M*V)/1000
 
@@ -429,6 +431,8 @@ Langkah Pembuatan Larutan
         M2=st.number_input("Molaritas Akhir",0.1)
 
         if st.button("Hitung Pengenceran"):
+            with st.spinner("Sedang menghitung..."):
+                time.sleep(5)
 
             V2=(M1*V1)/M2
 
@@ -467,7 +471,7 @@ elif menu=="pH":
 
     if st.button("Hitung pH"):
         with st.spinner("Sedang menghitung..."):
-            time.sleep(1)
+            time.sleep(5)
 
         if "Asam kuat" in info["jenis"]:
 
