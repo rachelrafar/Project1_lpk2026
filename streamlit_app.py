@@ -710,7 +710,8 @@ elif menu=="📚 Informasi Bahan Kimia":
     x for x in db
     if cari.lower() in x.lower()
     or cari.lower() in db[x][0].lower()
-    ] if cari else list(db.keys())
+    ] 
+    if cari else list(db.keys())
 
     pilih=st.selectbox("Pilih Senyawa",hasil)
 
