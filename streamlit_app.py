@@ -175,22 +175,44 @@ html, body, [class*="css"] {
     box-shadow: 0 6px 24px rgba(37,99,235,0.45);
 }
 
-/* Card glassmorphism */
-.info-card {
+/* CARD */
 
-    background: rgba(255,255,255,0.22);
+.card{
+    background:rgba(255,255,255,0.75);
 
-    padding: 25px;
+    border:1px solid rgba(255,255,255,0.6);
 
-    border-radius: 22px;
+    backdrop-filter:blur(10px);
 
-    backdrop-filter: blur(12px);
+    border-radius:26px;
 
-    border: 1px solid rgba(255,255,255,0.25);
+    padding:24px;
 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow:
+    0 6px 22px rgba(210,210,255,.18);
 
-    color: #0F172A;
+    transition:0.3s;
+
+    margin-bottom:18px;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:
+    0 10px 28px rgba(180,180,255,.25);
+}
+
+/* TITLE */
+
+.feature-title{
+    font-size:22px;
+    font-weight:700;
+    color:#5b4b8a;
+}
+
+.feature-desc{
+    color:#7b728d;
+    font-size:15px;
 }
 
 /* Efek molekul mengambang */
