@@ -8,7 +8,7 @@ import random
 st.set_page_config(
     page_title="ChemAssist Dashboard",
     page_icon="🧪",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
 
