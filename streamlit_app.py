@@ -381,11 +381,19 @@ db={
 
 }
 
+# ================= NAVIGATION HELPER =================
+
+def go_to(page_name):
+    st.session_state.menu = page_name
+
+if "menu" not in st.session_state:
+    st.session_state.menu = "🏠 Home"
+
 # ================= SIDEBAR =================
 
 with st.sidebar:
 
-    selected_menu = option_menu(
+    selected = option_menu(
         menu_title="✨ ChemAssist Menu",
 
         options=[
@@ -408,7 +416,14 @@ with st.sidebar:
 
         menu_icon="stars",
 
-        default_index=0,
+        default_index=[
+            "🏠 Home",
+            "💧 Larutan",
+            "⚗️ pH",
+            "📚 Informasi Bahan Kimia",
+            "🧪 Analisis Kimia",
+            "ℹ️ Tentang"
+        ].index(st.session_state.menu),
 
         styles={
 
@@ -433,30 +448,20 @@ with st.sidebar:
                 "color": "#0F172A",
                 "font-weight": "600",
                 "--hover-color": "#BAE6FD",
-                "transition": "0.2s",
             },
 
             "nav-link-selected": {
                 "background": "linear-gradient(90deg,#38BDF8,#2563EB)",
                 "color": "white",
                 "font-weight": "bold",
-                "box-shadow": "0 4px 18px rgba(37,99,235,0.35)",
             },
         }
     )
 
-# ================= NAVIGATION =================
+if selected != st.session_state.menu:
+    st.session_state.menu = selected
 
-menu = st.session_state["direct_menu"]
-
-if selected_menu != menu:
-    st.session_state["direct_menu"] = selected_menu
-    menu = selected_menu
-
-# ================= NAVIGATION HELPER =================
-
-def go_to(page_name):
-    st.session_state["direct_menu"] = page_name
+menu = st.session_state.menu
 
 # ================= HOME =================
 
