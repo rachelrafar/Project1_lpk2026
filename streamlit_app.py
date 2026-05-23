@@ -392,12 +392,12 @@ db={
 menu=st.sidebar.radio(
 "✨ ChemAssist Menu",
 [
-"🏠 Home",
-"💧 Larutan",
-"⚗️ pH",
-"📚 Informasi Bahan Kimia",
-"🧪 Analisis Kimia",
-"ℹ️ Tentang"
+"Home",
+"Larutan",
+"pH",
+"Informasi Bahan Kimia",
+"Analisis Kimia",
+"Tentang"
 ]
 )
 
@@ -405,7 +405,7 @@ st.session_state.page=menu
 
 # ================= HOME =================
 
-if menu=="Home":
+if menu=="🏠 Home":
 
     jam=datetime.now().strftime("%H:%M")
 
@@ -698,8 +698,8 @@ elif menu=="pH":
 # ================= INFORMASI BAHAN =================
 
 elif menu=="Informasi Bahan Kimia":
-
-    st.title("📚 Informasi Bahan Kimia")
+   
+     st.title("📚 Informasi Bahan Kimia")
 
     if st.button("⬅ Kembali ke Home"):
         st.session_state.page="Home"
