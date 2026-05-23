@@ -20,6 +20,98 @@ button[kind="header"]{
 display:none;
 }
 
+
+/* ===== MODERN ANIMATIONS ===== */
+
+.hero{
+animation:fadeUp 1s ease;
+}
+
+.card{
+animation:fadeUp 0.8s ease;
+}
+
+.metric-box{
+animation:zoomIn 0.8s ease;
+}
+
+.stButton>button{
+transition:all 0.3s ease !important;
+}
+
+.stButton>button:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 10px 30px rgba(120,120,255,0.35);
+}
+
+/* GLASS EFFECT */
+
+.glass{
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,0.4);
+border-radius:24px;
+padding:25px;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes zoomIn{
+from{
+opacity:0;
+transform:scale(0.9);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero-title{
+font-size:38px !important;
+text-align:center;
+}
+
+.hero-sub{
+font-size:16px !important;
+text-align:center;
+}
+
+.block-container{
+padding-top:1rem !important;
+padding-left:1rem !important;
+padding-right:1rem !important;
+}
+
+.card{
+padding:18px !important;
+}
+
+.metric-box{
+padding:15px !important;
+}
+
+.stButton>button{
+height:48px !important;
+font-size:15px !important;
+}
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -466,6 +558,16 @@ if menu=="🏠 Home":
         </div>
         """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <div class='glass'>
+    <h2 style='color:#6b5b95;'>🚀 AI Laboratory Dashboard</h2>
+    <p style='font-size:18px;color:#7b728d;'>
+    Modern chemistry platform with smart analysis, interactive calculations,
+    futuristic UI, and laboratory-ready features.
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("<br>", unsafe_allow_html=True)
 
     col1,col2=st.columns(2)
@@ -527,7 +629,23 @@ if menu=="🏠 Home":
         for i in range(100):
             time.sleep(0.01)
             progress.progress(i+1)
+        
         st.success("System Ready ✅")
+
+        st.markdown("""
+        <div class='glass'>
+        <h2>🧬 Upcoming Smart Features</h2>
+
+        ✅ Interactive Periodic Table<br>
+        ✅ AI Chemistry Assistant<br>
+        ✅ Smart Stoichiometry Calculator<br>
+        ✅ Molecular Visualization<br>
+        ✅ Export PDF Laboratory Report<br>
+        ✅ Chemistry Quiz & Simulation
+
+        </div>
+        """, unsafe_allow_html=True)
+
 
 # ================= LARUTAN =================
 
