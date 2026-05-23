@@ -488,7 +488,6 @@ menu = st.sidebar.radio(
 "💧 Larutan",
 "⚗️ pH",
 "📚 Informasi Bahan Kimia",
-"🧪 Analisis Kimia",
 "ℹ️ Tentang"
 ],
 index=[
@@ -496,7 +495,6 @@ index=[
 "💧 Larutan",
 "⚗️ pH",
 "📚 Informasi Bahan Kimia",
-"🧪 Analisis Kimia",
 "ℹ️ Tentang"
 ].index(st.session_state.current_menu)
 )
@@ -641,8 +639,7 @@ if menu=="🏠 Home":
         ✅ Smart Stoichiometry Calculator<br>
         ✅ Molecular Visualization<br>
         ✅ Export PDF Laboratory Report<br>
-        ✅ Chemistry Quiz & Simulation
-
+        
         </div>
         """, unsafe_allow_html=True)
 
