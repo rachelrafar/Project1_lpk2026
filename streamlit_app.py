@@ -392,12 +392,12 @@ db={
 menu=st.sidebar.radio(
 "✨ ChemAssist Menu",
 [
-"Home",
-"Larutan",
-"pH",
-"Informasi Bahan Kimia",
-"Analisis Kimia",
-"Tentang"
+"🏠 Home",
+"💧 Larutan",
+"⚗️ pH",
+"📚 Informasi Bahan Kimia",
+"🧪 Analisis Kimia",
+"ℹ️ Tentang"
 ]
 )
 
@@ -405,7 +405,7 @@ st.session_state.page=menu
 
 # ================= HOME =================
 
-if menu=="Home":
+if menu=="🏠 Home":
 
     jam=datetime.now().strftime("%H:%M")
 
@@ -466,7 +466,7 @@ if menu=="Home":
         """, unsafe_allow_html=True)
 
         if st.button("🚀 Buka Menu Larutan"):
-            st.session_state.page="Larutan"
+            st.session_state.page="💧 Larutan"
             st.rerun()
 
         st.markdown("""
@@ -479,7 +479,7 @@ if menu=="Home":
         """, unsafe_allow_html=True)
 
         if st.button("📖 Informasi Kimia"):
-            st.session_state.page="Informasi Bahan Kimia"
+            st.session_state.page="📚 Informasi Bahan Kimia"
             st.rerun()
 
     with col2:
@@ -494,7 +494,7 @@ if menu=="Home":
         """, unsafe_allow_html=True)
 
         if st.button("⚗️ Kalkulator pH"):
-            st.session_state.page="pH"
+            st.session_state.page="⚗️ pH"
             st.rerun()
 
         st.markdown("""
@@ -507,9 +507,8 @@ if menu=="Home":
         """, unsafe_allow_html=True)
 
         if st.button("🧪 Analisis Kimia"):
-            st.session_state.page="Analisis Kimia"
+            st.session_state.page="🧪 Analisis Kimia"
             st.rerun()
-
         st.markdown("### 🚀 System Performance")
         
         progress=st.progress(0)
@@ -520,12 +519,12 @@ if menu=="Home":
 
 # ================= LARUTAN =================
 
-elif menu=="Larutan":
-
+elif menu=="💧 Larutan":
+    
     st.title("💧 Smart Solution Maker")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
+        st.session_state.page="🏠 Home"
         st.rerun()
 
     senyawa=st.selectbox(
@@ -622,12 +621,12 @@ elif menu=="Larutan":
 
 # ================= PH =================
 
-elif menu=="pH":
+elif menu=="⚗️ pH":
 
     st.title("⚗️ Smart pH Calculator")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
+        st.session_state.page="🏠 Home"
         st.rerun()
 
     senyawa=st.selectbox(
@@ -697,14 +696,14 @@ elif menu=="pH":
 
 # ================= INFORMASI BAHAN =================
 
-elif menu=="Informasi Bahan Kimia":
+elif menu=="📚 Informasi Bahan Kimia":
    
      st.title("📚 Informasi Bahan Kimia")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
+        st.session_state.page="🏠 Home"
         st.rerun()
-
+        
     cari=st.text_input("🔎 Cari nama atau rumus senyawa")
 
     hasil=[
@@ -735,12 +734,12 @@ elif menu=="Informasi Bahan Kimia":
 
 # ================= ANALISIS KIMIA =================
 
-elif menu=="Analisis Kimia":
+elif menu=="🧪 Analisis Kimia":
 
     st.title("🧪 Smart Chemical Analysis")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="Home"
+        st.session_state.page="🏠 Home"
         st.rerun()
 
     senyawa=st.selectbox(
@@ -816,7 +815,7 @@ Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
 
 # ================= TENTANG =================
 
-elif menu=="Tentang":
+elif menu=="ℹ️ Tentang":
 
     st.title("ℹ️ Tentang Aplikasi")
 
