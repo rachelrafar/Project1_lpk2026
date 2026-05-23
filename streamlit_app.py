@@ -8,8 +8,19 @@ import random
 st.set_page_config(
     page_title="ChemAssist Pro",
     page_icon="🧪",
-    layout="centered"
+    layout="centered",
+    initial_sidebar_state="expanded"
 )
+
+st.markdown("""
+<style>
+
+button[kind="header"]{
+display:none;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ================= STYLE =================
 
@@ -186,14 +197,20 @@ db={
 "CuCl2":["Tembaga(II) Klorida","Garam","134.45 g/mol","Beracun","Kristal hijau","CuCl2"],
 "Na3PO4":["Natrium Fosfat","Garam basa","163.94 g/mol","Iritasi","Serbuk putih","Na3PO4"],
 "KNO3":["Kalium Nitrat","Garam","101.10 g/mol","Oksidator","Kristal putih","KNO3"]
+
 }
 
 # ================= SIDEBAR =================
 
-menu = st.sidebar.radio(
-    "🧪 ChemAssist Pro",
-    ["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"]
+menu=st.sidebar.radio(
+"🧪 ChemAssist Pro",
+["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"],
+index=["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"].index(
+st.session_state.page
 )
+)
+
+st.session_state.page=menu
 
 # ================= HOME =================
 
@@ -250,7 +267,7 @@ if menu=="Home":
 
         st.markdown("""
         <div class='card'>
-        <div class='feature-title'>📚 Informasi Bahan Kimia</div>
+        <div class='feature-title'>📚 Chemical Information</div>
         <p>Data senyawa lengkap dengan Mr, bahaya, dan struktur</p>
         </div>
         """, unsafe_allow_html=True)
