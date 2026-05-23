@@ -390,11 +390,15 @@ db={
 # ================= SIDEBAR =================
 
 menu=st.sidebar.radio(
-"🧪 ChemAssist Pro",
-["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"],
-index=["Home","Larutan","pH","Informasi Bahan Kimia","Analisis Kimia","Tentang"].index(
-st.session_state.page
-)
+"✨ ChemAssist Menu",
+[
+"🏠 Home",
+"💧 Larutan",
+"⚗️ pH",
+"📚 Informasi Bahan Kimia",
+"🧪 Analisis Kimia",
+"ℹ️ Tentang"
+]
 )
 
 st.session_state.page=menu
