@@ -828,7 +828,7 @@ elif menu=="ℹ️ Tentang":
 
 Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
 
-<h4>🚀 Fitur Utama</h4>
+<h4> Fitur Utama</h4>
 
 <ul>
 <li>Smart Solution Maker</li>
