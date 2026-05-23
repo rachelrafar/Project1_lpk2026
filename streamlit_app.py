@@ -674,3 +674,12 @@ Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
 
 </div>
 """, unsafe_allow_html=True)
+
+st.markdown("""
+<hr>
+<center>
+<h4>🧪 ChemAssist Pro</h4>
+<p>Modern Chemistry Laboratory Assistant</p>
+<p>Built with Python • Streamlit • AI UI Design</p>
+</center>
+""", unsafe_allow_html=True)
