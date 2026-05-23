@@ -281,8 +281,8 @@ Sistem Analisis Parameter Laboratorium Kimia Interaktif
 
 # ================= SESSION =================
 
-if "current_menu" not in st.session_state:
-    st.session_state.current_menu = "🏠 Home"
+if "direct_menu" not in st.session_state:
+    st.session_state["direct_menu"] = "🏠 Home"
 
 # ================= DATA PH =================
 
@@ -385,7 +385,7 @@ db={
 
 with st.sidebar:
 
-    menu = option_menu(
+    selected_menu = option_menu(
         menu_title="✨ ChemAssist Menu",
 
         options=[
@@ -408,7 +408,7 @@ with st.sidebar:
 
         menu_icon="stars",
 
-        default_index=st.session_state.get("menu_index", 0),
+        default_index=0,
 
         styles={
 
@@ -433,30 +433,30 @@ with st.sidebar:
                 "color": "#0F172A",
                 "font-weight": "600",
                 "--hover-color": "#BAE6FD",
+                "transition": "0.2s",
             },
 
             "nav-link-selected": {
                 "background": "linear-gradient(90deg,#38BDF8,#2563EB)",
                 "color": "white",
                 "font-weight": "bold",
+                "box-shadow": "0 4px 18px rgba(37,99,235,0.35)",
             },
         }
     )
 
+# ================= NAVIGATION =================
+
+menu = st.session_state["direct_menu"]
+
+if selected_menu != menu:
+    st.session_state["direct_menu"] = selected_menu
+    menu = selected_menu
+
 # ================= NAVIGATION HELPER =================
 
 def go_to(page_name):
-
-    menu_map = {
-        "🏠 Home": 0,
-        "💧 Larutan": 1,
-        "⚗️ pH": 2,
-        "📚 Informasi Bahan Kimia": 3,
-        "🧪 Analisis Kimia": 4,
-        "ℹ️ Tentang": 5
-    }
-
-    st.session_state["menu_index"] = menu_map[page_name]
+    st.session_state["direct_menu"] = page_name
 
 # ================= HOME =================
 
