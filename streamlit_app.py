@@ -408,12 +408,13 @@ if menu=="Home":
 
     st.markdown(f"""
     <div class='hero'>
-        <div class='hero-title'>🧪 ChemAssist Pro</div>
-        <div class='hero-sub'>
-        Smart Chemistry Assistant • Modern Laboratory Experience
-        <br><br>
-        ⏰ {jam}
-        </div>
+    <div class='hero-title'>
+    🧪 ChemAssist Pro</div>
+    
+    <div class='hero-sub'>
+    Smart Chemistry Assistant for Students & Laboratory
+    </div>
+    
     </div>
     """, unsafe_allow_html=True)
 
