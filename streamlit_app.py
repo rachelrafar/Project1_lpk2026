@@ -383,11 +383,9 @@ db={
 
 # ================= SIDEBAR =================
 
-st.session_state.current_menu = menu
-
 with st.sidebar:
 
-    selected = option_menu(
+    menu = option_menu(
         menu_title="✨ ChemAssist Menu",
 
         options=[
@@ -400,82 +398,50 @@ with st.sidebar:
         ],
 
         icons=[
-            "house",
-            "droplet",
+            "house-fill",
+            "droplet-fill",
             "eyedropper",
-            "book",
+            "book-fill",
             "activity",
-            "info-circle"
+            "info-circle-fill"
         ],
 
         menu_icon="stars",
 
-        default_index=[
-            "🏠 Home",
-            "💧 Larutan",
-            "⚗️ pH",
-            "📚 Informasi Bahan Kimia",
-            "🧪 Analisis Kimia",
-            "ℹ️ Tentang"
-        ].index(st.session_state.current_menu),
+        default_index=0,
 
         styles={
 
             "container": {
-                "padding": "12px",
-                "background-color": "rgba(255,255,255,0.12)",
+                "padding": "15px",
+                "background-color": "#E0F2FE",
                 "border-radius": "20px",
             },
 
             "icon": {
-                "color": "#0F172A",
-                "font-size": "22px"
-            },
-
-            "menu-title": {
-                "color": "#0F172A",
-                "font-size": "28px",
-                "font-weight": "bold",
+                "color": "#2563EB",
+                "font-size": "20px"
             },
 
             "nav-link": {
-
-                "font-size": "20px",
-
+                "font-size": "17px",
                 "text-align": "left",
-
-                "margin": "10px",
-
-                "padding": "14px",
-
-                "border-radius": "16px",
-
-                "background-color": "rgba(255,255,255,0.35)",
-
+                "margin": "8px",
+                "padding": "12px",
+                "border-radius": "14px",
+                "background-color": "#FFFFFF",
                 "color": "#0F172A",
-
                 "font-weight": "600",
-
-                "--hover-color": "rgba(255,255,255,0.55)",
+                "--hover-color": "#BAE6FD",
             },
 
             "nav-link-selected": {
-
                 "background": "linear-gradient(90deg,#38BDF8,#2563EB)",
-
-                "color": "#FFFFFF",
-
+                "color": "white",
                 "font-weight": "bold",
-
-                "box-shadow": "0 4px 15px rgba(37,99,235,0.45)"
             },
         }
     )
-
-
-
-st.session_state.current_menu = selected
-menu = selected
 
 # ================= NAVIGATION HELPER =================
 
