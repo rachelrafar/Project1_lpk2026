@@ -854,4 +854,4 @@ elif menu=="ℹ️ Tentang":
     <p>Modern Chemistry Laboratory Assistant</p>
     <p>Built with Python and Streamlit</p>
     </center>
-    """, unsafe_allow_html=True)
+    , unsafe_allow_html=True)
