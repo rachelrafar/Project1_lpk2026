@@ -583,4 +583,3 @@ Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
 </div>
 """, unsafe_allow_html=True)
 
-bikin codingan ini lebih menarik dengan seperti aplikasi canggih beneran, ada gambar alat alat kimi atau fotomya di home dengan tampilan menarik misal fotonya berputar ditengah
