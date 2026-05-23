@@ -752,7 +752,7 @@ elif menu=="🧪 Analisis Kimia":
     data=db[senyawa]
 
     st.markdown(f"""
-    <div class='info-box'>
+    <div ='info-box'>
     
     <h3>Hasil Analisis Senyawa</h3>
 
