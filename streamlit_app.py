@@ -2,7 +2,6 @@ import streamlit as st
 import math
 import time
 import random
-from streamlit_option_menu import option_menu
 
 # ================= CONFIG =================
 
