@@ -405,7 +405,14 @@ with st.sidebar:
            "🧪 Analisis Kimia",
            "ℹ️ Tentang"
        ].index(st.session_state.current_menu)
-)
+
+        icons=[
+            "house",
+            "droplet",
+            "eyedropper",
+            "clipboard-data",
+            "info-circle"
+        ],
 
         menu_icon="stars",
 
