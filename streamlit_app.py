@@ -824,7 +824,7 @@ elif menu=="ℹ️ Tentang":
     st.markdown("""
 <div class='info-box'>
 
-<h3>🧪 ChemAssist Pro</h3>
+<h3> ChemAssist Pro</h3>
 
 Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
 
