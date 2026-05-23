@@ -2,6 +2,7 @@ import streamlit as st
 import math
 import time
 import random
+from streamlit_option_menu import option_menu
 
 # ================= CONFIG =================
 
@@ -198,6 +199,16 @@ html, body, [class*="css"] {
     0 10px 28px rgba(180,180,255,.25);
 }
 
+
+.metric-box{
+background:rgba(255,255,255,0.7);
+padding:20px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+margin-bottom:15px;
+}
+
 /* TITLE */
 
 .feature-title{
@@ -380,44 +391,38 @@ db={
 
 }
 
+
 # ================= SIDEBAR =================
 
-st.session_state.current_menu = menu
+menu_options = [
+    "🏠 Home",
+    "💧 Larutan",
+    "⚗️ pH",
+    "📚 Informasi Bahan Kimia",
+    "🧪 Analisis Kimia",
+    "ℹ️ Tentang"
+]
 
 with st.sidebar:
 
-    selected = option_menu(
+    menu = option_menu(
         menu_title="✨ ChemAssist Menu",
-
-        options=[
-           "🏠 Home",
-           "💧 Larutan",
-           "⚗️ pH",
-           "📚 Informasi Bahan Kimia",
-           "🧪 Analisis Kimia",
-           "ℹ️ Tentang",
-        ], 
-        
-        index=[
-           "🏠 Home",
-           "💧 Larutan",
-           "⚗️ pH",
-           "📚 Informasi Bahan Kimia",
-           "🧪 Analisis Kimia",
-           "ℹ️ Tentang",
-       ].index(st.session_state.current_menu)
+        options=menu_options,
 
         icons=[
             "house",
             "droplet",
             "eyedropper",
-            "clipboard-data",
+            "book",
+            "activity",
             "info-circle"
         ],
 
         menu_icon="stars",
 
-        default_index=0,
+        default_index=menu_options.index(
+            st.session_state.current_menu
+        ),
 
         styles={
 
@@ -429,49 +434,30 @@ with st.sidebar:
 
             "icon": {
                 "color": "#0F172A",
-                "font-size": "22px"
-            },
-
-            "menu-title": {
-                "color": "#0F172A",
-                "font-size": "28px",
-                "font-weight": "bold",
+                "font-size": "20px"
             },
 
             "nav-link": {
-
-                "font-size": "20px",
-
+                "font-size": "17px",
                 "text-align": "left",
-
-                "margin": "10px",
-
-                "padding": "14px",
-
-                "border-radius": "16px",
-
+                "margin": "8px",
+                "padding": "12px",
+                "border-radius": "14px",
                 "background-color": "rgba(255,255,255,0.35)",
-
                 "color": "#0F172A",
-
                 "font-weight": "600",
-
                 "--hover-color": "rgba(255,255,255,0.55)",
             },
 
             "nav-link-selected": {
-
                 "background": "linear-gradient(90deg,#38BDF8,#2563EB)",
-
                 "color": "#FFFFFF",
-
                 "font-weight": "bold",
-
-                "box-shadow": "0 4px 15px rgba(37,99,235,0.45)"
             },
         }
     )
 
+st.session_state.current_menu = menu
 
 # ================= NAVIGATION HELPER =================
 
@@ -812,7 +798,7 @@ elif menu=="🧪 Analisis Kimia":
     data=db[senyawa]
 
     st.markdown(f"""
-    <div class='info-box'>
+    <div class='card'>
     
     <h3>📊 Hasil Analisis Senyawa</h3>
 
@@ -883,7 +869,7 @@ elif menu=="ℹ️ Tentang":
     st.title("ℹ️ Tentang Aplikasi")
 
     st.markdown("""
-    <div class='info-box'>
+    <div class='card'>
 
     <h3>🧪 ChemAssist Pro</h3>
 
