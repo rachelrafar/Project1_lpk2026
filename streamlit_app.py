@@ -25,264 +25,239 @@ display:none;
 
 # ================= STYLE =================
 
+# =========================================================
+# CSS TAMPILAN MODERN
+# =========================================================
 st.markdown("""
 <style>
 
-#MainMenu {visibility:hidden;}
-footer {visibility:hidden;}
-
-html, body, [class*="css"]{
-    font-family:'Segoe UI',sans-serif;
-    color:#4b5563;
-}
-
-/* BACKGROUND */
-
-.stApp{
-    background:
-    linear-gradient(
-    135deg,
-    #fff7fb 0%,
-    #f8f5ff 30%,
-    #f3fff8 65%,
-    #ffffff 100%
-    );
-}
-
-/* MAIN CONTAINER */
-
-.block-container{
-    padding-top:2rem;
-    padding-bottom:2rem;
-}
-
-/* HERO */
-
-.hero{
-    padding:50px;
-    border-radius:30px;
-    background:linear-gradient(
-    135deg,
-    rgba(255,255,255,0.9),
-    rgba(255,255,255,0.7)
+/* Background utama biru muda aesthetic */
+.stApp {
+    background: linear-gradient(
+        135deg,
+        #F0F9FF,
+        #E0F2FE,
+        #BAE6FD,
+        #7DD3FC
     );
 
-    border:1px solid rgba(255,255,255,0.5);
-
-    backdrop-filter:blur(12px);
-
-    box-shadow:
-    0 8px 30px rgba(180,180,255,.15);
-
-    margin-bottom:25px;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
 
-.hero-title{
-    font-size:54px;
-    font-weight:800;
-    color:#5b4b8a;
+/* Animasi background */
+@keyframes gradientBG {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.hero-sub{
-    font-size:18px;
-    color:#7b728d;
+/* Sidebar */
+section[data-testid="stSidebar"] {
+
+    background: rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(16px);
+
+    border-right: 1px solid rgba(255,255,255,0.2);
 }
 
-/* CARD */
-
-.card{
-    background:rgba(255,255,255,0.75);
-
-    border:1px solid rgba(255,255,255,0.6);
-
-    backdrop-filter:blur(10px);
-
-    border-radius:26px;
-
-    padding:24px;
-
-    box-shadow:
-    0 6px 22px rgba(210,210,255,.18);
-
-    transition:0.3s;
-
-    margin-bottom:18px;
+/* Semua teks */
+html, body, [class*="css"] {
+    color: #0F172A !important;
 }
 
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:
-    0 10px 28px rgba(180,180,255,.25);
+/* Judul utama */
+.main-title {
+
+    font-size: 58px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    color: #1E3A8A;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.8);
+
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* TITLE */
+/* Efek glow */
+@keyframes glow {
 
-.feature-title{
-    font-size:22px;
-    font-weight:700;
-    color:#5b4b8a;
+    from {
+        text-shadow:
+            0 0 8px rgba(255,255,255,0.6);
+    }
+
+    to {
+        text-shadow:
+            0 0 20px rgba(255,255,255,1);
+    }
 }
 
-.feature-desc{
-    color:#7b728d;
-    font-size:15px;
+/* Subtitle */
+.subtitle {
+
+    text-align: center;
+
+    font-size: 18px;
+
+    color: #1E40AF;
+
+    margin-bottom: 35px;
 }
 
-/* BUTTON */
+/* Logo berputar */
+.logo-container {
 
-.stButton>button{
+    text-align: center;
 
-    width:100%;
-    height:54px;
+    margin-bottom: 10px;
+}
 
-    border:none;
+.logo-spin {
 
-    border-radius:18px;
+    font-size: 80px;
 
-    font-size:16px;
-    font-weight:700;
+    display: inline-block;
 
-    color:white;
+    animation: spin 6s linear infinite;
+}
 
-    background:
-    linear-gradient(
-    135deg,
-    #c8b6ff,
-    #b8e0ff
+/* Animasi logo */
+@keyframes spin {
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tombol modern */
+.stButton > button {
+
+    background: linear-gradient(
+        90deg,
+        #38BDF8,
+        #2563EB
     );
 
-    box-shadow:
-    0 5px 18px rgba(180,180,255,.25);
+    color: white;
 
-    transition:0.3s;
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 12px 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    box-shadow: 0 4px 20px rgba(37,99,235,0.25);
 }
 
-.stButton>button:hover{
+.stButton > button:hover {
 
-    transform:scale(1.02);
+    transform: scale(1.05);
 
-    background:
-    linear-gradient(
-    135deg,
-    #d7c6ff,
-    #c8ebff
-    );
+    box-shadow: 0 6px 24px rgba(37,99,235,0.45);
 }
 
-/* INPUT */
+/* Card glassmorphism */
+.info-card {
 
-.stTextInput input,
-.stNumberInput input{
+    background: rgba(255,255,255,0.22);
 
-    border-radius:18px !important;
+    padding: 25px;
 
-    border:1px solid #ece8ff !important;
+    border-radius: 22px;
 
-    background:#ffffffcc !important;
+    backdrop-filter: blur(12px);
 
-    color:#5b4b8a !important;
+    border: 1px solid rgba(255,255,255,0.25);
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+
+    color: #0F172A;
 }
 
-/* SELECTBOX */
+/* Efek molekul mengambang */
+.molecule {
 
-div[data-baseweb="select"]{
+    position: fixed;
 
-    border-radius:18px !important;
+    width: 14px;
+
+    height: 14px;
+
+    background: rgba(255,255,255,0.5);
+
+    border-radius: 50%;
+
+    animation: float 12s infinite linear;
 }
 
-/* INFO BOX */
-
-.stAlert{
-
-    border-radius:22px !important;
-
-    background:
-    linear-gradient(
-    135deg,
-    rgba(255,255,255,0.85),
-    rgba(245,255,250,0.85)
-    ) !important;
-
-    color:#5b4b8a !important;
-
-    border:1px solid #e9e4ff !important;
+.molecule:nth-child(1) {
+    left: 10%;
 }
 
-/* METRIC BOX */
-
-.metric-box{
-
-    background:rgba(255,255,255,0.7);
-
-    border-radius:24px;
-
-    padding:20px;
-
-    text-align:center;
-
-    border:1px solid #f1ecff;
-
-    box-shadow:
-    0 5px 18px rgba(200,200,255,.15);
+.molecule:nth-child(2) {
+    left: 50%;
 }
 
-/* SIDEBAR */
-
-section[data-testid="stSidebar"]{
-
-    background:
-    linear-gradient(
-    180deg,
-    #fcfaff,
-    #f8f6ff
-    );
-
-    border-right:
-    1px solid #eee8ff;
+.molecule:nth-child(3) {
+    left: 80%;
 }
 
-/* SIDEBAR TEXT */
+/* Animasi molekul */
+@keyframes float {
 
-section[data-testid="stSidebar"] *{
+    0% {
+        transform: translateY(100vh);
+    }
 
-    color:#6b5b95 !important;
-}
-
-/* CODE BLOCK */
-
-pre{
-
-    border-radius:20px !important;
-
-    border:1px solid #efeaff !important;
-}
-
-/* SUCCESS */
-
-.stSuccess{
-
-    border-radius:20px !important;
-}
-
-/* TITLE */
-
-h1,h2,h3{
-
-    color:#5b4b8a !important;
-}
-
-/* FOOTER */
-
-.footer{
-
-    text-align:center;
-
-    padding:35px;
-
-    color:#8b7fa8;
+    100% {
+        transform: translateY(-100vh);
+    }
 }
 
 </style>
+
+<div class="molecule"></div>
+<div class="molecule"></div>
+<div class="molecule"></div>
+
+""", unsafe_allow_html=True)
+
+# =========================================================
+# HEADER / LOGO
+# =========================================================
+st.markdown("""
+
+<div class="logo-container">
+    <div class="logo-spin">🧪</div>
+</div>
+
+<div class="main-title">
+ChemAssist Dashboard
+</div>
+
+<div class="subtitle">
+Sistem Analisis Parameter Laboratorium Kimia Interaktif
+</div>
+
 """, unsafe_allow_html=True)
 
 # ================= SESSION =================
