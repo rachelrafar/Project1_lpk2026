@@ -2,7 +2,6 @@ import streamlit as st
 import math
 import time
 import random
-from datetime import datetime
 
 # ================= CONFIG =================
 
@@ -414,20 +413,6 @@ def go_to(page_name):
 # ================= HOME =================
 
 if menu=="🏠 Home":
-
-    jam=datetime.now().strftime("%H:%M")
-
-    st.markdown(f"""
-    <div class='hero'>
-    <div class='hero-title'>
-    🧪 ChemAssist Pro</div>
-    
-    <div class='hero-sub'>
-    Smart Chemistry Assistant for Students & Laboratory
-    </div>
-    
-    </div>
-    """, unsafe_allow_html=True)
 
     c1,c2,c3=st.columns(3)
 
