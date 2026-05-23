@@ -731,8 +731,8 @@ elif menu=="📚 Informasi Bahan Kimia":
 🎨 Bentuk/Fisik : {data[4]}
      
 🧬 Struktur Molekul : {data[5]}
-</div>
-""", unsafe_allow_html=True)
+      </div>
+    """, unsafe_allow_html=True)
 
 # ================= ANALISIS KIMIA =================
 
