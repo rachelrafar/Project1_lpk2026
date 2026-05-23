@@ -27,77 +27,125 @@ display:none;
 st.markdown("""
 <style>
 
-html, body, [class*="css"], .stMarkdown, .stText, p, div, span, label{
-font-family:'Segoe UI',sans-serif !important;
+#MainMenu {visibility:hidden;}
+footer {visibility:hidden;}
+header {visibility:hidden;}
+
+html, body, [class*="css"]{
+    font-family:'Segoe UI',sans-serif;
 }
 
 .stApp{
-background:linear-gradient(to bottom,#edf4ff,#ffffff);
+    background:
+    radial-gradient(circle at top left,#1e3c72 0%,#2a5298 25%,#0f172a 100%);
+    color:white;
 }
 
-.header{
-padding:45px;
-border-radius:30px;
-background:linear-gradient(135deg,#0f4c81,#4da8ff);
-text-align:center;
-box-shadow:0px 6px 20px rgba(0,0,0,.15);
-margin-bottom:25px;
-color:white;
+.block-container{
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+
+.glass{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:28px;
+    padding:28px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.25);
+    margin-bottom:20px;
+}
+
+.hero{
+    padding:55px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    color:white;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    margin-bottom:25px;
+}
+
+.hero-title{
+    font-size:54px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.hero-sub{
+    font-size:19px;
+    opacity:0.95;
 }
 
 .card{
-padding:22px;
-background:white;
-border-radius:22px;
-box-shadow:0px 4px 15px rgba(0,0,0,.10);
-text-align:center;
-margin-bottom:15px;
-transition:0.3s;
+    background:rgba(255,255,255,0.09);
+    border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    border-radius:24px;
+    padding:24px;
+    transition:0.35s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.18);
+    margin-bottom:18px;
 }
 
 .card:hover{
-transform:scale(1.03);
-}
-
-.info-box{
-padding:20px;
-background:white;
-border-radius:20px;
-box-shadow:0px 4px 12px rgba(0,0,0,.1);
-margin-top:10px;
-}
-
-.stButton>button{
-width:100%;
-height:52px;
-border-radius:14px;
-font-size:16px;
-font-weight:bold;
-border:none;
-background:linear-gradient(90deg,#0f4c81,#4da8ff);
-color:white;
-font-family:'Segoe UI',sans-serif !important;
-}
-
-.home-title{
-font-size:48px;
-font-weight:bold;
-}
-
-.home-sub{
-font-size:18px;
-opacity:0.95;
+    transform:translateY(-6px) scale(1.02);
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
 }
 
 .feature-title{
-font-size:20px;
-font-weight:bold;
-color:#0f4c81;
+    font-size:22px;
+    font-weight:700;
+    color:white;
+}
+
+.feature-desc{
+    color:#dbeafe;
+    font-size:15px;
+}
+
+.stButton>button{
+    width:100%;
+    height:54px;
+    border:none;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:700;
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    color:white;
+    transition:0.3s;
+    box-shadow:0 4px 15px rgba(0,114,255,.4);
+}
+
+.stButton>button:hover{
+    transform:scale(1.02);
+    background:linear-gradient(135deg,#36d1dc,#5b86e5);
+}
+
+.stTextInput>div>div>input,
+.stNumberInput input,
+.stSelectbox div[data-baseweb="select"]{
+    border-radius:16px !important;
+}
+
+.metric-box{
+    background:rgba(255,255,255,0.08);
+    padding:18px;
+    border-radius:22px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar .sidebar-content{
+    background:#0f172a;
+}
+
+hr{
+    border:1px solid rgba(255,255,255,0.1);
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 # ================= SESSION =================
 
 if "page" not in st.session_state:
