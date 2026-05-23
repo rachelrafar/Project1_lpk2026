@@ -366,7 +366,15 @@ if menu=="Home":
         if st.button("🧪 Analisis Kimia"):
             st.session_state.page="Analisis Kimia"
             st.rerun()
-            
+
+        st.markdown("### 🚀 System Performance")
+        
+        progress=st.progress(0)
+        for i in range(100):
+            time.sleep(0.01)
+            progress.progress(i+1)
+        st.success("System Ready ✅")
+
 # ================= LARUTAN =================
 
 elif menu=="Larutan":
