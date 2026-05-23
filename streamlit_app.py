@@ -408,7 +408,7 @@ with st.sidebar:
 
         menu_icon="stars",
 
-        default_index=0,
+        default_index=st.session_state.get("menu_index", 0),
 
         styles={
 
@@ -446,9 +446,17 @@ with st.sidebar:
 # ================= NAVIGATION HELPER =================
 
 def go_to(page_name):
-    st.session_state.current_menu = page_name
-    st.rerun()
 
+    menu_map = {
+        "🏠 Home": 0,
+        "💧 Larutan": 1,
+        "⚗️ pH": 2,
+        "📚 Informasi Bahan Kimia": 3,
+        "🧪 Analisis Kimia": 4,
+        "ℹ️ Tentang": 5
+    }
+
+    st.session_state["menu_index"] = menu_map[page_name]
 
 # ================= HOME =================
 
