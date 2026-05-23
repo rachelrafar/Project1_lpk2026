@@ -406,8 +406,6 @@ with st.sidebar:
            "ℹ️ Tentang"
        ].index(st.session_state.current_menu)
 )
-
-
         icons=[
             "house",
             "droplet",
