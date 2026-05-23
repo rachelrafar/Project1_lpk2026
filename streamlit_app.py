@@ -466,6 +466,8 @@ elif menu=="pH":
     C=st.number_input("Masukkan Konsentrasi (M)",0.01)
 
     if st.button("Hitung pH"):
+        with st.spinner("Sedang menghitung..."):
+            time.sleep(1)
 
         if "Asam kuat" in info["jenis"]:
 
