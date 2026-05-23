@@ -824,11 +824,11 @@ elif menu=="ℹ️ Tentang":
     st.markdown("""
     <div class='info-box'>
 
-    <h3>🧪 ChemAssist Pro</h3>
+    <h3> ChemAssist Pro</h3>
 
     <p>Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.</p>
 
-    <h4>🚀 Fitur Utama</h4>
+    <h4> Fitur Utama</h4>
 
     <ul>
     <li>Smart Solution Maker</li>
@@ -837,7 +837,7 @@ elif menu=="ℹ️ Tentang":
     <li>Smart Chemical Analysis</li>
     </ul>
 
-    <h4>👨‍💻 Teknologi</h4>
+    <h4> Teknologi</h4>
 
     <ul>
     <li>Python</li>
@@ -850,7 +850,7 @@ elif menu=="ℹ️ Tentang":
     st.markdown("""
     <hr>
     <center>
-    <h4>🧪 ChemAssist Pro</h4>
+    <h4> ChemAssist Pro</h4>
     <p>Modern Chemistry Laboratory Assistant</p>
     <p>Built with Python • Streamlit</p>
     </center>
