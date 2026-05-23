@@ -680,6 +680,6 @@ st.markdown("""
 <center>
 <h4>🧪 ChemAssist Pro</h4>
 <p>Modern Chemistry Laboratory Assistant</p>
-<p>Built with Python • Streamlit • AI UI Design</p>
+<p>Built with Python • Streamlit</p>
 </center>
 """, unsafe_allow_html=True)
