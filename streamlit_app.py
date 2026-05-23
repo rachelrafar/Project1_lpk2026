@@ -704,7 +704,7 @@ elif menu=="📚 Informasi Bahan Kimia":
         st.session_state.page="🏠 Home"
         st.rerun()
         
-    cari=st.text_input("🔎 Cari nama atau rumus senyawa")
+     cari=st.text_input("🔎 Cari nama atau rumus senyawa")
 
     hasil=[
     x for x in db
