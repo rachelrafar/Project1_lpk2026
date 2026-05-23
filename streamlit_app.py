@@ -404,6 +404,85 @@ index=[
 
 st.session_state.current_menu = menu
 
+with st.sidebar:
+
+    selected = option_menu(
+        menu_title="✨ ChemAssist Menu",
+
+        options=[
+           "🏠 Home",
+           "💧 Larutan",
+           "⚗️ pH",
+           "📚 Informasi Bahan Kimia",
+           "🧪 Analisis Kimia",
+           "ℹ️ Tentang"
+        ],
+
+        icons=[
+            "house",
+            "droplet",
+            "eyedropper",
+            "clipboard-data",
+            "info-circle"
+        ],
+
+        menu_icon="stars",
+
+        default_index=0,
+
+        styles={
+
+            "container": {
+                "padding": "12px",
+                "background-color": "rgba(255,255,255,0.12)",
+                "border-radius": "20px",
+            },
+
+            "icon": {
+                "color": "#0F172A",
+                "font-size": "22px"
+            },
+
+            "menu-title": {
+                "color": "#0F172A",
+                "font-size": "28px",
+                "font-weight": "bold",
+            },
+
+            "nav-link": {
+
+                "font-size": "20px",
+
+                "text-align": "left",
+
+                "margin": "10px",
+
+                "padding": "14px",
+
+                "border-radius": "16px",
+
+                "background-color": "rgba(255,255,255,0.35)",
+
+                "color": "#0F172A",
+
+                "font-weight": "600",
+
+                "--hover-color": "rgba(255,255,255,0.55)",
+            },
+
+            "nav-link-selected": {
+
+                "background": "linear-gradient(90deg,#38BDF8,#2563EB)",
+
+                "color": "#FFFFFF",
+
+                "font-weight": "bold",
+
+                "box-shadow": "0 4px 15px rgba(37,99,235,0.45)"
+            },
+        }
+    )
+
 
 # ================= NAVIGATION HELPER =================
 
