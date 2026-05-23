@@ -405,7 +405,7 @@ elif menu=="Larutan":
 
         if st.button("Hitung Massa Senyawa"):
             with st.spinner("Sedang menghitung..."):
-                time.sleep(5)
+                time.sleep(3)
 
             massa=(info['Mr']*M*V)/1000
 
@@ -432,7 +432,7 @@ Langkah Pembuatan Larutan
 
         if st.button("Hitung Pengenceran"):
             with st.spinner("Sedang menghitung..."):
-                time.sleep(5)
+                time.sleep(3)
 
             V2=(M1*V1)/M2
 
