@@ -382,26 +382,6 @@ db={
 
 # ================= SIDEBAR =================
 
-menu = st.sidebar.radio(
-"✨ ChemAssist Menu",
-[
-"🏠 Home",
-"💧 Larutan",
-"⚗️ pH",
-"📚 Informasi Bahan Kimia",
-"🧪 Analisis Kimia",
-"ℹ️ Tentang"
-],
-index=[
-"🏠 Home",
-"💧 Larutan",
-"⚗️ pH",
-"📚 Informasi Bahan Kimia",
-"🧪 Analisis Kimia",
-"ℹ️ Tentang"
-].index(st.session_state.current_menu)
-)
-
 st.session_state.current_menu = menu
 
 with st.sidebar:
@@ -416,7 +396,17 @@ with st.sidebar:
            "📚 Informasi Bahan Kimia",
            "🧪 Analisis Kimia",
            "ℹ️ Tentang"
-        ],
+        ], 
+        index=[
+           "🏠 Home",
+           "💧 Larutan",
+           "⚗️ pH",
+           "📚 Informasi Bahan Kimia",
+           "🧪 Analisis Kimia",
+           "ℹ️ Tentang"
+       ].index(st.session_state.current_menu)
+)
+
 
         icons=[
             "house",
