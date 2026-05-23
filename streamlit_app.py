@@ -291,7 +291,7 @@ pages = {
     "ℹ️ Tentang": "Tentang"
 }
 
-st.session_state.page = pages[menu]
+st.session_state.page = pages
 
 # ================= HOME =================
 
