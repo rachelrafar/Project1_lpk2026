@@ -383,8 +383,7 @@ db={
 
 # ================= SIDEBAR =================
 
-st.session_state.current_menu = selected
-menu = selected
+st.session_state.current_menu = menu
 
 with st.sidebar:
 
