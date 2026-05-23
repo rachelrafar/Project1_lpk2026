@@ -32,67 +32,189 @@ font-family:'Segoe UI',sans-serif !important;
 }
 
 .stApp{
-background:linear-gradient(to bottom,#edf4ff,#ffffff);
+background:
+linear-gradient(180deg,#edf4ff 0%,#f8fbff 40%,#ffffff 100%);
 }
+
+/* HEADER */
 
 .header{
-padding:45px;
-border-radius:30px;
-background:linear-gradient(135deg,#0f4c81,#4da8ff);
+padding:55px 35px;
+border-radius:32px;
+background:
+linear-gradient(135deg,#0f4c81 0%,#2563eb 50%,#60a5fa 100%);
 text-align:center;
-box-shadow:0px 6px 20px rgba(0,0,0,.15);
-margin-bottom:25px;
+box-shadow:0px 10px 35px rgba(37,99,235,.25);
+margin-bottom:30px;
 color:white;
+position:relative;
+overflow:hidden;
 }
 
-.card{
-padding:22px;
-background:white;
-border-radius:22px;
-box-shadow:0px 4px 15px rgba(0,0,0,.10);
-text-align:center;
-margin-bottom:15px;
-transition:0.3s;
+.header::before{
+content:"";
+position:absolute;
+width:220px;
+height:220px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+top:-80px;
+right:-60px;
 }
 
-.card:hover{
-transform:scale(1.03);
-}
-
-.info-box{
-padding:20px;
-background:white;
-border-radius:20px;
-box-shadow:0px 4px 12px rgba(0,0,0,.1);
-margin-top:10px;
-}
-
-.stButton>button{
-width:100%;
-height:52px;
-border-radius:14px;
-font-size:16px;
-font-weight:bold;
-border:none;
-background:linear-gradient(90deg,#0f4c81,#4da8ff);
-color:white;
-font-family:'Segoe UI',sans-serif !important;
+.header::after{
+content:"";
+position:absolute;
+width:160px;
+height:160px;
+background:rgba(255,255,255,.06);
+border-radius:50%;
+bottom:-70px;
+left:-50px;
 }
 
 .home-title{
-font-size:48px;
-font-weight:bold;
+font-size:52px;
+font-weight:800;
+letter-spacing:.5px;
+position:relative;
+z-index:2;
 }
 
 .home-sub{
 font-size:18px;
-opacity:0.95;
+opacity:.95;
+margin-top:12px;
+position:relative;
+z-index:2;
+line-height:1.7;
+}
+
+/* CARD */
+
+.card{
+padding:28px;
+background:rgba(255,255,255,.82);
+backdrop-filter:blur(10px);
+border-radius:28px;
+border:1px solid rgba(255,255,255,.5);
+box-shadow:
+0px 10px 30px rgba(0,0,0,.08);
+text-align:center;
+margin-bottom:18px;
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+min-height:170px;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:5px;
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:
+0px 18px 40px rgba(37,99,235,.18);
 }
 
 .feature-title{
-font-size:20px;
-font-weight:bold;
+font-size:22px;
+font-weight:700;
 color:#0f4c81;
+margin-bottom:12px;
+}
+
+.card p{
+font-size:15px;
+color:#4b5563;
+line-height:1.6;
+}
+
+/* INFO BOX */
+
+.info-box{
+padding:25px;
+background:rgba(255,255,255,.92);
+border-radius:24px;
+box-shadow:0px 8px 25px rgba(0,0,0,.08);
+margin-top:12px;
+border-left:6px solid #2563eb;
+}
+
+/* BUTTON */
+
+.stButton>button{
+width:100%;
+height:54px;
+border-radius:16px;
+font-size:16px;
+font-weight:700;
+border:none;
+background:
+linear-gradient(90deg,#0f4c81,#2563eb,#60a5fa);
+color:white;
+transition:all .3s ease;
+box-shadow:0px 6px 18px rgba(37,99,235,.25);
+}
+
+.stButton>button:hover{
+transform:translateY(-2px);
+box-shadow:0px 10px 25px rgba(37,99,235,.35);
+}
+
+/* SIDEBAR */
+
+section[data-testid="stSidebar"]{
+background:
+linear-gradient(180deg,#0f172a,#1e3a8a);
+}
+
+section[data-testid="stSidebar"] *{
+color:white !important;
+}
+
+/* INPUT */
+
+.stTextInput>div>div>input,
+.stNumberInput input,
+.stSelectbox div[data-baseweb="select"]{
+border-radius:14px !important;
+border:1px solid #cbd5e1 !important;
+}
+
+/* METRIC */
+
+[data-testid="metric-container"]{
+background:white;
+padding:18px;
+border-radius:20px;
+box-shadow:0px 5px 15px rgba(0,0,0,.08);
+border:1px solid #eef2ff;
+}
+
+/* TITLE */
+
+h1,h2,h3{
+color:#0f4c81;
+font-weight:700;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#60a5fa;
+border-radius:20px;
 }
 
 </style>
