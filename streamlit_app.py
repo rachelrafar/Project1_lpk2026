@@ -264,79 +264,108 @@ st.session_state.page=menu
 
 if menu=="Home":
 
-    st.markdown("""
-    <div class='header'>
-    <div class='home-title'>🧪 ChemAssist Pro</div>
-    <div class='home-sub'>
-    Membuat analisis kimia menjadi lebih mudah, modern, interaktif, dan menyenangkan
-    </div>
+    jam=datetime.now().strftime("%H:%M")
+
+    st.markdown(f"""
+    <div class='hero'>
+        <div class='hero-title'>🧪 ChemAssist Pro</div>
+        <div class='hero-sub'>
+        Smart Chemistry Assistant • Modern Laboratory Experience
+        <br><br>
+        ⏰ {jam}
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
     c1,c2,c3=st.columns(3)
 
-    c1.metric("📚 Informasi Kimia",f"{len(db)} Senyawa")
-    c2.metric("⚗️ Sistem pH",f"{len(data_ph)} Data")
-    c3.metric("🚀 Version","4.0")
-
-    st.markdown("## 🔥 Main Features")
-
-    a,b=st.columns(2)
-
-    with a:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>💧 Smart Solution Maker</div>
-        <p>Perhitungan pembuatan larutan dan pengenceran otomatis</p>
+    with c1:
+        st.markdown(f"""
+        <div class='metric-box'>
+        <h2>📚</h2>
+        <h3>{len(db)}</h3>
+        <p>Database Senyawa</p>
         </div>
         """, unsafe_allow_html=True)
 
-        if st.button("Buka Menu Larutan"):
+    with c2:
+        st.markdown(f"""
+        <div class='metric-box'>
+        <h2>⚗️</h2>
+        <h3>{len(data_ph)}</h3>
+        <p>Data pH</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with c3:
+        st.markdown("""
+        <div class='metric-box'>
+        <h2>🚀</h2>
+        <h3>5.0</h3>
+        <p>Modern Edition</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    col1,col2=st.columns(2)
+
+    with col1:
+
+        st.markdown("""
+        <div class='card'>
+            <div class='feature-title'>💧 Smart Solution Maker</div>
+            <div class='feature-desc'>
+            Perhitungan larutan otomatis dengan tampilan modern.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if st.button("🚀 Buka Menu Larutan"):
             st.session_state.page="Larutan"
             st.rerun()
 
-    with b:
-
         st.markdown("""
         <div class='card'>
-        <div class='feature-title'>⚗️ Smart pH Calculator</div>
-        <p>Analisis pH asam dan basa secara cepat dan akurat</p>
+            <div class='feature-title'>📚 Chemical Database</div>
+            <div class='feature-desc'>
+            Informasi senyawa lengkap dan interaktif.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
-        if st.button("Buka Kalkulator pH"):
-            st.session_state.page="pH"
-            st.rerun()
-
-    c,d=st.columns(2)
-
-    with c:
-
-        st.markdown("""
-        <div class='card'>
-        <div class='feature-title'>📚 Chemical Information</div>
-        <p>Data senyawa lengkap dengan Mr, bahaya, dan struktur</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("Buka Informasi Bahan"):
+        if st.button("📖 Informasi Kimia"):
             st.session_state.page="Informasi Bahan Kimia"
             st.rerun()
 
-    with d:
+    with col2:
 
         st.markdown("""
         <div class='card'>
-        <div class='feature-title'>🧪 Smart Chemical Analysis</div>
-        <p>Interpretasi sifat dan karakteristik senyawa kimia</p>
+            <div class='feature-title'>⚡ Smart pH Calculator</div>
+            <div class='feature-desc'>
+            Analisis pH cepat dengan sistem otomatis.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
-        if st.button("Buka Analisis Kimia"):
-            st.session_state.page="Analisis Kimia"
+        if st.button("⚗️ Kalkulator pH"):
+            st.session_state.page="pH"
             st.rerun()
 
+        st.markdown("""
+        <div class='card'>
+            <div class='feature-title'>🧠 Chemical Analysis</div>
+            <div class='feature-desc'>
+            Analisis karakteristik senyawa modern.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if st.button("🧪 Analisis Kimia"):
+            st.session_state.page="Analisis Kimia"
+            st.rerun()
+            
 # ================= LARUTAN =================
 
 elif menu=="Larutan":
