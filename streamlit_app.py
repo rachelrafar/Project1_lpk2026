@@ -383,7 +383,8 @@ db={
 
 # ================= SIDEBAR =================
 
-st.session_state.current_menu = menu
+streamlit
+streamlit-option-menu
 
 with st.sidebar:
 
