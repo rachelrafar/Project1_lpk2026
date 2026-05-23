@@ -1,7 +1,8 @@
 import streamlit as st
 import math
 import time
-import rando
+import random
+from datetime import datetime
 
 # ================= CONFIG =================
 
@@ -733,87 +734,6 @@ elif menu=="📚 Informasi Bahan Kimia":
      </div>
      ''', unsafe_allow_html=True)
 
-# ================= ANALISIS KIMIA =================
-
-elif menu=="🧪 Analisis Kimia":
-
-    st.title("🧪 Smart Chemical Analysis")
-
-    if st.button("⬅ Kembali ke Home"):
-        st.session_state.page="🏠 Home"
-        st.rerun()
-
-    senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(db.keys())
-    )
-
-    data=db[senyawa]
-
-    st.markdown(f"""
-    <div ='info-box'>
-    
-    <h3>Hasil Analisis Senyawa</h3>
-
-    <b> Nama :</b> {data[0]} <br><br>
-
-    <b> Rumus :</b> {senyawa} <br><br>
-
-    <b> Jenis :</b> {data[1]} <br><br>
-
-    <b> Mr :</b> {data[2]} <br><br>
-
-    <b> Bahaya :</b> {data[3]} <br><br>
-
-    <b> Struktur :</b> {data[5]}
-
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.subheader("📈 Interpretasi Kimia")
-
-    if "Asam" in data[1]:
-
-        st.success("""
-Senyawa ini bersifat asam dan menghasilkan ion H+ dalam larutan.
-Digunakan pada analisis laboratorium dan industri kimia.
-""")
-
-    elif "Basa" in data[1]:
-
-        st.info("""
-Senyawa ini bersifat basa dan menghasilkan ion OH- dalam larutan.
-Umumnya digunakan untuk netralisasi dan industri.
-""")
-
-    elif "Garam" in data[1]:
-
-        st.warning("""
-Senyawa ini termasuk golongan garam hasil reaksi asam dan basa.
-""")
-
-    else:
-
-        st.write("""
-Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
-""")
-
-    fakta=random.choice([
-
-    "Larutan asam kuat terionisasi sempurna di dalam air.",
-
-    "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
-
-    "H2SO4 digunakan pada baterai kendaraan.",
-
-    "Etanol digunakan sebagai antiseptik.",
-
-    "pH menentukan tingkat keasaman larutan."
-
-    ])
-
-    st.info(f"🧠 Fakta Kimia : {fakta}")
-
 # ================= TENTANG =================
 
 elif menu=="ℹ️ Tentang":
@@ -823,11 +743,11 @@ elif menu=="ℹ️ Tentang":
     st.markdown("""
     <div class='info-box'>
 
-    <h3> ChemAssist Pro</h3>
+    <h3>🧪 ChemAssist Pro</h3>
 
     <p>Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.</p>
 
-    <h4> Fitur Utama</h4>
+    <h4>🚀 Fitur Utama</h4>
 
     <ul>
     <li>Smart Solution Maker</li>
@@ -836,7 +756,7 @@ elif menu=="ℹ️ Tentang":
     <li>Smart Chemical Analysis</li>
     </ul>
 
-    <h4> Teknologi</h4>
+    <h4>👨‍💻 Teknologi</h4>
 
     <ul>
     <li>Python</li>
@@ -849,8 +769,8 @@ elif menu=="ℹ️ Tentang":
     st.markdown("""
     <hr>
     <center>
-    <h4> ChemAssist Pro</h4>
+    <h4>🧪 ChemAssist Pro</h4>
     <p>Modern Chemistry Laboratory Assistant</p>
-    <p>Built with Python and Streamlit</p>
+    <p>Built with Python • Streamlit</p>
     </center>
-    , unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
