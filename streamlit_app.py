@@ -287,8 +287,8 @@ h1,h2,h3{
 
 # ================= SESSION =================
 
-if "menu" not in st.session_state:
-    st.session_state.menu = "🏠 Home"
+if "current_menu" not in st.session_state:
+    st.session_state.current_menu = "🏠 Home"
 
 # ================= DATA PH =================
 
@@ -399,8 +399,17 @@ menu = st.sidebar.radio(
 "🧪 Analisis Kimia",
 "ℹ️ Tentang"
 ],
-key="menu"
+index=[
+"🏠 Home",
+"💧 Larutan",
+"⚗️ pH",
+"📚 Informasi Bahan Kimia",
+"🧪 Analisis Kimia",
+"ℹ️ Tentang"
+].index(st.session_state.current_menu)
 )
+
+st.session_state.current_menu = menu
 
 # ================= HOME =================
 
@@ -465,8 +474,8 @@ if menu=="🏠 Home":
         """, unsafe_allow_html=True)
 
         if st.button("🚀 Buka Menu Larutan"):
-            st.session_state.menu="💧 Larutan"
-            st.rerun()
+            st.switch_page = None
+            st.info("Pilih menu Larutan di sidebar kiri 👈")
 
         st.markdown("""
         <div class='card'>
@@ -478,8 +487,7 @@ if menu=="🏠 Home":
         """, unsafe_allow_html=True)
 
         if st.button("📖 Informasi Kimia"):
-            st.session_state.menu="📚 Informasi Bahan Kimia"
-            st.rerun()
+            st.info("Pilih menu Informasi Bahan Kimia di sidebar kiri 👈")
 
     with col2:
 
@@ -493,8 +501,7 @@ if menu=="🏠 Home":
         """, unsafe_allow_html=True)
 
         if st.button("⚗️ Kalkulator pH"):
-            st.session_state.menu="⚗️ pH"
-            st.rerun()
+            st.info("Pilih menu pH di sidebar kiri 👈")
 
         st.markdown("""
         <div class='card'>
@@ -506,8 +513,7 @@ if menu=="🏠 Home":
         """, unsafe_allow_html=True)
 
         if st.button("🧪 Analisis Kimia"):
-            st.session_state.menu="🧪 Analisis Kimia"
-            st.rerun()
+            st.info("Pilih menu Analisis Kimia di sidebar kiri 👈")
         st.markdown("### 🚀 System Performance")
         
         progress=st.progress(0)
@@ -523,8 +529,7 @@ elif menu=="💧 Larutan":
     st.title("💧 Smart Solution Maker")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.menu="🏠 Home"
-        st.rerun()
+        st.info("Pilih menu Home di sidebar kiri 👈")
 
     senyawa=st.selectbox(
     "Pilih Senyawa",
@@ -625,8 +630,7 @@ elif menu=="⚗️ pH":
     st.title("⚗️ Smart pH Calculator")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.menu="🏠 Home"
-        st.rerun()
+        st.info("Pilih menu Home di sidebar kiri 👈")
 
     senyawa=st.selectbox(
     "Pilih Senyawa",
@@ -700,8 +704,7 @@ elif menu=="📚 Informasi Bahan Kimia":
      st.title("📚 Informasi Bahan Kimia")
      
      if st.button("⬅ Kembali ke Home"):
-        st.session_state.menu="🏠 Home"
-        st.rerun()
+        st.info("Pilih menu Home di sidebar kiri 👈")
         
      cari=st.text_input("🔎 Cari nama atau rumus senyawa")
 
@@ -745,8 +748,7 @@ elif menu=="🧪 Analisis Kimia":
     st.title("🧪 Smart Chemical Analysis")
 
     if st.button("⬅ Kembali ke Home"):
-        st.session_state.menu="🏠 Home"
-        st.rerun()
+        st.info("Pilih menu Home di sidebar kiri 👈")
 
     senyawa=st.selectbox(
     "Pilih Senyawa",
