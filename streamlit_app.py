@@ -6,7 +6,9 @@ import random
 # ================= CONFIG =================
 
 st.set_page_config(
-    layout="centered",
+    page_title="ChemAssist Dashboard",
+    page_icon="🧪",
+    layout="wide",
     initial_sidebar_state="expanded"
 )
 
