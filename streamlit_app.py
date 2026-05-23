@@ -561,15 +561,43 @@ elif menu=="Larutan":
 {massa:.4f} gram
 """)
 
-            st.code(f"""
-Langkah Pembuatan Larutan
-
-1. Timbang {massa:.4f} gram {info['nama']}
-2. Larutkan dengan sedikit akuades
-3. Masukkan ke labu ukur {V} mL
-4. Tambahkan akuades hingga tanda batas
-5. Homogenkan larutan
-""")
+            st.markdown(f"""
+            <div style='
+            background:rgba(255,255,255,0.7);
+            padding:28px;
+            border-radius:24px;
+            border:1px solid #eee6ff;
+            box-shadow:0 5px 18px rgba(200,200,255,.15);
+            font-family:Segoe UI;
+            color:#5b4b8a;
+            line-height:2;
+            font-size:18px;
+            '>
+            
+            <h3 style='
+            color:#7c6bb3;
+            margin-bottom:18px;
+            font-weight:700;
+            '>
+            🧪 Langkah Pembuatan Larutan
+            </h3>
+            
+            <div style='font-size:17px;'>
+            
+            1️⃣ Timbang <b>{massa:.4f} gram</b> {info['nama']}<br>
+            
+            2️⃣ Larutkan dengan sedikit akuades<br>
+            
+            3️⃣ Masukkan ke labu ukur <b>{V} mL</b><br>
+            
+            4️⃣ Tambahkan akuades hingga tanda batas<br>
+            
+            5️⃣ Homogenkan larutan
+            
+            </div>
+            
+            </div>
+            """, unsafe_allow_html=True)
 
     else:
 
