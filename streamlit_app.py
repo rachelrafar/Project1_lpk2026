@@ -136,6 +136,49 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+
+/* ===== SIDEBAR MODERN ===== */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0f4c81, #4da8ff);
+}
+
+/* hide default radio bullets */
+div[role="radiogroup"] label {
+    padding: 12px 14px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* hover effect */
+div[role="radiogroup"] label:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.03);
+}
+
+/* selected item */
+div[role="radiogroup"] input:checked + div {
+    background: white !important;
+    color: #0f4c81 !important;
+    font-weight: bold;
+    border-radius: 14px;
+}
+
+/* sidebar title */
+.css-6qob1r h1 {
+    color: white;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 # ================= SESSION =================
 
 if "page" not in st.session_state:
