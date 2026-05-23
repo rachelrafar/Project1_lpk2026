@@ -717,20 +717,25 @@ elif menu=="📚 Informasi Bahan Kimia":
 
      data=db[pilih]
 
-     st.success(f"""
-🧪 Nama Senyawa : {data[0]}
+     st.markdown(f"""
+<div class='card'>
 
-📌 Rumus Kimia : {pilih}
-     
-⚗️ Jenis : {data[1]}
-     
-⚖️ Mr : {data[2]}
-     
-⚠️ Bahaya : {data[3]}
-     
-🎨 Bentuk/Fisik : {data[4]}
-     
-🧬 Struktur Molekul : {data[5]}
+<h3>🧪 Informasi Senyawa</h3>
+
+<b>Nama Senyawa:</b> {data[0]}<br><br>
+
+<b>Rumus Kimia:</b> {pilih}<br><br>
+
+<b>Jenis:</b> {data[1]}<br><br>
+
+<b>Mr:</b> {data[2]}<br><br>
+
+<b>Bahaya:</b> {data[3]}<br><br>
+
+<b>Bentuk/Fisik:</b> {data[4]}<br><br>
+
+<b>Struktur Molekul:</b> {data[5]}
+
 </div>
 """, unsafe_allow_html=True)
 
