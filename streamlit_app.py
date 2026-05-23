@@ -7,8 +7,6 @@ from datetime import datetime
 # ================= CONFIG =================
 
 st.set_page_config(
-    page_title="ChemAssist Pro",
-    page_icon="🧪",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -25,9 +23,6 @@ display:none;
 
 # ================= STYLE =================
 
-# =========================================================
-# CSS TAMPILAN MODERN
-# =========================================================
 st.markdown("""
 <style>
 
