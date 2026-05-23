@@ -282,19 +282,16 @@ db={
 
 # ================= SIDEBAR =================
 
-menu = st.sidebar.radio(
-    "🧪 ChemAssist Pro",
-    [
-        "🏠 Home",
-        "💧 Larutan",
-        "⚗️ pH",
-        "📚 Informasi",
-        "🧪 Analisis",
-        "ℹ️ Tentang"
-    ]
-)
+pages = {
+    "🏠 Home": "Home",
+    "💧 Larutan": "Larutan",
+    "⚗️ pH": "pH",
+    "📚 Informasi": "Informasi Bahan Kimia",
+    "🧪 Analisis": "Analisis Kimia",
+    "ℹ️ Tentang": "Tentang"
+}
 
-st.session_state.page=menu
+st.session_state.page = pages[menu]
 
 # ================= HOME =================
 
