@@ -718,21 +718,21 @@ elif menu=="📚 Informasi Bahan Kimia":
      data=db[pilih]
 
      st.success(f"""
-     🧪 Nama Senyawa : {data[0]}
+🧪 Nama Senyawa : {data[0]}
 
-     📌 Rumus Kimia : {pilih}
+📌 Rumus Kimia : {pilih}
      
-     ⚗️ Jenis : {data[1]}
+⚗️ Jenis : {data[1]}
      
-     ⚖️ Mr : {data[2]}
+⚖️ Mr : {data[2]}
      
-     ⚠️ Bahaya : {data[3]}
+⚠️ Bahaya : {data[3]}
      
-     🎨 Bentuk/Fisik : {data[4]}
+🎨 Bentuk/Fisik : {data[4]}
      
-     🧬 Struktur Molekul : {data[5]}
-     </div>
-    """, unsafe_allow_html=True)
+🧬 Struktur Molekul : {data[5]}
+</div>
+""", unsafe_allow_html=True)
 
 # ================= ANALISIS KIMIA =================
 
