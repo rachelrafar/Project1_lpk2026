@@ -227,64 +227,62 @@ div[data-baseweb="select"]{
     0 5px 18px rgba(200,200,255,.15);
 }
 
-/* SIDEBAR */
+/* SIDEBAR FIX */
 
 section[data-testid="stSidebar"]{
 
     background:
     linear-gradient(
     180deg,
-    #fcfaff,
-    #f8f6ff
-    );
+    #f6f0ff,
+    #fffaff
+    ) !important;
 
     border-right:
-    1px solid #eee8ff;
+    1px solid #eadfff;
+
+    min-width:260px !important;
 }
 
-/* SIDEBAR TEXT */
+/* SEMUA TEXT SIDEBAR */
 
 section[data-testid="stSidebar"] *{
 
-    color:#6b5b95 !important;
+    color:#6b4fa1 !important;
+
+    font-weight:600;
 }
 
-/* CODE BLOCK */
+/* RADIO MENU */
 
-pre{
+.stRadio label{
 
-    border-radius:20px !important;
+    color:#6b4fa1 !important;
 
-    border:1px solid #efeaff !important;
+    font-size:16px !important;
 }
 
-/* SUCCESS */
+/* RADIO SELECTED */
 
-.stSuccess{
+div[role="radiogroup"] label{
 
-    border-radius:20px !important;
+    background:rgba(200,180,255,0.15);
+
+    padding:10px;
+
+    border-radius:14px;
+
+    margin-bottom:8px;
 }
 
-/* TITLE */
+/* SIDEBAR TITLE */
 
-h1,h2,h3{
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3{
 
-    color:#5b4b8a !important;
+    color:#7a5db3 !important;
 }
-
-/* FOOTER */
-
-.footer{
-
-    text-align:center;
-
-    padding:35px;
-
-    color:#8b7fa8;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # ================= SESSION =================
 
