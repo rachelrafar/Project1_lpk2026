@@ -262,6 +262,12 @@ if menu=="Home":
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <div style="text-align:center;">
+    <img src="lab_tools.png" style="width:220px; animation: spin 6s linear infinite;">
+    </div>
+    """, unsafe_allow_html=True)
+
     c1,c2,c3=st.columns(3)
 
     c1.metric("📚 Informasi Kimia",f"{len(db)} Senyawa")
