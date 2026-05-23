@@ -2,7 +2,6 @@ import streamlit as st
 import math
 import time
 import random
-import base64
 
 # ================= CONFIG =================
 
@@ -96,27 +95,20 @@ font-weight:bold;
 color:#0f4c81;
 }
 
-/* ===== SIDEBAR MODERN ===== */
+/* ================= SIDEBAR ONLY UPGRADE (SAFE) ================= */
 
-section[data-testid="stSidebar"] {
+section[data-testid="stSidebar"]{
     background: linear-gradient(180deg, #0f4c81, #4da8ff);
 }
 
-div[role="radiogroup"] label {
-    padding: 12px 14px;
-    border-radius: 14px;
-    margin-bottom: 8px;
-    transition: 0.3s;
-    font-size: 15px;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+section[data-testid="stSidebar"] *{
+    color: white !important;
 }
 
-div[role="radiogroup"] label:hover {
+/* hover effect tanpa ubah struktur streamlit */
+div[role="radiogroup"] label:hover{
     background: rgba(255,255,255,0.15);
-    transform: scale(1.03);
+    border-radius: 12px;
 }
 
 </style>
@@ -130,82 +122,63 @@ if "page" not in st.session_state:
 # ================= DATA PH =================
 
 data_ph = {
-    "HCl":{"nama":"Asam Klorida","jenis":"Asam kuat","valensi":1,"Mr":36.46},
-    "H2SO4":{"nama":"Asam Sulfat","jenis":"Asam kuat","valensi":2,"Mr":98.08},
-    "HNO3":{"nama":"Asam Nitrat","jenis":"Asam kuat","valensi":1,"Mr":63.01},
-    "HClO4":{"nama":"Asam Perklorat","jenis":"Asam kuat","valensi":1,"Mr":100.46},
-    "HBr":{"nama":"Asam Bromida","jenis":"Asam kuat","valensi":1,"Mr":80.91},
-    "HI":{"nama":"Asam Iodida","jenis":"Asam kuat","valensi":1,"Mr":127.91},
-    "HClO3":{"nama":"Asam Klorat","jenis":"Asam kuat","valensi":1,"Mr":84.46},
-    "HClO":{"nama":"Asam Hipoklorit","jenis":"Asam lemah","Ka":3e-8,"Mr":52.46},
-    "CH3COOH":{"nama":"Asam Asetat","jenis":"Asam lemah","Ka":1.8e-5,"Mr":60.05},
-    "HF":{"nama":"Asam Fluorida","jenis":"Asam lemah","Ka":6.8e-4,"Mr":20.01},
-    "HCOOH":{"nama":"Asam Format","jenis":"Asam lemah","Ka":1.8e-4,"Mr":46.03},
-    "H3PO4":{"nama":"Asam Fosfat","jenis":"Asam lemah","Ka":7.5e-3,"Mr":98.00},
-    "H2CO3":{"nama":"Asam Karbonat","jenis":"Asam lemah","Ka":4.3e-7,"Mr":62.03},
-    "HCN":{"nama":"Asam Sianida","jenis":"Asam lemah","Ka":4.9e-10,"Mr":27.03},
-    "H2S":{"nama":"Asam Sulfida","jenis":"Asam lemah","Ka":1e-7,"Mr":34.08},
+"HCl":{"nama":"Asam Klorida","jenis":"Asam kuat","valensi":1,"Mr":36.46},
+"H2SO4":{"nama":"Asam Sulfat","jenis":"Asam kuat","valensi":2,"Mr":98.08},
+"HNO3":{"nama":"Asam Nitrat","jenis":"Asam kuat","valensi":1,"Mr":63.01},
+"HClO4":{"nama":"Asam Perklorat","jenis":"Asam kuat","valensi":1,"Mr":100.46},
+"HBr":{"nama":"Asam Bromida","jenis":"Asam kuat","valensi":1,"Mr":80.91},
+"HI":{"nama":"Asam Iodida","jenis":"Asam kuat","valensi":1,"Mr":127.91},
+"HClO3":{"nama":"Asam Klorat","jenis":"Asam kuat","valensi":1,"Mr":84.46},
+"HClO":{"nama":"Asam Hipoklorit","jenis":"Asam lemah","Ka":3e-8,"Mr":52.46},
+"CH3COOH":{"nama":"Asam Asetat","jenis":"Asam lemah","Ka":1.8e-5,"Mr":60.05},
+"HF":{"nama":"Asam Fluorida","jenis":"Asam lemah","Ka":6.8e-4,"Mr":20.01},
+"HCOOH":{"nama":"Asam Format","jenis":"Asam lemah","Ka":1.8e-4,"Mr":46.03},
+"H3PO4":{"nama":"Asam Fosfat","jenis":"Asam lemah","Ka":7.5e-3,"Mr":98.00},
+"H2CO3":{"nama":"Asam Karbonat","jenis":"Asam lemah","Ka":4.3e-7,"Mr":62.03},
+"HCN":{"nama":"Asam Sianida","jenis":"Asam lemah","Ka":4.9e-10,"Mr":27.03},
+"H2S":{"nama":"Asam Sulfida","jenis":"Asam lemah","Ka":1e-7,"Mr":34.08},
 
-    "NaOH":{"nama":"Natrium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":40.00},
-    "KOH":{"nama":"Kalium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":56.11},
-    "Ba(OH)2":{"nama":"Barium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":171.34},
-    "Ca(OH)2":{"nama":"Kalsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":74.09},
-    "Sr(OH)2":{"nama":"Stronsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":121.63},
-    "LiOH":{"nama":"Litium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":23.95},
-    "RbOH":{"nama":"Rubidium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":102.47},
+"NaOH":{"nama":"Natrium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":40.00},
+"KOH":{"nama":"Kalium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":56.11},
+"Ba(OH)2":{"nama":"Barium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":171.34},
+"Ca(OH)2":{"nama":"Kalsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":74.09},
+"Sr(OH)2":{"nama":"Stronsium Hidroksida","jenis":"Basa kuat","valensi":2,"Mr":121.63},
+"LiOH":{"nama":"Litium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":23.95},
+"RbOH":{"nama":"Rubidium Hidroksida","jenis":"Basa kuat","valensi":1,"Mr":102.47},
 
-    "NH3":{"nama":"Amonia","jenis":"Basa lemah","Kb":1.8e-5,"Mr":17.03},
-    "NH4OH":{"nama":"Amonium Hidroksida","jenis":"Basa lemah","Kb":1.8e-5,"Mr":35.05},
-    "CH3NH2":{"nama":"Metilamina","jenis":"Basa lemah","Kb":4.4e-4,"Mr":31.06},
-    "C2H5NH2":{"nama":"Etilamina","jenis":"Basa lemah","Kb":5.6e-4,"Mr":45.08},
-    "C5H5N":{"nama":"Piridina","jenis":"Basa lemah","Kb":1.7e-9,"Mr":79.10},
-    "Al(OH)3":{"nama":"Aluminium Hidroksida","jenis":"Basa lemah","Kb":1e-9,"Mr":78.00}
+"NH3":{"nama":"Amonia","jenis":"Basa lemah","Kb":1.8e-5,"Mr":17.03},
+"NH4OH":{"nama":"Amonium Hidroksida","jenis":"Basa lemah","Kb":1.8e-5,"Mr":35.05},
+"CH3NH2":{"nama":"Metilamina","jenis":"Basa lemah","Kb":4.4e-4,"Mr":31.06},
+"C2H5NH2":{"nama":"Etilamina","jenis":"Basa lemah","Kb":5.6e-4,"Mr":45.08},
+"C5H5N":{"nama":"Piridina","jenis":"Basa lemah","Kb":1.7e-9,"Mr":79.10},
+"Al(OH)3":{"nama":"Aluminium Hidroksida","jenis":"Basa lemah","Kb":1e-9,"Mr":78.00}
 }
 
 # ================= DATABASE =================
 
 db = {
-    "HCl":["Asam Klorida","Asam kuat","36.46 g/mol","Korosif","Cairan bening","H-Cl"],
-    "H2SO4":["Asam Sulfat","Asam kuat","98.08 g/mol","Sangat korosif","Cairan kental","HO-SO2-OH"],
-    "HNO3":["Asam Nitrat","Asam kuat","63.01 g/mol","Oksidator kuat","Cairan bening","O=N(OH)=O"],
-    "CH3COOH":["Asam Asetat","Asam lemah","60.05 g/mol","Iritasi kulit","Cairan bening","CH3-COOH"],
-    "HF":["Asam Fluorida","Asam lemah","20.01 g/mol","Sangat beracun","Cairan bening","H-F"],
-    "NaOH":["Natrium Hidroksida","Basa kuat","40.00 g/mol","Korosif","Padatan putih","Na-OH"],
-    "KOH":["Kalium Hidroksida","Basa kuat","56.11 g/mol","Korosif","Padatan putih","K-OH"],
-    "NH3":["Amonia","Basa lemah","17.03 g/mol","Gas beracun","Gas tidak berwarna","NH3"],
+"HCl":["Asam Klorida","Asam kuat","36.46 g/mol","Korosif","Cairan bening","H-Cl"],
+"H2SO4":["Asam Sulfat","Asam kuat","98.08 g/mol","Sangat korosif","Cairan kental","HO-SO2-OH"],
+"HNO3":["Asam Nitrat","Asam kuat","63.01 g/mol","Oksidator kuat","Cairan bening","O=N(OH)=O"],
+"CH3COOH":["Asam Asetat","Asam lemah","60.05 g/mol","Iritasi kulit","Cairan bening","CH3-COOH"],
+"HF":["Asam Fluorida","Asam lemah","20.01 g/mol","Sangat beracun","Cairan bening","H-F"],
+"NaOH":["Natrium Hidroksida","Basa kuat","40.00 g/mol","Korosif","Padatan putih","Na-OH"],
+"KOH":["Kalium Hidroksida","Basa kuat","56.11 g/mol","Korosif","Padatan putih","K-OH"],
+"Ca(OH)2":["Kalsium Hidroksida","Basa kuat","74.09 g/mol","Iritasi","Serbuk putih","Ca-(OH)2"],
+"NH3":["Amonia","Basa lemah","17.03 g/mol","Gas beracun","Gas tidak berwarna","NH3"],
+"NH4OH":["Amonium Hidroksida","Basa lemah","35.05 g/mol","Iritasi paru","Cairan bening","NH4OH"]
 }
 
-# ================= SIDEBAR ICON NAV =================
+# ================= SIDEBAR (ICON STYLE) =================
 
-st.sidebar.markdown("""
-<div style='text-align:center; padding:15px; color:white;'>
-    <h2>🧪 ChemAssist</h2>
-    <p style='font-size:12px; opacity:0.8;'>Smart Chemistry App</p>
-</div>
-""", unsafe_allow_html=True)
+st.sidebar.markdown("## 🧪 ChemAssist Pro")
 
 menu = st.sidebar.radio(
     "Navigation",
-    [
-        "🏠 Home",
-        "💧 Larutan",
-        "⚗️ pH",
-        "📚 Informasi",
-        "🧪 Analisis",
-        "ℹ️ Tentang"
-    ]
+    ["🏠 Home","💧 Larutan","⚗️ pH","📚 Informasi Bahan Kimia","🧪 Analisis Kimia","ℹ️ Tentang"]
 )
 
-pages = {
-    "🏠 Home":"Home",
-    "💧 Larutan":"Larutan",
-    "⚗️ pH":"pH",
-    "📚 Informasi":"Informasi Bahan Kimia",
-    "🧪 Analisis":"Analisis Kimia",
-    "ℹ️ Tentang":"Tentang"
-}
-
-st.session_state.page = pages[menu]
+st.session_state.page = menu
 
 # ================= HOME =================
 
@@ -213,45 +186,82 @@ if menu == "🏠 Home":
 
     st.markdown("""
     <div class='header'>
-    <div class='home-title'>🧪 ChemAssist Pro</div>
-    <div class='home-sub'>Membuat analisis kimia jadi modern & interaktif</div>
+        <div class='home-title'>🧪 ChemAssist Pro</div>
+        <div class='home-sub'>Smart Chemistry App</div>
     </div>
     """, unsafe_allow_html=True)
 
     c1,c2,c3 = st.columns(3)
     c1.metric("📚 Senyawa", len(db))
     c2.metric("⚗️ pH Data", len(data_ph))
-    c3.metric("🚀 Version","4.0")
+    c3.metric("🚀 Version", "4.0")
 
-    st.markdown("## 🔥 Features")
-
-    st.markdown("""
-    <div class='card'>
-    ⚗️ Smart Chemistry Engine aktif
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("## 🔥 Main Features")
 
 # ================= LARUTAN =================
 
 elif menu == "💧 Larutan":
-    st.title("Larutan")
+    st.title("💧 Smart Solution Maker")
 
-# ================= PH =================
+    senyawa = st.selectbox("Pilih Senyawa", list(data_ph.keys()))
+    info = data_ph[senyawa]
+
+    st.info(f"{info}")
+
+# ================= pH =================
 
 elif menu == "⚗️ pH":
-    st.title("pH Calculator")
+    st.title("⚗️ Smart pH Calculator")
+
+    senyawa = st.selectbox("Pilih Senyawa", list(data_ph.keys()))
+    info = data_ph[senyawa]
+
+    C = st.number_input("Konsentrasi", 0.01)
+
+    if st.button("Hitung pH"):
+
+        if "Asam kuat" in info["jenis"]:
+            ph = -math.log10(C)
+
+        elif "Basa kuat" in info["jenis"]:
+            ph = 14 - (-math.log10(C))
+
+        elif "Asam lemah" in info["jenis"]:
+            ph = math.sqrt(info["Ka"] * C)
+        else:
+            ph = 11
+
+        st.metric("pH", ph)
 
 # ================= INFORMASI =================
 
-elif menu == "📚 Informasi":
-    st.title("Informasi")
+elif menu == "📚 Informasi Bahan Kimia":
+
+    st.title("📚 Informasi Bahan Kimia")
+
+    cari = st.text_input("Cari")
+    hasil = db.keys()
+
+    pilih = st.selectbox("Pilih Senyawa", hasil)
+
+    st.write(db[pilih])
 
 # ================= ANALISIS =================
 
-elif menu == "🧪 Analisis":
-    st.title("Analisis")
+elif menu == "🧪 Analisis Kimia":
+
+    st.title("🧪 Smart Chemical Analysis")
+
+    pilih = st.selectbox("Pilih Senyawa", db.keys())
+
+    st.write(db[pilih])
+
+    st.info("Analisis tetap aktif")
 
 # ================= TENTANG =================
 
 elif menu == "ℹ️ Tentang":
-    st.title("Tentang")
+
+    st.title("ℹ️ Tentang")
+
+    st.write("ChemAssist Pro")
