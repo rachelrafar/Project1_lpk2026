@@ -860,12 +860,3 @@ elif menu=="ℹ️ Tentang":
 
     </div>
     """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <hr>
-    <center>
-    <h4>🧪 ChemAssist Pro</h4>
-    <p>Modern Chemistry Laboratory Assistant</p>
-    <p>Built with Python • Streamlit</p>
-    </center>
-    """, unsafe_allow_html=True)
