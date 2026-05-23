@@ -87,57 +87,7 @@ color:#0f4c81;
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
 
-@keyframes spin {
-    0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes floaty {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px); }
-}
-
-.center-hero {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin: 25px 0;
-}
-
-.hero-circle {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #4da8ff, #0f4c81);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow: 0px 0px 35px rgba(77,168,255,0.6);
-    animation: floaty 3s ease-in-out infinite;
-}
-
-.hero-circle img {
-    width: 140px;
-    animation: spin 8s linear infinite;
-}
-
-.glow-text {
-    text-align:center;
-    font-size: 20px;
-    color:#0f4c81;
-    font-weight:bold;
-    margin-top:10px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
 
 /* ===== SIDEBAR MODERN ===== */
 section[data-testid="stSidebar"] {
