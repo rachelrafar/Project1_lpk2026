@@ -395,15 +395,16 @@ with st.sidebar:
            "⚗️ pH",
            "📚 Informasi Bahan Kimia",
            "🧪 Analisis Kimia",
-           "ℹ️ Tentang"
+           "ℹ️ Tentang",
         ], 
+        
         index=[
            "🏠 Home",
            "💧 Larutan",
            "⚗️ pH",
            "📚 Informasi Bahan Kimia",
            "🧪 Analisis Kimia",
-           "ℹ️ Tentang"
+           "ℹ️ Tentang",
        ].index(st.session_state.current_menu)
 
         icons=[
