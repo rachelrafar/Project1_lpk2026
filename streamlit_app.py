@@ -312,6 +312,15 @@ if menu=="Home":
     </div>
     """, unsafe_allow_html=True)
 
+    import base64
+
+    def get_base64_img(path):
+    with open(path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+    # contoh: ganti dengan gambar lab kamu
+    img_base64 = get_base64_img("lab_tools.png")
+
     c1,c2,c3=st.columns(3)
 
     c1.metric("📚 Informasi Kimia",f"{len(db)} Senyawa")
