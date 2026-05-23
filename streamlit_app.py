@@ -822,36 +822,36 @@ elif menu=="ℹ️ Tentang":
     st.title("ℹ️ Tentang Aplikasi")
 
     st.markdown("""
-<div class='info-box'>
+    <div class='info-box'>
 
-<h3> ChemAssist Pro</h3>
+    <h3>🧪 ChemAssist Pro</h3>
 
-Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
+    <p>Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.</p>
 
-<h4> Fitur Utama</h4>
+    <h4>🚀 Fitur Utama</h4>
 
-<ul>
-<li>Smart Solution Maker</li>
-<li>Smart pH Calculator</li>
-<li>Informasi Bahan Kimia</li>
-<li>Smart Chemical Analysis</li>
-</ul>
+    <ul>
+    <li>Smart Solution Maker</li>
+    <li>Smart pH Calculator</li>
+    <li>Informasi Bahan Kimia</li>
+    <li>Smart Chemical Analysis</li>
+    </ul>
 
-<h4>👨‍💻 Teknologi</h4>
+    <h4>👨‍💻 Teknologi</h4>
 
-<ul>
-<li>Python</li>
-<li>Streamlit</li>
-</ul>
+    <ul>
+    <li>Python</li>
+    <li>Streamlit</li>
+    </ul>
 
-</div>
-""", unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
 
-st.markdown("""
-<hr>
-<center>
-<h4>🧪 ChemAssist Pro</h4>
-<p>Modern Chemistry Laboratory Assistant</p>
-<p>Built with Python • Streamlit</p>
-</center>
-""", unsafe_allow_html=True)
+    st.markdown("""
+    <hr>
+    <center>
+    <h4>🧪 ChemAssist Pro</h4>
+    <p>Modern Chemistry Laboratory Assistant</p>
+    <p>Built with Python • Streamlit</p>
+    </center>
+    """, unsafe_allow_html=True)
