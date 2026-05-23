@@ -523,7 +523,7 @@ elif menu=="💧 Larutan":
     
     st.title("💧 Smart Solution Maker")
 
-    if st.button("⬅ Kembali ke 🏠 Home"):
+    if st.button("⬅ Kembali ke Home"):
         st.session_state.page="🏠 Home"
         st.rerun()
 
@@ -625,7 +625,7 @@ elif menu=="⚗️ pH":
 
     st.title("⚗️ Smart pH Calculator")
 
-    if st.button("⬅ Kembali ke 🏠 Home"):
+    if st.button("⬅ Kembali ke Home"):
         st.session_state.page="🏠 Home"
         st.rerun()
 
@@ -699,8 +699,8 @@ elif menu=="⚗️ pH":
 elif menu=="📚 Informasi Bahan Kimia":
    
      st.title("📚 Informasi Bahan Kimia")
-
-    if st.button("⬅ Kembali ke 🏠 Home"):
+     
+     if st.button("⬅ Kembali ke Home"):
         st.session_state.page="🏠 Home"
         st.rerun()
         
@@ -738,7 +738,7 @@ elif menu=="🧪 Analisis Kimia":
 
     st.title("🧪 Smart Chemical Analysis")
 
-    if st.button("⬅ Kembali ke 🏠 Home"):
+    if st.button("⬅ Kembali ke Home"):
         st.session_state.page="🏠 Home"
         st.rerun()
 
