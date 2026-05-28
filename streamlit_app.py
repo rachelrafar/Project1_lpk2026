@@ -48,11 +48,10 @@ if not st.session_state.login:
     }
 
     .login-container{
-
         display:flex;
         justify-content:center;
         align-items:center;
-        height:90vh;
+        height:100vh;
     }
 
     .login-box{
@@ -71,13 +70,13 @@ if not st.session_state.login:
 
         box-shadow:
         0 10px 40px rgba(37,99,235,0.2);
-
-        text-align:center;
     }
 
     .login-title{
 
-        font-size:55px;
+        text-align:center;
+
+        font-size:50px;
 
         font-weight:900;
 
@@ -87,6 +86,8 @@ if not st.session_state.login:
     }
 
     .login-sub{
+
+        text-align:center;
 
         color:#1E40AF;
 
@@ -103,7 +104,7 @@ if not st.session_state.login:
 
         border:none !important;
 
-        background:rgba(255,255,255,0.7) !important;
+        background:rgba(255,255,255,0.75) !important;
     }
 
     .stButton > button{
@@ -132,52 +133,56 @@ if not st.session_state.login:
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="login-container">
+    col1,col2,col3 = st.columns([1,1.2,1])
+
+    with col2:
+
+        st.markdown("""
+        <div class="login-container">
         <div class="login-box">
 
-            <div class="login-title">
-            🧪 ChemAssist
-            </div>
-
-            <div class="login-sub">
-            Next Generation Chemistry Dashboard
-            </div>
-    """, unsafe_allow_html=True)
-
-    user = st.text_input("👤 Username")
-
-    pw = st.text_input(
-        "🔒 Password",
-        type="password"
-    )
-
-    accounts = {
-
-        "admin":"123",
-        "rachel":"kimia"
-    }
-
-    if st.button("🚀 Login"):
-
-        if user in accounts and pw == accounts[user]:
-
-            st.session_state.login = True
-
-            st.success("Login berhasil ✅")
-
-            time.sleep(1)
-
-            st.rerun()
-
-        else:
-
-            st.error("Username atau password salah ❌")
-
-    st.markdown("""
+        <div class="login-title">
+        🧪 ChemAssist
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+
+        <div class="login-sub">
+        Next Generation Chemistry Dashboard
+        </div>
+        """, unsafe_allow_html=True)
+
+        user = st.text_input("👤 Username")
+
+        pw = st.text_input(
+            "🔒 Password",
+            type="password"
+        )
+
+        accounts = {
+
+            "admin":"123",
+            "rachel":"kimia"
+        }
+
+        if st.button("🚀 Login"):
+
+            if user in accounts and pw == accounts[user]:
+
+                st.session_state.login = True
+
+                st.success("Login berhasil ✅")
+
+                time.sleep(1)
+
+                st.rerun()
+
+            else:
+
+                st.error("Username atau password salah ❌")
+
+        st.markdown("""
+        </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.stop()
 
