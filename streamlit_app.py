@@ -1,282 +1,361 @@
-import streamlit as st
-import math
-import time
-import random
-from streamlit_option_menu import option_menu
+# ================= IMPORT =================
 
-# ================= CONFIG =================
+import streamlit as st
+from streamlit_option_menu import option_menu
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import random
+import time
+import math
+
+# ================= PAGE CONFIG =================
 
 st.set_page_config(
-    page_title="ChemAssist Dashboard",
+
+    page_title="ChemAssist Ultra",
+
     page_icon="🧪",
-    layout="centered",
+
+    layout="wide",
+
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
+# ================= SESSION =================
 
-button[kind="header"]{
-display:none;
-}
+if "login" not in st.session_state:
+    st.session_state.login = False
 
-</style>
-""", unsafe_allow_html=True)
+if "history" not in st.session_state:
+    st.session_state.history = []
 
-# ================= STYLE =================
+# ================= LOGIN =================
 
-st.markdown("""
-<style>
+if not st.session_state.login:
 
-/* Background utama biru muda aesthetic */
-.stApp {
-    background: linear-gradient(
+    st.markdown("""
+    <style>
+
+    .stApp{
+
+        background:linear-gradient(
         135deg,
         #F0F9FF,
         #E0F2FE,
         #BAE6FD,
         #7DD3FC
+        );
+    }
+
+    .login-box{
+
+        background:rgba(255,255,255,0.4);
+
+        padding:40px;
+
+        border-radius:30px;
+
+        backdrop-filter:blur(20px);
+
+        box-shadow:
+        0 10px 30px rgba(37,99,235,0.2);
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+
+    c1,c2,c3 = st.columns([1,1.2,1])
+
+    with c2:
+
+        st.markdown("""
+        <div class="login-box">
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+        <h1 style='text-align:center;color:#2563EB;'>
+        🧪 ChemAssist
+        </h1>
+        """, unsafe_allow_html=True)
+
+        user = st.text_input("Username")
+
+        pw = st.text_input(
+            "Password",
+            type="password"
+        )
+
+        accounts = {
+
+            "admin":"123",
+
+            "rachel":"kimia"
+        }
+
+        if st.button("🚀 Login"):
+
+            if user in accounts and pw == accounts[user]:
+
+                st.session_state.login = True
+
+                st.success("Login berhasil")
+
+                time.sleep(1)
+
+                st.rerun()
+
+            else:
+
+                st.error("Username atau password salah")
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.stop()
+
+# ================= CSS =================
+
+st.markdown("""
+<style>
+
+/* ===== BACKGROUND ===== */
+
+.stApp{
+
+    background:linear-gradient(
+    135deg,
+    #F0F9FF,
+    #E0F2FE,
+    #BAE6FD,
+    #7DD3FC
     );
 
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background-size:400% 400%;
+
+    animation:bg 15s ease infinite;
 }
 
-/* Animasi background */
-@keyframes gradientBG {
+@keyframes bg{
 
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+0%{
+background-position:0% 50%;
 }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-
-    background: rgba(255,255,255,0.18);
-
-    backdrop-filter: blur(16px);
-
-    border-right: 1px solid rgba(255,255,255,0.2);
+50%{
+background-position:100% 50%;
 }
 
-/* Semua teks */
-html, body, [class*="css"] {
-    color: #0F172A !important;
+100%{
+background-position:0% 50%;
+}
 }
 
-/* Judul utama */
-.main-title {
+/* ===== HIDE ===== */
 
-    font-size: 58px;
-
-    font-weight: 900;
-
-    text-align: center;
-
-    color: #1E3A8A;
-
-    text-shadow:
-        0 0 10px rgba(255,255,255,0.8);
-
-    animation: glow 2s ease-in-out infinite alternate;
+button[kind="header"]{
+    display:none;
 }
 
-/* Efek glow */
-@keyframes glow {
+/* ===== SIDEBAR ===== */
 
-    from {
-        text-shadow:
-            0 0 8px rgba(255,255,255,0.6);
-    }
+section[data-testid="stSidebar"]{
 
-    to {
-        text-shadow:
-            0 0 20px rgba(255,255,255,1);
-    }
+    background:rgba(255,255,255,0.35);
+
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,0.2);
 }
 
-/* Subtitle */
-.subtitle {
+/* ===== TEXT ===== */
 
-    text-align: center;
+html, body, [class*="css"]{
 
-    font-size: 18px;
-
-    color: #1E40AF;
-
-    margin-bottom: 35px;
+    color:#0F172A;
 }
 
-/* Logo berputar */
-.logo-container {
+/* ===== TITLE ===== */
 
-    text-align: center;
+.main-title{
 
-    margin-bottom: 10px;
+    font-size:65px;
+
+    font-weight:900;
+
+    text-align:center;
+
+    color:#2563EB;
+
+    margin-top:-20px;
 }
 
-.logo-spin {
+/* ===== SUBTITLE ===== */
 
-    font-size: 80px;
+.subtitle{
 
-    display: inline-block;
+    text-align:center;
 
-    animation: spin 6s linear infinite;
+    color:#1E40AF;
+
+    font-size:18px;
+
+    margin-bottom:35px;
 }
 
-/* Animasi logo */
-@keyframes spin {
+/* ===== LOGO ===== */
 
-    100% {
-        transform: rotate(360deg);
-    }
+.logo{
+
+    text-align:center;
+
+    font-size:90px;
+
+    animation:spin 8s linear infinite;
 }
 
-/* Tombol modern */
-.stButton > button {
+@keyframes spin{
 
-    background: linear-gradient(
-        90deg,
-        #38BDF8,
-        #2563EB
-    );
-
-    color: white;
-
-    border: none;
-
-    border-radius: 14px;
-
-    padding: 12px 18px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
-
-    box-shadow: 0 4px 20px rgba(37,99,235,0.25);
+100%{
+transform:rotate(360deg);
+}
 }
 
-.stButton > button:hover {
-
-    transform: scale(1.05);
-
-    box-shadow: 0 6px 24px rgba(37,99,235,0.45);
-}
-
-/* CARD */
+/* ===== CARD ===== */
 
 .card{
-    background:rgba(255,255,255,0.75);
 
-    border:1px solid rgba(255,255,255,0.6);
+    background:rgba(255,255,255,0.55);
 
-    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.5);
 
-    border-radius:26px;
+    backdrop-filter:blur(18px);
 
-    padding:24px;
+    border-radius:28px;
+
+    padding:28px;
+
+    margin-bottom:22px;
 
     box-shadow:
-    0 6px 22px rgba(210,210,255,.18);
-
-    transition:0.3s;
-
-    margin-bottom:18px;
+    0 8px 24px rgba(37,99,235,0.15);
 }
 
-.card:hover{
-    transform:translateY(-5px);
+/* ===== METRIC ===== */
+
+.metric{
+
+    background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.65),
+    rgba(255,255,255,0.4));
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
     box-shadow:
-    0 10px 28px rgba(180,180,255,.25);
+    0 8px 22px rgba(37,99,235,0.12);
 }
 
-/* TITLE */
+.metric-number{
 
-.feature-title{
-    font-size:22px;
-    font-weight:700;
-    color:#5b4b8a;
+    font-size:48px;
+
+    font-weight:900;
+
+    color:#2563EB;
 }
 
-.feature-desc{
-    color:#7b728d;
-    font-size:15px;
+.metric-label{
+
+    color:#334155;
+
+    font-size:17px;
 }
 
-/* Efek molekul mengambang */
-.molecule {
+/* ===== BUTTON ===== */
 
-    position: fixed;
+.stButton > button{
 
-    width: 14px;
+    width:100%;
 
-    height: 14px;
+    background:linear-gradient(
+    90deg,
+    #38BDF8,
+    #2563EB
+    );
 
-    background: rgba(255,255,255,0.5);
+    color:white;
 
-    border-radius: 50%;
+    border:none;
 
-    animation: float 12s infinite linear;
+    border-radius:16px;
+
+    padding:13px;
+
+    font-size:17px;
+
+    font-weight:bold;
 }
 
-.molecule:nth-child(1) {
-    left: 10%;
+/* ===== PARTICLES ===== */
+
+.particle{
+
+    position:fixed;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.5);
+
+    animation:float 14s infinite linear;
 }
 
-.molecule:nth-child(2) {
-    left: 50%;
+.particle:nth-child(1){left:10%;}
+.particle:nth-child(2){left:30%;}
+.particle:nth-child(3){left:50%;}
+.particle:nth-child(4){left:70%;}
+.particle:nth-child(5){left:90%;}
+
+@keyframes float{
+
+0%{
+transform:translateY(100vh);
 }
 
-.molecule:nth-child(3) {
-    left: 80%;
+100%{
+transform:translateY(-120vh);
 }
-
-/* Animasi molekul */
-@keyframes float {
-
-    0% {
-        transform: translateY(100vh);
-    }
-
-    100% {
-        transform: translateY(-100vh);
-    }
 }
 
 </style>
 
-<div class="molecule"></div>
-<div class="molecule"></div>
-<div class="molecule"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
 
 """, unsafe_allow_html=True)
 
-# =========================================================
-# HEADER / LOGO
-# =========================================================
-st.markdown("""
+# ================= HEADER =================
 
-<div class="logo-container">
-    <div class="logo-spin">🧪</div>
-</div>
+st.markdown("""
+<div class="logo">🧪</div>
 
 <div class="main-title">
-ChemAssist Dashboard
+ChemAssist Ultra
 </div>
 
 <div class="subtitle">
-Sistem Analisis Parameter Laboratorium Kimia Interaktif
+Next Generation Chemistry Dashboard
 </div>
-
 """, unsafe_allow_html=True)
 
 # ================= SESSION =================
@@ -457,6 +536,86 @@ with st.sidebar:
             },
         }
     )
+    st.markdown("---")
+
+    if st.button("🚪 Logout"):
+
+        st.session_state.login = False
+
+        st.rerun()
+
+# ================= DARK MODE =================
+
+    dark_mode = st.toggle("🌙 Dark Mode")
+
+    if dark_mode:
+
+        st.markdown("""
+        <style>
+
+        .stApp{
+
+            background:linear-gradient(
+            135deg,
+            #020617,
+            #0F172A,
+            #111827
+            ) !important;
+        }
+
+        html, body, [class*="css"]{
+
+            color:white !important;
+        }
+
+        section[data-testid="stSidebar"]{
+
+            background:rgba(15,23,42,0.7) !important;
+        }
+
+        .card{
+
+            background:rgba(15,23,42,0.6) !important;
+
+            border:1px solid rgba(255,255,255,0.08) !important;
+
+            color:white !important;
+        }
+
+        .metric{
+
+            background:rgba(15,23,42,0.6) !important;
+        }
+
+        .metric-number{
+
+            color:#38BDF8 !important;
+        }
+
+        .metric-label{
+
+            color:#E2E8F0 !important;
+        }
+
+        </style>
+        """, unsafe_allow_html=True)
+
+# ================= HISTORY =================
+
+    elif selected == "History":
+
+        st.title("📜 History")
+
+    if len(st.session_state.history) == 0:
+
+        st.info("Belum ada histori")
+
+    else:
+
+        for item in st.session_state.history:
+
+            st.write("✅", item)
+
 
 if selected != st.session_state.menu:
     st.session_state.menu = selected
@@ -890,3 +1049,4 @@ elif menu=="ℹ️ Tentang":
 
     </div>
     """, unsafe_allow_html=True)
+
