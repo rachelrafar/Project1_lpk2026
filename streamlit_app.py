@@ -1,3 +1,53 @@
+import hashlib
+
+# ================= USER DATABASE =================
+
+users = {
+    "admin": hashlib.sha256("admin123".encode()).hexdigest()
+}
+
+# ================= SESSION =================
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# ================= LOGIN PAGE =================
+
+def login_page():
+
+    st.title("🔐 ChemAssist Login")
+
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+
+        hashed = hashlib.sha256(password.encode()).hexdigest()
+
+        if username in users and users[username] == hashed:
+
+            st.session_state.logged_in = True
+            st.session_state.username = username
+
+            st.success("Login berhasil!")
+            st.rerun()
+
+        else:
+            st.error("Username atau password salah")
+
+# ================= LOGOUT =================
+
+def logout():
+
+    st.session_state.logged_in = False
+    st.rerun()
+
+# ================= AUTH CHECK =================
+
+if not st.session_state.logged_in:
+    login_page()
+    st.stop()
+    
 import streamlit as st
 import math
 import time
