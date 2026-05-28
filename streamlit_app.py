@@ -143,7 +143,6 @@ if not st.session_state.login:
             <div class="login-sub">
             Next Generation Chemistry Dashboard
             </div>
-
     """, unsafe_allow_html=True)
 
     user = st.text_input("👤 Username")
