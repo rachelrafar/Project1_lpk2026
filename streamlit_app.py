@@ -38,78 +38,147 @@ if not st.session_state.login:
     <style>
 
     .stApp{
-
-        background:linear-gradient(
+        background: linear-gradient(
         135deg,
-        #F0F9FF,
-        #E0F2FE,
-        #BAE6FD,
-        #7DD3FC
+        #dbeafe,
+        #bae6fd,
+        #7dd3fc,
+        #38bdf8
         );
+    }
+
+    .login-container{
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:90vh;
     }
 
     .login-box{
 
-        background:rgba(255,255,255,0.4);
+        width:420px;
 
-        padding:40px;
+        background:rgba(255,255,255,0.25);
 
-        border-radius:30px;
+        padding:45px;
+
+        border-radius:35px;
 
         backdrop-filter:blur(20px);
 
+        border:1px solid rgba(255,255,255,0.3);
+
         box-shadow:
-        0 10px 30px rgba(37,99,235,0.2);
+        0 10px 40px rgba(37,99,235,0.2);
+
+        text-align:center;
+    }
+
+    .login-title{
+
+        font-size:55px;
+
+        font-weight:900;
+
+        color:#2563EB;
+
+        margin-bottom:10px;
+    }
+
+    .login-sub{
+
+        color:#1E40AF;
+
+        margin-bottom:30px;
+
+        font-size:16px;
+    }
+
+    .stTextInput input{
+
+        border-radius:15px !important;
+
+        padding:12px !important;
+
+        border:none !important;
+
+        background:rgba(255,255,255,0.7) !important;
+    }
+
+    .stButton > button{
+
+        width:100%;
+
+        border-radius:15px;
+
+        padding:14px;
+
+        border:none;
+
+        font-weight:bold;
+
+        font-size:17px;
+
+        background:linear-gradient(
+        90deg,
+        #38BDF8,
+        #2563EB
+        );
+
+        color:white;
     }
 
     </style>
     """, unsafe_allow_html=True)
 
-    c1,c2,c3 = st.columns([1,1.2,1])
-
-    with c2:
-
-        st.markdown("""
+    st.markdown("""
+    <div class="login-container">
         <div class="login-box">
-        """, unsafe_allow_html=True)
 
-        st.markdown("""
-        <h1 style='text-align:center;color:#2563EB;'>
-        🧪 ChemAssist
-        </h1>
-        """, unsafe_allow_html=True)
+            <div class="login-title">
+            🧪 ChemAssist
+            </div>
 
-        user = st.text_input("Username")
+            <div class="login-sub">
+            Next Generation Chemistry Dashboard
+            </div>
 
-        pw = st.text_input(
-            "Password",
-            type="password"
-        )
+    """, unsafe_allow_html=True)
 
-        accounts = {
+    user = st.text_input("👤 Username")
 
-            "admin":"123",
+    pw = st.text_input(
+        "🔒 Password",
+        type="password"
+    )
 
-            "rachel":"kimia"
-        }
+    accounts = {
 
-        if st.button("🚀 Login"):
+        "admin":"123",
+        "rachel":"kimia"
+    }
 
-            if user in accounts and pw == accounts[user]:
+    if st.button("🚀 Login"):
 
-                st.session_state.login = True
+        if user in accounts and pw == accounts[user]:
 
-                st.success("Login berhasil")
+            st.session_state.login = True
 
-                time.sleep(1)
+            st.success("Login berhasil ✅")
 
-                st.rerun()
+            time.sleep(1)
 
-            else:
+            st.rerun()
 
-                st.error("Username atau password salah")
+        else:
 
-        st.markdown("</div>", unsafe_allow_html=True)
+            st.error("Username atau password salah ❌")
+
+    st.markdown("""
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.stop()
 
