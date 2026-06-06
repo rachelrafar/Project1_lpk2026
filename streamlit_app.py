@@ -38,128 +38,58 @@ if not st.session_state.login:
     <style>
 
     .stApp{
-        background: linear-gradient(
-        135deg,
-        #dbeafe,
-        #bae6fd,
-        #7dd3fc,
-        #38bdf8
-        );
-    }
 
-    .login-container{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
+        background:linear-gradient(
+        135deg,
+        #F0F9FF,
+        #E0F2FE,
+        #BAE6FD,
+        #7DD3FC
+        );
     }
 
     .login-box{
 
-        width:420px;
+        background:rgba(255,255,255,0.4);
 
-        background:rgba(255,255,255,0.25);
+        padding:40px;
 
-        padding:45px;
-
-        border-radius:35px;
+        border-radius:30px;
 
         backdrop-filter:blur(20px);
 
-        border:1px solid rgba(255,255,255,0.3);
-
         box-shadow:
-        0 10px 40px rgba(37,99,235,0.2);
-    }
-
-    .login-title{
-
-        text-align:center;
-
-        font-size:50px;
-
-        font-weight:900;
-
-        color:#2563EB;
-
-        margin-bottom:10px;
-    }
-
-    .login-sub{
-
-        text-align:center;
-
-        color:#1E40AF;
-
-        margin-bottom:30px;
-
-        font-size:16px;
-    }
-
-    .stTextInput input{
-
-        border-radius:15px !important;
-
-        padding:12px !important;
-
-        border:none !important;
-
-        background:rgba(255,255,255,0.75) !important;
-    }
-
-    .stButton > button{
-
-        width:100%;
-
-        border-radius:15px;
-
-        padding:14px;
-
-        border:none;
-
-        font-weight:bold;
-
-        font-size:17px;
-
-        background:linear-gradient(
-        90deg,
-        #38BDF8,
-        #2563EB
-        );
-
-        color:white;
+        0 10px 30px rgba(37,99,235,0.2);
     }
 
     </style>
     """, unsafe_allow_html=True)
 
-    col1,col2,col3 = st.columns([1,1.2,1])
+    c1,c2,c3 = st.columns([1,1.2,1])
 
-    with col2:
+    with c2:
 
         st.markdown("""
-        <div class="login-container">
         <div class="login-box">
-
-        <div class="login-title">
-        🧪 ChemAssist
-        </div>
-
-        <div class="login-sub">
-        Next Generation Chemistry Dashboard
-        </div>
         """, unsafe_allow_html=True)
 
-        user = st.text_input("👤 Username")
+        st.markdown("""
+        <h1 style='text-align:center;color:#2563EB;'>
+        🧪 ChemAssist
+        </h1>
+        """, unsafe_allow_html=True)
+
+        user = st.text_input("Username")
 
         pw = st.text_input(
-            "🔒 Password",
+            "Password",
             type="password"
         )
 
         accounts = {
 
             "admin":"123",
+
             "rachel":"kimia"
         }
 
@@ -169,7 +99,7 @@ if not st.session_state.login:
 
                 st.session_state.login = True
 
-                st.success("Login berhasil ✅")
+                st.success("Login berhasil")
 
                 time.sleep(1)
 
@@ -177,12 +107,9 @@ if not st.session_state.login:
 
             else:
 
-                st.error("Username atau password salah ❌")
+                st.error("Username atau password salah")
 
-        st.markdown("""
-        </div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
     st.stop()
 
@@ -673,28 +600,7 @@ with st.sidebar:
         </style>
         """, unsafe_allow_html=True)
 
-# ================= HISTORY =================
-
-    elif selected == "History":
-
-        st.title("📜 History")
-
-    if len(st.session_state.history) == 0:
-
-        st.info("Belum ada histori")
-
-    else:
-
-        for item in st.session_state.history:
-
-            st.write("✅", item)
-
-
-if selected != st.session_state.menu:
-    st.session_state.menu = selected
-
-menu = st.session_state.menu
-
+menu = selected
 # ================= HOME =================
 
 if menu=="🏠 Home":
@@ -794,19 +700,19 @@ if menu=="🏠 Home":
 # ================= LARUTAN =================
 
 elif menu=="💧 Larutan":
-    
+
     st.title("💧 Smart Solution Maker")
 
     if st.button("⬅ Kembali ke Home"):
         go_to("🏠 Home")
 
-    senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(data_ph.keys()),
-    format_func=lambda x:f"{data_ph[x]['nama']} ({x})"
+    senyawa = st.selectbox(
+        "Pilih Senyawa",
+        list(data_ph.keys()),
+        format_func=lambda x: f"{data_ph[x]['nama']} ({x})"
     )
 
-    info=data_ph[senyawa]
+    info = data_ph[senyawa]
 
     st.info(f"""
 🧪 Nama Senyawa : {info['nama']}
@@ -816,21 +722,24 @@ elif menu=="💧 Larutan":
 ⚖️ Mr : {info['Mr']} g/mol
 """)
 
-    metode=st.selectbox(
-    "Pilih Jenis Perhitungan",
-    ["Pembuatan Larutan","Pengenceran"]
+    metode = st.selectbox(
+        "Pilih Jenis Perhitungan",
+        ["Pembuatan Larutan", "Pengenceran"]
     )
 
-    if metode=="Pembuatan Larutan":
+    # ================= PEMBUATAN LARUTAN =================
 
-        M=st.number_input("Konsentrasi Larutan (M)",0.1)
-        V=st.number_input("Volume Larutan (mL)",100.0)
+    if metode == "Pembuatan Larutan":
+
+        M = st.number_input("Konsentrasi Larutan (M)", 0.1)
+        V = st.number_input("Volume Larutan (mL)", 100.0)
 
         if st.button("Hitung Massa Senyawa"):
+
             with st.spinner("Sedang menghitung..."):
                 time.sleep(3)
 
-            massa=(info['Mr']*M*V)/1000
+            massa = (info['Mr'] * M * V) / 1000
 
             st.success(f"""
 ✅ Massa senyawa yang diperlukan:
@@ -849,7 +758,7 @@ elif menu=="💧 Larutan":
             line-height:2;
             font-size:18px;
             '>
-            
+
             <h3 style='
             color:#7c6bb3;
             margin-bottom:18px;
@@ -857,41 +766,94 @@ elif menu=="💧 Larutan":
             '>
             🧪 Langkah Pembuatan Larutan
             </h3>
-            
+
             <div style='font-size:17px;'>
-            
+
             1️⃣ Timbang <b>{massa:.4f} gram</b> {info['nama']}<br>
-            
+
             2️⃣ Larutkan dengan sedikit akuades<br>
-            
-            3️⃣ Masukkan ke labu ukur <b>{V} mL</b><br>
-            
+
+            3️⃣ Masukkan ke labu takar <b>{V} mL</b><br>
+
             4️⃣ Tambahkan akuades hingga tanda batas<br>
-            
+
             5️⃣ Homogenkan larutan
-            
+
             </div>
-            
+
             </div>
             """, unsafe_allow_html=True)
 
+    # ================= PENGENCERAN =================
+
     else:
 
-        M1=st.number_input("Molaritas Awal",1.0)
-        V1=st.number_input("Volume Awal (mL)",100.0)
-        M2=st.number_input("Molaritas Akhir",0.1)
+        M1 = st.number_input("Molaritas Awal (M)", 1.0)
+        V1 = st.number_input("Volume Awal (mL)", 100.0)
+        M2 = st.number_input("Molaritas Akhir (M)", 0.1)
 
         if st.button("Hitung Pengenceran"):
-            with st.spinner("Sedang menghitung..."):
-                time.sleep(3)
 
-            V2=(M1*V1)/M2
+            if M2 >= M1:
+                st.error("Molaritas akhir harus lebih kecil dari molaritas awal.")
+            else:
 
-            st.success(f"""
+                with st.spinner("Sedang menghitung..."):
+                    time.sleep(3)
+
+                V2 = (M1 * V1) / M2
+                volume_air = V2 - V1
+
+                st.success(f"""
 ✅ Volume akhir larutan:
 {V2:.2f} mL
 """)
 
+                st.info(f"""
+💧 Tambahkan sekitar {volume_air:.2f} mL akuades
+ke dalam {V1:.2f} mL larutan stok untuk memperoleh
+larutan {M2} M.
+""")
+
+                st.markdown(f"""
+                <div style='
+                background:rgba(255,255,255,0.7);
+                padding:28px;
+                border-radius:24px;
+                border:1px solid #eee6ff;
+                box-shadow:0 5px 18px rgba(200,200,255,.15);
+                font-family:Segoe UI;
+                color:#5b4b8a;
+                line-height:2;
+                font-size:18px;
+                '>
+
+                <h3 style='
+                color:#7c6bb3;
+                margin-bottom:18px;
+                font-weight:700;
+                '>
+                💧 Langkah Pengenceran Larutan
+                </h3>
+
+                <div style='font-size:17px;'>
+
+                1️⃣ Siapkan larutan stok {info['nama']} dengan konsentrasi <b>{M1} M</b><br>
+
+                2️⃣ Pipet <b>{V1:.2f} mL</b> larutan stok<br>
+
+                3️⃣ Masukkan ke dalam labu takar<br>
+
+                4️⃣ Tambahkan akuades hingga volume mencapai <b>{V2:.2f} mL</b><br>
+
+                5️⃣ Homogenkan larutan<br>
+
+                6️⃣ Larutan <b>{M2} M</b> siap digunakan
+
+                </div>
+
+                </div>
+                """, unsafe_allow_html=True)
 # ================= PH =================
 
 elif menu=="⚗️ pH":
@@ -1019,81 +981,202 @@ elif menu=="🧪 Analisis Kimia":
     if st.button("⬅ Kembali ke Home"):
         go_to("🏠 Home")
 
-    senyawa=st.selectbox(
-    "Pilih Senyawa",
-    list(db.keys())
+    senyawa = st.selectbox(
+        "Pilih Senyawa",
+        list(db.keys())
     )
 
-    data=db[senyawa]
+    data = db[senyawa]
 
     st.markdown(f"""
     <div class='info-box'>
-    
+
     <h3>📊 Hasil Analisis Senyawa</h3>
 
-    <b>🧪 Nama :</b> {data[0]} <br><br>
+    <b>🧪 Nama :</b> {data[0]}<br><br>
 
-    <b>📌 Rumus :</b> {senyawa} <br><br>
+    <b>📌 Rumus :</b> {senyawa}<br><br>
 
-    <b>⚗️ Jenis :</b> {data[1]} <br><br>
+    <b>⚗️ Jenis :</b> {data[1]}<br><br>
 
-    <b>⚖️ Mr :</b> {data[2]} <br><br>
+    <b>⚖️ Mr :</b> {data[2]}<br><br>
 
-    <b>⚠️  Bahaya :</b> {data[3]} <br><br>
+    <b>⚠️ Bahaya :</b> {data[3]}<br><br>
 
     <b>🧬 Struktur :</b> {data[5]}
 
     </div>
     """, unsafe_allow_html=True)
 
-    st.subheader("📈 Interpretasi Kimia")
+    st.subheader("🧪 Interpretasi Kimia")
 
-    if "Asam" in data[1]:
+    jenis = data[1]
 
-        st.success("""
-Senyawa ini bersifat asam dan menghasilkan ion H+ dalam larutan.
-Digunakan pada analisis laboratorium dan industri kimia.
-""")
+    if jenis == "Asam kuat":
+        interpretasi = "Asam kuat yang terionisasi hampir sempurna dalam air dan menghasilkan ion H⁺ dalam jumlah besar."
 
-    elif "Basa" in data[1]:
+    elif jenis == "Asam lemah":
+        interpretasi = "Asam lemah yang hanya terionisasi sebagian dalam air."
 
-        st.info("""
-Senyawa ini bersifat basa dan menghasilkan ion OH- dalam larutan.
-Umumnya digunakan untuk netralisasi dan industri.
-""")
+    elif jenis == "Basa kuat":
+        interpretasi = "Basa kuat yang menghasilkan ion OH⁻ dalam jumlah besar."
 
-    elif "Garam" in data[1]:
+    elif jenis == "Basa lemah":
+        interpretasi = "Basa lemah yang hanya terionisasi sebagian dalam air."
 
-        st.warning("""
-Senyawa ini termasuk golongan garam hasil reaksi asam dan basa.
-""")
+    elif "Garam" in jenis:
+        interpretasi = "Senyawa ionik yang tersusun dari kation dan anion."
+
+    elif jenis == "Alkohol":
+        interpretasi = "Mengandung gugus hidroksil (-OH) dan umum digunakan sebagai pelarut."
+
+    elif jenis == "Keton":
+        interpretasi = "Mengandung gugus karbonil (>C=O)."
+
+    elif jenis == "Aromatik":
+        interpretasi = "Mengandung cincin aromatik yang stabil karena resonansi."
+
+    elif jenis == "Karbohidrat":
+        interpretasi = "Merupakan sumber energi penting pada sistem biologis."
+
+    elif jenis == "Amida":
+        interpretasi = "Mengandung gugus fungsi amida (-CONH₂)."
+
+    elif jenis == "Pelarut":
+        interpretasi = "Digunakan untuk melarutkan berbagai senyawa kimia."
+
+    elif jenis == "Oksidator":
+        interpretasi = "Mampu mengoksidasi zat lain dengan menerima elektron."
 
     else:
+        interpretasi = "Karakteristik kimia mengikuti gugus fungsi utamanya."
 
-        st.write("""
-Senyawa ini memiliki karakteristik kimia khusus berdasarkan gugus fungsinya.
+    st.info(interpretasi)
+    
+    st.subheader("🔬 Analisis Spesifik Senyawa")
+
+    analisis_spesifik = {
+
+"HCl":"Terionisasi sempurna dalam air menghasilkan ion H⁺ dan Cl⁻. Banyak digunakan sebagai titran dan pengatur pH.",
+
+"H2SO4":"Asam diprotik kuat dengan sifat dehidrasi tinggi. Bereaksi eksotermik saat dicampur air.",
+
+"HNO3":"Asam kuat sekaligus oksidator yang mampu mengoksidasi berbagai logam dan senyawa organik.",
+
+"CH3COOH":"Asam lemah yang terionisasi sebagian dalam air dan sering digunakan sebagai pereaksi sintesis organik.",
+
+"HF":"Meskipun tergolong asam lemah, memiliki bahaya tinggi karena dapat menembus jaringan dan bereaksi dengan kalsium tubuh.",
+
+"H3BO3":"Asam lemah yang sering digunakan sebagai antiseptik dan bahan baku berbagai produk kimia.",
+
+"NaOH":"Basa kuat yang terdisosiasi sempurna menghasilkan ion OH⁻ dan sering digunakan sebagai titran standar.",
+
+"KOH":"Basa kuat yang umum digunakan pada industri sabun dan elektrolit baterai.",
+
+"Ca(OH)2":"Basa kuat yang menghasilkan ion OH⁻ dalam larutan dan sering digunakan untuk pengolahan air.",
+
+"NH3":"Basa lemah yang membentuk ion amonium dalam air dan banyak digunakan dalam industri pupuk.",
+
+"NH4OH":"Basa lemah yang menghasilkan ion amonium dan ion hidroksida dalam larutan.",
+
+"NaCl":"Garam yang terdisosiasi menghasilkan ion Na⁺ dan Cl⁻ dalam larutan.",
+
+"KCl":"Garam yang menghasilkan ion kalium dan klorida dalam larutan serta banyak digunakan di laboratorium.",
+
+"AgNO3":"Menghasilkan ion Ag⁺ yang digunakan dalam analisis argentometri dan pembentukan endapan halida.",
+
+"CuSO4":"Sumber ion Cu²⁺ yang sering digunakan dalam analisis kualitatif dan pereaksi biuret.",
+
+"FeCl3":"Digunakan sebagai pereaksi identifikasi fenol karena membentuk kompleks berwarna.",
+
+"MgSO4":"Garam yang terdisosiasi menghasilkan ion magnesium dan sulfat dalam larutan.",
+
+"Na2CO3":"Garam basa yang dapat meningkatkan pH larutan dan digunakan dalam berbagai proses industri.",
+
+"NaHCO3":"Garam basa yang dapat bereaksi dengan asam menghasilkan gas karbon dioksida.",
+
+"Pb(NO3)2":"Menghasilkan ion Pb²⁺ dalam larutan dan sering digunakan sebagai pereaksi analisis kimia.",
+
+"ZnSO4":"Sumber ion Zn²⁺ yang digunakan dalam berbagai aplikasi laboratorium dan industri.",
+
+"Na2SO4":"Garam yang terdisosiasi menghasilkan ion natrium dan sulfat dalam larutan.",
+
+"HgCl2":"Sumber ion merkuri(II) yang bersifat sangat toksik dan memerlukan penanganan khusus.",
+
+"NaNO3":"Garam yang mengandung ion nitrat dan digunakan dalam berbagai proses industri.",
+
+"NH4Cl":"Garam amonium yang menghasilkan ion NH4⁺ dan Cl⁻ dalam larutan.",
+
+"NH4NO3":"Garam yang mengandung ion amonium dan nitrat serta digunakan sebagai sumber nitrogen.",
+
+"CaCO3":"Garam karbonat yang banyak ditemukan pada batu kapur dan berbagai material alami.",
+
+"MgCl2":"Garam yang menghasilkan ion magnesium dan klorida dalam larutan.",
+
+"Al2(SO4)3":"Digunakan dalam pengolahan air dan menghasilkan ion aluminium dalam larutan.",
+
+"FeSO4":"Sumber ion Fe²⁺ yang digunakan dalam berbagai analisis dan proses industri.",
+
+"CuCl2":"Sumber ion Cu²⁺ yang digunakan dalam sintesis dan analisis kimia.",
+
+"Na3PO4":"Garam basa yang menghasilkan ion fosfat dan sering digunakan sebagai pengatur pH.",
+
+"KNO3":"Garam yang mengandung ion kalium dan nitrat serta dikenal sebagai oksidator.",
+
+"KMnO4":"Oksidator kuat yang digunakan sebagai titran pada permanganometri.",
+
+"K2Cr2O7":"Oksidator kuat yang digunakan pada titrasi redoks dan mengandung kromium(VI) yang toksik.",
+
+"H2O2":"Oksidator yang mudah terurai menghasilkan air dan oksigen.",
+
+"NaClO":"Oksidator yang digunakan sebagai pemutih dan desinfektan serta dapat menghasilkan gas klorin jika bereaksi dengan asam.",
+
+"CH3OH":"Alkohol sederhana yang sangat toksik dan dapat menyebabkan kebutaan bila tertelan.",
+
+"C2H5OH":"Alkohol yang bercampur sempurna dengan air dan banyak digunakan sebagai pelarut serta antiseptik.",
+
+"Acetone":"Pelarut organik volatil yang mudah menguap dan bercampur sempurna dengan air.",
+
+"CH3COCH3":"Pelarut organik volatil yang mudah menguap dan bercampur sempurna dengan air.",
+
+"Benzene":"Senyawa aromatik nonpolar yang stabil karena resonansi dan bersifat karsinogenik.",
+
+"Toluene":"Turunan benzena yang banyak digunakan sebagai pelarut dan bahan baku sintesis organik.",
+
+"CHCl3":"Pelarut organik dengan efek depresan sistem saraf pusat jika terhirup dalam jumlah besar.",
+
+"CCl4":"Pelarut nonpolar yang bersifat hepatotoksik sehingga penggunaannya kini dibatasi.",
+
+"Glucose":"Karbohidrat sederhana golongan monosakarida yang merupakan sumber energi utama bagi organisme hidup.",
+
+"C6H12O6":"Karbohidrat sederhana golongan monosakarida yang merupakan sumber energi utama bagi organisme hidup.",
+
+"Sucrose":"Karbohidrat golongan disakarida yang tersusun dari glukosa dan fruktosa.",
+
+"C12H22O11":"Karbohidrat golongan disakarida yang tersusun dari glukosa dan fruktosa.",
+
+"Urea":"Senyawa amida yang banyak digunakan sebagai bahan baku pupuk dan berbagai proses kimia."
+
+}
+    if senyawa in analisis_spesifik:
+        st.success(analisis_spesifik[senyawa])
+    else:
+        st.info("Analisis spesifik senyawa belum tersedia. Analisis didasarkan pada golongan senyawanya.")
+
+    st.subheader("📋 Kesimpulan")
+
+    st.success(f"""
+{data[0]} merupakan senyawa golongan {data[1].lower()}
+dengan massa molekul relatif {data[2]}.
+
+Berdasarkan data yang tersedia, senyawa ini memiliki tingkat bahaya
+berupa {data[3].lower()} sehingga memerlukan penanganan yang sesuai
+dengan prosedur keselamatan laboratorium.
 """)
-
-    fakta=random.choice([
-
-    "Larutan asam kuat terionisasi sempurna di dalam air.",
-
-    "NaOH merupakan salah satu basa kuat paling umum di laboratorium.",
-
-    "H2SO4 digunakan pada baterai kendaraan.",
-
-    "Etanol digunakan sebagai antiseptik.",
-
-    "pH menentukan tingkat keasaman larutan."
-
-    ])
-
-    st.info(f"🧠 Fakta Kimia : {fakta}")
-
-
+    
 # ================= TENTANG =================
 
-elif menu=="ℹ️ Tentang":
+if menu=="ℹ️ Tentang":
 
     st.title("ℹ️ Tentang Aplikasi")
 
@@ -1122,4 +1205,3 @@ elif menu=="ℹ️ Tentang":
 
     </div>
     """, unsafe_allow_html=True)
-
