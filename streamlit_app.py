@@ -548,57 +548,101 @@ with st.sidebar:
 
     dark_mode = st.toggle("🌙 Dark Mode")
 
-    if dark_mode:
+if dark_mode:
 
-        st.markdown("""
-        <style>
+    st.markdown("""
+    <style>
 
-        .stApp{
+    .stApp{
+        background:linear-gradient(
+        135deg,
+        #020617,
+        #0F172A,
+        #111827
+        ) !important;
+    }
 
-            background:linear-gradient(
-            135deg,
-            #020617,
-            #0F172A,
-            #111827
-            ) !important;
-        }
+    html, body, [class*="css"]{
+        color:white !important;
+    }
 
-        html, body, [class*="css"]{
+    section[data-testid="stSidebar"]{
+        background:rgba(15,23,42,0.7) !important;
+    }
 
-            color:white !important;
-        }
+    /* Card Feature */
 
-        section[data-testid="stSidebar"]{
+    .card{
+        background:rgba(15,23,42,0.6) !important;
+        border:1px solid rgba(255,255,255,0.08) !important;
+        color:white !important;
+    }
 
-            background:rgba(15,23,42,0.7) !important;
-        }
+    .feature-title{
+        color:white !important;
+    }
 
-        .card{
+    .feature-desc{
+        color:#E2E8F0 !important;
+    }
 
-            background:rgba(15,23,42,0.6) !important;
+    /* Metric Box Home */
 
-            border:1px solid rgba(255,255,255,0.08) !important;
+    .metric-box{
+        background:rgba(15,23,42,0.6) !important;
+        border:1px solid rgba(255,255,255,0.08) !important;
+    }
 
-            color:white !important;
-        }
+    .metric-box h2{
+        color:#38BDF8 !important;
+    }
 
-        .metric{
+    .metric-box h3{
+        color:white !important;
+    }
 
-            background:rgba(15,23,42,0.6) !important;
-        }
+    .metric-box p{
+        color:#E2E8F0 !important;
+    }
 
-        .metric-number{
+    /* Judul */
 
-            color:#38BDF8 !important;
-        }
+    h1,h2,h3,h4,h5,h6{
+        color:white !important;
+    }
 
-        .metric-label{
+    /* Markdown */
 
-            color:#E2E8F0 !important;
-        }
+    .stMarkdown{
+        color:white !important;
+    }
 
-        </style>
-        """, unsafe_allow_html=True)
+    </style>
+    """, unsafe_allow_html=True)
+
+else:
+
+    st.markdown("""
+    <style>
+
+    .metric-box h3{
+        color:#111827 !important;
+    }
+
+    .metric-box p{
+        color:#374151 !important;
+    }
+
+    .feature-title{
+        color:#111827 !important;
+    }
+
+    .feature-desc{
+        color:#374151 !important;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 menu = selected
 # ================= HOME =================
