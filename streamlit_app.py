@@ -603,7 +603,17 @@ if dark_mode:
     h1,h2,h3,h4,h5,h6,p,span{
         color:white;
     }
+    .metric-label{
+    color:#E2E8F0 !important;
+    }
 
+    .tentang-box,
+    .tentang-box h3,
+    .tentang-box li,
+    .tentang-box p{
+     color:white !important;
+    }
+    
     </style>
     """, unsafe_allow_html=True)
     
