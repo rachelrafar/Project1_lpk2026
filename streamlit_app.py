@@ -572,36 +572,27 @@ if dark_mode:
         color:white !important;
     }
 
-    .metric-box{
-        color:white !important;
-    }
-
-    .metric-box h3{
-        color:white !important;
-    }
-
+    .metric-box,
+    .metric-box h3,
     .metric-box p{
-        color:#E2E8F0 !important;
-    }
-
-    /* HANYA LABEL FORM */
-    .stSelectbox label,
-    .stNumberInput label,
-    .stTextInput label,
-    .stRadio label,
-    .stSlider label{
         color:white !important;
-        font-weight:600;
     }
 
-    /* BIARKAN ISI INPUT TETAP HITAM */
-    .stSelectbox div[data-baseweb="select"] *,
-    .stNumberInput input{
-        color:black !important;
+    .stMarkdown,
+    .stMarkdown p,
+    .stMarkdown li,
+    .stMarkdown ul,
+    .stMarkdown ol,
+    .stMarkdown h1,
+    .stMarkdown h2,
+    .stMarkdown h3,
+    .stMarkdown h4{
+        color:white !important;
     }
 
-    h1,h2,h3,h4,h5,h6,p,span{
-        color:white;
+    .stSelectbox label,
+    .stNumberInput label{
+        color:white !important;
     }
 
     </style>
