@@ -562,18 +562,35 @@ if dark_mode:
         ) !important;
     }
 
+    /* SIDEBAR */
     section[data-testid="stSidebar"]{
-        background:rgba(15,23,42,0.7) !important;
+        background:#0F172A !important;
     }
 
+    section[data-testid="stSidebar"] > div{
+        background:#0F172A !important;
+    }
+
+    section[data-testid="stSidebar"] *{
+        color:white !important;
+    }
+
+    /* Card */
     .card{
         background:rgba(15,23,42,0.6) !important;
         border:1px solid rgba(255,255,255,0.08) !important;
         color:white !important;
     }
 
+    /* Metric Home */
     .metric-box{
         color:white !important;
+        background:rgba(15,23,42,0.6) !important;
+        border:1px solid rgba(255,255,255,0.08) !important;
+    }
+
+    .metric-box h2{
+        color:#38BDF8 !important;
     }
 
     .metric-box h3{
@@ -584,7 +601,7 @@ if dark_mode:
         color:#E2E8F0 !important;
     }
 
-    /* HANYA LABEL FORM */
+    /* Form */
     .stSelectbox label,
     .stNumberInput label,
     .stTextInput label,
@@ -594,29 +611,33 @@ if dark_mode:
         font-weight:600;
     }
 
-    /* BIARKAN ISI INPUT TETAP HITAM */
+    /* Isi selectbox & input tetap hitam */
     .stSelectbox div[data-baseweb="select"] *,
     .stNumberInput input{
         color:black !important;
     }
 
+    /* Judul */
     h1,h2,h3,h4,h5,h6,p,span{
-        color:white;
-    }
-    .metric-label{
-    color:#E2E8F0 !important;
+        color:white !important;
     }
 
+    .metric-label{
+        color:#E2E8F0 !important;
+    }
+
+    /* Halaman Tentang */
     .tentang-box,
+    .tentang-box h2,
     .tentang-box h3,
     .tentang-box li,
     .tentang-box p{
-     color:white !important;
+        color:white !important;
     }
-    
+
     </style>
     """, unsafe_allow_html=True)
-    
+
 menu = selected
 # ================= HOME =================
 
