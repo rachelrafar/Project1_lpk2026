@@ -557,8 +557,6 @@ menu = selected
 
 # ================= DARK MODE =================
 
-    dark_mode = st.toggle("🌙 Dark Mode")
-
 if dark_mode:
 
     st.markdown("""
