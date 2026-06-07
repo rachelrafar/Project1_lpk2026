@@ -572,32 +572,41 @@ if dark_mode:
         color:white !important;
     }
 
-    .metric-box,
-    .metric-box h3,
+    .metric-box{
+        color:white !important;
+    }
+
+    .metric-box h3{
+        color:white !important;
+    }
+
     .metric-box p{
-        color:white !important;
+        color:#E2E8F0 !important;
     }
 
-    .stMarkdown,
-    .stMarkdown p,
-    .stMarkdown li,
-    .stMarkdown ul,
-    .stMarkdown ol,
-    .stMarkdown h1,
-    .stMarkdown h2,
-    .stMarkdown h3,
-    .stMarkdown h4{
-        color:white !important;
-    }
-
+    /* HANYA LABEL FORM */
     .stSelectbox label,
-    .stNumberInput label{
+    .stNumberInput label,
+    .stTextInput label,
+    .stRadio label,
+    .stSlider label{
         color:white !important;
+        font-weight:600;
+    }
+
+    /* BIARKAN ISI INPUT TETAP HITAM */
+    .stSelectbox div[data-baseweb="select"] *,
+    .stNumberInput input{
+        color:black !important;
+    }
+
+    h1,h2,h3,h4,h5,h6,p,span{
+        color:white;
     }
 
     </style>
     """, unsafe_allow_html=True)
-
+    
 menu = selected
 # ================= HOME =================
 
