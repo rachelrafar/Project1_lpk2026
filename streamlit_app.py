@@ -553,8 +553,6 @@ if dark_mode:
     st.markdown("""
     <style>
 
-    /* Background utama */
-
     .stApp{
         background:linear-gradient(
         135deg,
@@ -564,19 +562,9 @@ if dark_mode:
         ) !important;
     }
 
-    /* Semua teks */
-
-    html, body, [class*="css"]{
-        color:white !important;
-    }
-
-    /* Sidebar */
-
     section[data-testid="stSidebar"]{
         background:rgba(15,23,42,0.7) !important;
     }
-
-    /* Card */
 
     .card{
         background:rgba(15,23,42,0.6) !important;
@@ -584,23 +572,8 @@ if dark_mode:
         color:white !important;
     }
 
-    .feature-title{
-        color:white !important;
-    }
-
-    .feature-desc{
-        color:#E2E8F0 !important;
-    }
-
-    /* Metric Home */
-
     .metric-box{
-        background:rgba(15,23,42,0.6) !important;
-        border:1px solid rgba(255,255,255,0.08) !important;
-    }
-
-    .metric-box h2{
-        color:#38BDF8 !important;
+        color:white !important;
     }
 
     .metric-box h3{
@@ -611,85 +584,24 @@ if dark_mode:
         color:#E2E8F0 !important;
     }
 
-    /* Judul */
-
-    h1,h2,h3,h4,h5,h6{
+    /* HANYA LABEL FORM */
+    .stSelectbox label,
+    .stNumberInput label,
+    .stTextInput label,
+    .stRadio label,
+    .stSlider label{
         color:white !important;
+        font-weight:600;
     }
 
-    /* Label widget */
-
-    [data-testid="stWidgetLabel"]{
-        color:white !important;
-        font-weight:600 !important;
-    }
-
-    /* Selectbox */
-
-    .stSelectbox div{
-        color:white !important;
-    }
-
-    div[data-baseweb="select"]{
-        background-color:rgba(15,23,42,0.6) !important;
-        color:white !important;
-    }
-
-    /* Input angka */
-
+    /* BIARKAN ISI INPUT TETAP HITAM */
+    .stSelectbox div[data-baseweb="select"] *,
     .stNumberInput input{
-        color:white !important;
-        background-color:rgba(15,23,42,0.6) !important;
+        color:black !important;
     }
 
-    /* Text Input */
-
-    .stTextInput input{
-        color:white !important;
-        background-color:rgba(15,23,42,0.6) !important;
-    }
-
-    /* Info Box */
-
-    .info-box,
-    .info-box *{
-        color:white !important;
-    }
-
-    /* Markdown */
-
-    .stMarkdown{
-        color:white !important;
-    }
-
-    /* Success */
-
-    [data-testid="stAlert"]{
-        color:white !important;
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
-
-else:
-
-    st.markdown("""
-    <style>
-
-    .metric-box h3{
-        color:#111827 !important;
-    }
-
-    .metric-box p{
-        color:#374151 !important;
-    }
-
-    .feature-title{
-        color:#111827 !important;
-    }
-
-    .feature-desc{
-        color:#374151 !important;
+    h1,h2,h3,h4,h5,h6,p,span{
+        color:white;
     }
 
     </style>
