@@ -562,6 +562,7 @@ if dark_mode:
     st.markdown("""
     <style>
 
+    /* APP */
     .stApp{
         background:linear-gradient(
         135deg,
@@ -571,15 +572,31 @@ if dark_mode:
         ) !important;
     }
 
-    /* SIDEBAR */
+    /* SIDEBAR FULL */
     section[data-testid="stSidebar"]{
         background:#0F172A !important;
+        border-right:none !important;
     }
 
     section[data-testid="stSidebar"] > div{
         background:#0F172A !important;
     }
 
+    [data-testid="stSidebarContent"]{
+        background:#0F172A !important;
+    }
+
+    /* Hilangkan area putih */
+    div[data-testid="stSidebarUserContent"]{
+        background:#0F172A !important;
+    }
+
+    /* Header sidebar */
+    div[data-testid="stSidebarHeader"]{
+        background:#0F172A !important;
+    }
+
+    /* Semua isi sidebar */
     section[data-testid="stSidebar"] *{
         color:white !important;
     }
@@ -588,59 +605,6 @@ if dark_mode:
     .card{
         background:rgba(15,23,42,0.6) !important;
         border:1px solid rgba(255,255,255,0.08) !important;
-        color:white !important;
-    }
-
-    /* Metric Home */
-    .metric-box{
-        color:white !important;
-        background:rgba(15,23,42,0.6) !important;
-        border:1px solid rgba(255,255,255,0.08) !important;
-    }
-
-    .metric-box h2{
-        color:#38BDF8 !important;
-    }
-
-    .metric-box h3{
-        color:white !important;
-    }
-
-    .metric-box p{
-        color:#E2E8F0 !important;
-    }
-
-    /* Form */
-    .stSelectbox label,
-    .stNumberInput label,
-    .stTextInput label,
-    .stRadio label,
-    .stSlider label{
-        color:white !important;
-        font-weight:600;
-    }
-
-    /* Isi selectbox & input tetap hitam */
-    .stSelectbox div[data-baseweb="select"] *,
-    .stNumberInput input{
-        color:black !important;
-    }
-
-    /* Judul */
-    h1,h2,h3,h4,h5,h6,p,span{
-        color:white !important;
-    }
-
-    .metric-label{
-        color:#E2E8F0 !important;
-    }
-
-    /* Halaman Tentang */
-    .tentang-box,
-    .tentang-box h2,
-    .tentang-box h3,
-    .tentang-box li,
-    .tentang-box p{
         color:white !important;
     }
 
