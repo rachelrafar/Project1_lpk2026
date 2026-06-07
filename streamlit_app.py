@@ -472,6 +472,17 @@ if "menu" not in st.session_state:
 
 with st.sidebar:
 
+    dark_mode = st.toggle("🌙 Dark Mode")
+
+    if dark_mode:
+        sidebar_bg = "#0F172A"
+        nav_bg = "#1E293B"
+        nav_text = "white"
+    else:
+        sidebar_bg = "#E0F2FE"
+        nav_bg = "#FFFFFF"
+        nav_text = "#0F172A"
+
     selected = option_menu(
         menu_title="✨ ChemAssist Menu",
 
@@ -508,12 +519,12 @@ with st.sidebar:
 
             "container": {
                 "padding": "15px",
-                "background-color": "#E0F2FE",
+                "background-color": sidebar_bg,
                 "border-radius": "20px",
             },
 
             "icon": {
-                "color": "#2563EB",
+                "color": "#38BDF8",
                 "font-size": "20px"
             },
 
@@ -523,10 +534,10 @@ with st.sidebar:
                 "margin": "8px",
                 "padding": "12px",
                 "border-radius": "14px",
-                "background-color": "#FFFFFF",
-                "color": "#0F172A",
+                "background-color": nav_bg,
+                "color": nav_text,
                 "font-weight": "600",
-                "--hover-color": "#BAE6FD",
+                "--hover-color": "#334155",
             },
 
             "nav-link-selected": {
@@ -536,12 +547,11 @@ with st.sidebar:
             },
         }
     )
+
     st.markdown("---")
 
     if st.button("🚪 Logout"):
-
         st.session_state.login = False
-
         st.rerun()
 
 # ================= DARK MODE =================
