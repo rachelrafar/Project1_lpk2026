@@ -1198,23 +1198,40 @@ if menu=="ℹ️ Tentang":
     st.title("ℹ️ Tentang Aplikasi")
 
     st.markdown("""
-<div style="color:white;">
+    <div class="tentang-box">
 
-<h3>🚀 Fitur Utama</h3>
+    <h2>🧪 ChemAssist Pro</h2>
 
-<ul>
-<li>Smart Solution Maker</li>
-<li>Smart pH Calculator</li>
-<li>Informasi Bahan Kimia</li>
-<li>Smart Chemical Analysis</li>
-</ul>
+    <p>
+    Aplikasi laboratorium kimia interaktif berbasis Python dan Streamlit.
+    </p>
 
-<h3>👨‍💻 Teknologi</h3>
+    <h3>🚀 Fitur Utama</h3>
 
-<ul>
-<li>Python</li>
-<li>Streamlit</li>
-</ul>
+    <ul>
+        <li>Smart Solution Maker</li>
+        <li>Smart pH Calculator</li>
+        <li>Informasi Bahan Kimia</li>
+        <li>Smart Chemical Analysis</li>
+    </ul>
 
-</div>
-""", unsafe_allow_html=True)
+    <h3>👨‍💻 Teknologi</h3>
+
+    <ul>
+        <li>Python</li>
+        <li>Streamlit</li>
+    </ul>
+
+    <h3>🎓 Dikembangkan Untuk</h3>
+
+    <p>
+    Praktikum dan pembelajaran kimia analitik,
+    kimia dasar, serta perhitungan laboratorium.
+    </p>
+
+    <h3>📌 Versi</h3>
+
+    <p>ChemAssist Ultra v5.0</p>
+
+    </div>
+    """, unsafe_allow_html=True)
