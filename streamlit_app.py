@@ -553,6 +553,8 @@ if dark_mode:
     st.markdown("""
     <style>
 
+    /* Background utama */
+
     .stApp{
         background:linear-gradient(
         135deg,
@@ -562,15 +564,19 @@ if dark_mode:
         ) !important;
     }
 
+    /* Semua teks */
+
     html, body, [class*="css"]{
         color:white !important;
     }
+
+    /* Sidebar */
 
     section[data-testid="stSidebar"]{
         background:rgba(15,23,42,0.7) !important;
     }
 
-    /* Card Feature */
+    /* Card */
 
     .card{
         background:rgba(15,23,42,0.6) !important;
@@ -586,7 +592,7 @@ if dark_mode:
         color:#E2E8F0 !important;
     }
 
-    /* Metric Box Home */
+    /* Metric Home */
 
     .metric-box{
         background:rgba(15,23,42,0.6) !important;
@@ -611,9 +617,54 @@ if dark_mode:
         color:white !important;
     }
 
+    /* Label widget */
+
+    [data-testid="stWidgetLabel"]{
+        color:white !important;
+        font-weight:600 !important;
+    }
+
+    /* Selectbox */
+
+    .stSelectbox div{
+        color:white !important;
+    }
+
+    div[data-baseweb="select"]{
+        background-color:rgba(15,23,42,0.6) !important;
+        color:white !important;
+    }
+
+    /* Input angka */
+
+    .stNumberInput input{
+        color:white !important;
+        background-color:rgba(15,23,42,0.6) !important;
+    }
+
+    /* Text Input */
+
+    .stTextInput input{
+        color:white !important;
+        background-color:rgba(15,23,42,0.6) !important;
+    }
+
+    /* Info Box */
+
+    .info-box,
+    .info-box *{
+        color:white !important;
+    }
+
     /* Markdown */
 
     .stMarkdown{
+        color:white !important;
+    }
+
+    /* Success */
+
+    [data-testid="stAlert"]{
         color:white !important;
     }
 
