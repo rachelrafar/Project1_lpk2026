@@ -472,7 +472,7 @@ if "menu" not in st.session_state:
 
 with st.sidebar:
 
-    dark_mode = st.toggle("🌙 Dark Mode")
+    dark_mode = st.toggle("🌙 Dark Mode", key="dark_mode")
 
     if dark_mode:
         sidebar_bg = "#0F172A"
@@ -516,7 +516,6 @@ with st.sidebar:
         ].index(st.session_state.menu),
 
         styles={
-
             "container": {
                 "padding": "15px",
                 "background-color": sidebar_bg,
@@ -553,6 +552,8 @@ with st.sidebar:
     if st.button("🚪 Logout"):
         st.session_state.login = False
         st.rerun()
+
+menu = selected
 
 # ================= DARK MODE =================
 
