@@ -607,10 +607,9 @@ with st.sidebar:
     st.markdown("---")
 
     if st.button("🚪 Logout"):
-
-    st.session_state.login = False
-    st.session_state.username = ""
-    st.session_state.nama = ""
+        st.session_state.login = False
+        st.session_state.username = ""
+        st.session_state.nama = ""
 
     st.rerun()
 
