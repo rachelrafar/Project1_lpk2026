@@ -514,7 +514,7 @@ if "menu" not in st.session_state:
 
 with st.sidebar:
 
-if st.session_state.login:
+    if st.session_state.login:
 
     st.success(
         f"👤 {st.session_state.nama}"
