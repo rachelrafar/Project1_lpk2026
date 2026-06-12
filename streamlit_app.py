@@ -8,6 +8,10 @@ import plotly.express as px
 import random
 import time
 import math
+import json
+import os
+import hashlib
+from datetime import datetime
 
 # ================= PAGE CONFIG =================
 
@@ -22,6 +26,23 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+USER_FILE = "users.json"
+
+if not os.path.exists(USER_FILE):
+    with open(USER_FILE, "w") as f:
+        json.dump({}, f)
+
+def load_users():
+    with open(USER_FILE, "r") as f:
+        return json.load(f)
+
+def save_users(users):
+    with open(USER_FILE, "w") as f:
+        json.dump(users, f, indent=4)
+
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
 # ================= SESSION =================
 
 if "login" not in st.session_state:
@@ -29,87 +50,108 @@ if "login" not in st.session_state:
 
 if "history" not in st.session_state:
     st.session_state.history = []
+    
+if "username" not in st.session_state:
+    st.session_state.username = ""
+
+if "nama" not in st.session_state:
+    st.session_state.nama = ""
 
 # ================= LOGIN =================
 
 if not st.session_state.login:
 
-    st.markdown("""
-    <style>
+    st.title("🧪 ChemAssist Ultra")
 
-    .stApp{
+    users = load_users()
 
-        background:linear-gradient(
-        135deg,
-        #F0F9FF,
-        #E0F2FE,
-        #BAE6FD,
-        #7DD3FC
-        );
-    }
+    tab1, tab2 = st.tabs(["🔐 Sign In", "📝 Sign Up"])
 
-    .login-box{
+    with tab1:
 
-        background:rgba(255,255,255,0.4);
+        st.subheader("Login")
 
-        padding:40px;
+        username = st.text_input("Username")
 
-        border-radius:30px;
-
-        backdrop-filter:blur(20px);
-
-        box-shadow:
-        0 10px 30px rgba(37,99,235,0.2);
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
-
-    c1,c2,c3 = st.columns([1,1.2,1])
-
-    with c2:
-
-        st.markdown("""
-        <div class="login-box">
-        """, unsafe_allow_html=True)
-
-        st.markdown("""
-        <h1 style='text-align:center;color:#2563EB;'>
-        🧪 ChemAssist
-        </h1>
-        """, unsafe_allow_html=True)
-
-        user = st.text_input("Username")
-
-        pw = st.text_input(
+        password = st.text_input(
             "Password",
+            type="password",
+            key="login_password"
+        )
+
+        if st.button("Masuk"):
+
+            if username in users:
+
+                if users[username]["password"] == hash_password(password):
+
+                    users[username]["last_login"] = datetime.now().strftime(
+                        "%d-%m-%Y %H:%M:%S"
+                    )
+
+                    save_users(users)
+
+                    st.session_state.login = True
+                    st.session_state.username = username
+                    st.session_state.nama = users[username]["nama"]
+
+                    st.success("Login berhasil ✅")
+                    st.rerun()
+
+                else:
+                    st.error("Password salah")
+
+            else:
+                st.error("Username tidak ditemukan")
+
+    with tab2:
+
+        st.subheader("Daftar Akun")
+
+        nama = st.text_input("Nama Lengkap")
+
+        email = st.text_input("Email")
+
+        username_baru = st.text_input(
+            "Username Baru"
+        )
+
+        password_baru = st.text_input(
+            "Password Baru",
             type="password"
         )
 
-        accounts = {
+        konfirmasi = st.text_input(
+            "Konfirmasi Password",
+            type="password"
+        )
 
-            "admin":"123",
+        if st.button("Daftar"):
 
-            "rachel":"kimia"
-        }
+            if username_baru in users:
 
-        if st.button("🚀 Login"):
+                st.error("Username sudah digunakan")
 
-            if user in accounts and pw == accounts[user]:
+            elif password_baru != konfirmasi:
 
-                st.session_state.login = True
-
-                st.success("Login berhasil")
-
-                time.sleep(1)
-
-                st.rerun()
+                st.error("Password tidak sama")
 
             else:
 
-                st.error("Username atau password salah")
+                users[username_baru] = {
 
-        st.markdown("</div>", unsafe_allow_html=True)
+                    "nama": nama,
+                    "email": email,
+                    "password": hash_password(password_baru),
+                    "last_login": "-"
+
+                }
+
+                save_users(users)
+
+                st.success(
+                    "Akun berhasil dibuat. Silakan login."
+                )
 
     st.stop()
 
@@ -472,6 +514,21 @@ if "menu" not in st.session_state:
 
 with st.sidebar:
 
+if st.session_state.login:
+
+    st.success(
+        f"👤 {st.session_state.nama}"
+    )
+
+    users = load_users()
+
+    if st.session_state.username in users:
+
+        st.caption(
+            f"🕒 Login terakhir: "
+            f"{users[st.session_state.username]['last_login']}"
+        )
+
     dark_mode = st.toggle("🌙 Dark Mode")
 
     if dark_mode:
@@ -551,8 +608,12 @@ with st.sidebar:
     st.markdown("---")
 
     if st.button("🚪 Logout"):
-        st.session_state.login = False
-        st.rerun()
+
+    st.session_state.login = False
+    st.session_state.username = ""
+    st.session_state.nama = ""
+
+    st.rerun()
 
 # ================= DARK MODE =================
 
