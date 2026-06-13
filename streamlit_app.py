@@ -89,9 +89,9 @@ html, body{
 
 .login-title{
     text-align:center;
-    color:#2563EB;
-    font-size:48px;
+    font-size:52px;
     font-weight:800;
+    color:#2563EB;
     margin-bottom:5px;
 }
 
@@ -99,12 +99,15 @@ html, body{
     text-align:center;
     color:#475569;
     font-size:18px;
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
-.main .block-container{
-    max-width:900px;
-    padding-top:2rem;
+.login-card{
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 /* ================= TAB LOGIN ================= */
@@ -282,19 +285,13 @@ section[data-testid="stSidebar"]{
 
 if not st.session_state.login:
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
     st.markdown("""
-    <div style='text-align:center;'>
+    <div class='login-title'>
+        🧪 ChemAssist Ultra
+    </div>
 
-        <h1 style='color:#2563EB; margin-bottom:5px;'>
-            🧪 ChemAssist Ultra
-        </h1>
-
-        <p style='color:#64748B; font-size:18px;'>
-            Smart Chemical Analysis Platform
-        </p>
-
+    <div class='login-sub'>
+        Smart Chemical Analysis Platform
     </div>
     """, unsafe_allow_html=True)
 
@@ -304,22 +301,17 @@ if not st.session_state.login:
 
     with col2:
 
-        st.markdown("""
-        <div style="
-            background:white;
-            padding:25px;
-            border-radius:20px;
-            box-shadow:0 4px 15px rgba(0,0,0,0.1);
-        ">
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            "<div class='login-card'>",
+            unsafe_allow_html=True
+        )
 
         tab1, tab2 = st.tabs([
             "🔐 Sign In",
             "📝 Sign Up"
         ])
-
-        # ================= SIGN IN =================
+        
+# ================= SIGN IN =================
 
         with tab1:
 
