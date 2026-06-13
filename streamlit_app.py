@@ -516,9 +516,9 @@ with st.sidebar:
 
     if st.session_state.login:
         st.success(
-        f"👤 {st.session_state.nama}"
-    )
-
+            f"👤 {st.session_state.nama}"
+        )
+        
     users = load_users()
 
     if st.session_state.username in users:
