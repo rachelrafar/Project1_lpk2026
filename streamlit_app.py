@@ -62,29 +62,87 @@ if "nama" not in st.session_state:
 st.markdown("""
 <style>
 
-/* STYLE LOGIN */
-
-.login-box{
-    background:rgba(255,255,255,0.75);
-    backdrop-filter:blur(12px);
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.08);
-    border:1px solid rgba(255,255,255,0.5);
-    margin-bottom:20px;
-}
+/* LOGIN TITLE */
 
 .login-title{
     text-align:center;
-    color:#2563EB;
-    font-size:38px;
-    font-weight:700;
+    color:#2563EB !important;
+    font-size:42px !important;
+    font-weight:700 !important;
+    margin-top:20px;
 }
 
 .login-sub{
     text-align:center;
-    color:#64748B;
-    margin-top:10px;
+    color:#64748B !important;
+    font-size:18px !important;
+    margin-bottom:25px;
+}
+
+/* BOX LOGIN */
+
+.stTabs{
+    background:rgba(255,255,255,0.85);
+    padding:25px;
+    border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+    border:1px solid rgba(255,255,255,0.4);
+}
+
+/* INPUT */
+
+.stTextInput input{
+    border-radius:12px !important;
+    border:1px solid #CBD5E1 !important;
+}
+
+/* PASSWORD */
+
+.stTextInput div[data-baseweb="input"]{
+    border-radius:12px !important;
+}
+
+/* BUTTON */
+
+.stButton button{
+    width:100%;
+    border-radius:12px !important;
+    height:45px;
+    font-weight:600;
+    background:linear-gradient(90deg,#38BDF8,#2563EB);
+    color:white;
+    border:none;
+}
+
+/* TAB */
+
+button[data-baseweb="tab"]{
+    font-weight:600 !important;
+}
+
+/* ALERT */
+
+.stSuccess,
+.stError,
+.stWarning{
+    border-radius:12px;
+}
+
+/* BACKGROUND LOGIN */
+
+.main .block-container{
+    padding-top:2rem;
+    max-width:800px;
+}
+
+/* METRIC BOX */
+
+.metric-box{
+    background:rgba(255,255,255,0.8);
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
 </style>
@@ -95,25 +153,29 @@ st.markdown("""
 if not st.session_state.login:
 
     st.markdown("""
-    <div class="login-box">
-        <div class="login-title">
-            🧪 ChemAssist Ultra
-        </div>
+    <div class="login-title">
+        🧪 ChemAssist Ultra
+    </div>
 
-        <div class="login-sub">
-            Smart Chemical Analysis Platform
-        </div>
+    <div class="login-sub">
+        Smart Chemical Analysis Platform
     </div>
     """, unsafe_allow_html=True)
 
     users = load_users()
 
-    tab1, tab2 = st.tabs([
-        "🔐 Sign In",
-        "📝 Sign Up"
-    ])
+    col1, col2, col3 = st.columns([1,2,1])
 
-    # ================= SIGN IN =================
+    with col2:
+
+        st.markdown('<div class="login-box">', unsafe_allow_html=True)
+
+        tab1, tab2 = st.tabs([
+            "🔐 Sign In",
+            "📝 Sign Up"
+        ])
+
+# ================= SIGN IN =================
 
     with tab1:
 
@@ -236,7 +298,7 @@ if not st.session_state.login:
                 st.rerun()
 
     st.stop()
-
+        st.markdown("</div>", unsafe_allow_html=True)
 # ================= CSS =================
 
 st.markdown("""
