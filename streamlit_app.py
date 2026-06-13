@@ -85,31 +85,118 @@ html, body{
     color:#0F172A;
 }
 
-/* ================= LOGIN ================= */
+/* ================= LOGIN PAGE ================= */
 
 .login-title{
     text-align:center;
-    font-size:52px;
-    font-weight:800;
-    color:#2563EB;
+    font-size:58px;
+    font-weight:900;
+    color:#1E3A8A;
+    margin-top:10px;
     margin-bottom:5px;
 }
 
 .login-sub{
     text-align:center;
-    color:#475569;
     font-size:18px;
-    margin-bottom:30px;
+    color:#64748B;
+    margin-bottom:35px;
 }
 
 .login-card{
-    background:rgba(255,255,255,0.75);
-    backdrop-filter:blur(15px);
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,.12);
+    background:rgba(255,255,255,0.90);
+    backdrop-filter:blur(20px);
+    padding:45px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,0.5);
+    box-shadow:0 15px 40px rgba(37,99,235,0.15);
 }
 
+/* Welcome text */
+
+.login-box-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    color:#1E3A8A;
+    margin-bottom:8px;
+}
+
+.login-box-sub{
+    text-align:center;
+    color:#64748B;
+    margin-bottom:30px;
+}
+
+/* Input */
+
+.stTextInput input{
+    background:#F8FAFC !important;
+    border:2px solid #DBEAFE !important;
+    border-radius:15px !important;
+    height:52px !important;
+    font-size:16px !important;
+}
+
+.stTextInput input:focus{
+    border:2px solid #60A5FA !important;
+    box-shadow:0 0 10px rgba(96,165,250,.4);
+}
+
+/* Button */
+
+.stButton button{
+    width:100%;
+    height:55px !important;
+    border:none !important;
+    border-radius:15px !important;
+    font-size:17px !important;
+    font-weight:700 !important;
+    color:white !important;
+
+    background:linear-gradient(
+        90deg,
+        #60A5FA,
+        #2563EB
+    ) !important;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+}
+
+.stButton button:hover{
+    transform:translateY(-2px);
+}
+
+/* Tab */
+
+.stTabs{
+    background:transparent;
+}
+
+button[data-baseweb="tab"]{
+    font-size:16px !important;
+    font-weight:700 !important;
+}
+
+/* Background Icon */
+
+.chem-bg{
+    position:fixed;
+    left:50px;
+    top:250px;
+    font-size:180px;
+    opacity:0.06;
+    z-index:0;
+}
+
+.chem-bg2{
+    position:fixed;
+    right:70px;
+    bottom:80px;
+    font-size:180px;
+    opacity:0.06;
+    z-index:0;
+}
 /* ================= TAB LOGIN ================= */
 
 .stTabs{
@@ -286,6 +373,11 @@ section[data-testid="stSidebar"]{
 if not st.session_state.login:
 
     st.markdown("""
+    <div class="chem-bg">⚗️</div>
+    <div class="chem-bg2">🧪</div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
     <div class='login-title'>
         🧪 ChemAssist Ultra
     </div>
@@ -297,25 +389,33 @@ if not st.session_state.login:
 
     users = load_users()
 
-    col1, col2, col3 = st.columns([1,2,1])
+    col1, col2, col3 = st.columns([1.2,1.6,1.2])
 
     with col2:
 
-        st.markdown(
-            "<div class='login-card'>",
-            unsafe_allow_html=True
-        )
+        st.markdown("<div class='login-card'>",
+        unsafe_allow_html=True)
 
-        tab1, tab2 = st.tabs([
-            "🔐 Sign In",
-            "📝 Sign Up"
-        ])
+        tab1, tab2 = st.tabs(
+            [
+                "🔐 Sign In",
+                "📝 Sign Up"
+            ]
+        )
         
 # ================= SIGN IN =================
 
         with tab1:
 
-            st.subheader("Selamat Datang 👋")
+            st.markdown("""
+            <div class='login-box-title'>
+                Welcome Back 👋
+            </div>
+
+            <div class='login-box-sub'>
+                Login untuk melanjutkan ke ChemAssist Ultra
+            </div>
+            """, unsafe_allow_html=True)
 
             username = st.text_input(
                 "👤 Username",
@@ -351,14 +451,12 @@ if not st.session_state.login:
                         st.rerun()
 
                     else:
-
                         st.error("Password salah")
 
                 else:
-
                     st.error("Username tidak ditemukan")
 
-        # ================= SIGN UP =================
+# ================= SIGN UP =================
 
         with tab2:
 
@@ -429,6 +527,7 @@ if not st.session_state.login:
                     time.sleep(1)
 
                     st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
 
     st.stop()
 
