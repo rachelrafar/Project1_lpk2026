@@ -57,66 +57,67 @@ if "username" not in st.session_state:
 if "nama" not in st.session_state:
     st.session_state.nama = ""
 
-# ================= CSS =================
 st.markdown("""
 <style>
 
-/* ================= GLOBAL ================= */
+/* ================= BACKGROUND ================= */
 
-.stApp{
-    background:linear-gradient(
-    135deg,
-    #F0F9FF,
-    #E0F2FE,
-    #BAE6FD,
-    #7DD3FC
-    );
-    background-size:400% 400%;
-    animation:bg 15s ease infinite;
+[data-testid="stAppViewContainer"]{
+    background: linear-gradient(
+        135deg,
+        #F0F9FF 0%,
+        #E0F2FE 35%,
+        #BAE6FD 70%,
+        #7DD3FC 100%
+    ) !important;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+.main{
+    background: transparent !important;
 }
 
-html, body{
-    color:#0F172A;
+.block-container{
+    padding-top: 2rem;
 }
 
-/* ================= LOGIN PAGE ================= */
+/* ================= TITLE ================= */
 
 .login-title{
     text-align:center;
     font-size:58px;
     font-weight:900;
     color:#1E3A8A;
-    margin-top:10px;
     margin-bottom:5px;
 }
 
 .login-sub{
     text-align:center;
+    color:#475569;
     font-size:18px;
-    color:#64748B;
     margin-bottom:35px;
 }
 
-.login-card{
-    background:rgba(255,255,255,0.90);
+/* ================= LOGIN BOX ================= */
+
+.stTabs{
+    background:rgba(255,255,255,0.92) !important;
     backdrop-filter:blur(20px);
-    padding:45px;
-    border-radius:30px;
+    padding:35px !important;
+    border-radius:30px !important;
     border:1px solid rgba(255,255,255,0.5);
-    box-shadow:0 15px 40px rgba(37,99,235,0.15);
+    box-shadow:0 15px 40px rgba(37,99,235,0.15) !important;
 }
 
-/* Welcome text */
+button[data-baseweb="tab"]{
+    font-size:16px !important;
+    font-weight:700 !important;
+}
+
+/* ================= WELCOME ================= */
 
 .login-box-title{
     text-align:center;
-    font-size:34px;
+    font-size:32px;
     font-weight:800;
     color:#1E3A8A;
     margin-bottom:8px;
@@ -128,30 +129,35 @@ html, body{
     margin-bottom:30px;
 }
 
-/* Input */
+/* ================= INPUT ================= */
+
+div[data-baseweb="input"]{
+    background:white !important;
+    border-radius:15px !important;
+    border:2px solid #DBEAFE !important;
+}
 
 .stTextInput input{
-    background:#F8FAFC !important;
-    border:2px solid #DBEAFE !important;
-    border-radius:15px !important;
-    height:52px !important;
+    background:white !important;
+    border:none !important;
     font-size:16px !important;
 }
 
 .stTextInput input:focus{
-    border:2px solid #60A5FA !important;
-    box-shadow:0 0 10px rgba(96,165,250,.4);
+    box-shadow:none !important;
 }
 
-/* Button */
+/* ================= BUTTON ================= */
 
 .stButton button{
-    width:100%;
-    height:55px !important;
+    width:100% !important;
+    height:52px !important;
     border:none !important;
     border-radius:15px !important;
-    font-size:17px !important;
+
+    font-size:16px !important;
     font-weight:700 !important;
+
     color:white !important;
 
     background:linear-gradient(
@@ -160,123 +166,50 @@ html, body{
         #2563EB
     ) !important;
 
-    box-shadow:0 8px 20px rgba(37,99,235,.25);
+    box-shadow:0 8px 20px rgba(37,99,235,0.25);
 }
 
 .stButton button:hover{
     transform:translateY(-2px);
 }
 
-/* Tab */
-
-.stTabs{
-    background:transparent;
-}
-
-button[data-baseweb="tab"]{
-    font-size:16px !important;
-    font-weight:700 !important;
-}
-
-/* Background Icon */
-
-.chem-bg{
-    position:fixed;
-    left:50px;
-    top:250px;
-    font-size:180px;
-    opacity:0.06;
-    z-index:0;
-}
-
-.chem-bg2{
-    position:fixed;
-    right:70px;
-    bottom:80px;
-    font-size:180px;
-    opacity:0.06;
-    z-index:0;
-}
-/* ================= TAB LOGIN ================= */
-
-.stTabs{
-    background:rgba(255,255,255,0.55);
-    backdrop-filter:blur(18px);
-    border-radius:25px;
-    padding:25px;
-    border:1px solid rgba(255,255,255,0.4);
-    box-shadow:0 8px 24px rgba(37,99,235,0.15);
-}
-
-button[data-baseweb="tab"]{
-    font-weight:700 !important;
-}
-
-/* ================= INPUT ================= */
-
-.stTextInput input,
-.stNumberInput input{
-    border-radius:12px !important;
-    border:1px solid #CBD5E1 !important;
-}
-
-.stTextInput div[data-baseweb="input"]{
-    border-radius:12px !important;
-}
-
-/* ================= BUTTON ================= */
-
-.stButton button{
-    width:100%;
-    border-radius:14px !important;
-    height:48px;
-    font-weight:700;
-    border:none;
-    color:white;
-    background:linear-gradient(
-    90deg,
-    #38BDF8,
-    #2563EB
-    ) !important;
-}
-
-/* ================= ALERT ================= */
+/* ================= SUCCESS ERROR ================= */
 
 .stSuccess,
 .stError,
 .stWarning{
-    border-radius:12px;
+    border-radius:12px !important;
 }
 
 /* ================= SIDEBAR ================= */
 
 section[data-testid="stSidebar"]{
-    background:rgba(255,255,255,0.35);
-    backdrop-filter:blur(18px);
-    border-right:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(20px);
+    border-right:1px solid rgba(255,255,255,0.4);
 }
 
 /* ================= CARD ================= */
 
 .card{
-    background:rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.7);
     backdrop-filter:blur(18px);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:20px;
     border:1px solid rgba(255,255,255,0.4);
-    border-radius:28px;
-    padding:28px;
-    margin-bottom:22px;
-    box-shadow:0 8px 24px rgba(37,99,235,0.15);
+    box-shadow:0 8px 24px rgba(37,99,235,0.12);
 }
 
 /* ================= METRIC ================= */
 
 .metric-box{
-    background:rgba(255,255,255,0.65);
+    background:rgba(255,255,255,0.75);
     backdrop-filter:blur(18px);
     border-radius:25px;
     padding:25px;
     text-align:center;
-    box-shadow:0 8px 22px rgba(37,99,235,0.12);
+    box-shadow:0 8px 24px rgba(37,99,235,0.12);
 }
 
 .metric-box h2{
@@ -285,22 +218,21 @@ section[data-testid="stSidebar"]{
 }
 
 .metric-box h3{
-    font-size:34px;
-    font-weight:800;
     color:#2563EB;
+    font-size:32px;
+    font-weight:800;
 }
 
 .metric-box p{
-    color:#334155;
-    font-size:16px;
+    color:#475569;
 }
 
 /* ================= HOME ================= */
 
 .main-title{
-    font-size:65px;
-    font-weight:900;
     text-align:center;
+    font-size:60px;
+    font-weight:900;
     color:#2563EB;
 }
 
@@ -313,10 +245,9 @@ section[data-testid="stSidebar"]{
 /* ================= FEATURE ================= */
 
 .feature-title{
+    color:#2563EB;
     font-size:22px;
     font-weight:700;
-    color:#2563EB;
-    margin-bottom:10px;
 }
 
 .feature-desc{
@@ -324,24 +255,14 @@ section[data-testid="stSidebar"]{
     line-height:1.6;
 }
 
-/* ================= INFO BOX ================= */
-
-.info-box{
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    padding:25px;
-    border:1px solid rgba(255,255,255,0.3);
-}
-
-/* ================= TENTANG ================= */
+/* ================= ABOUT ================= */
 
 .tentang-box{
-    background:rgba(255,255,255,0.6);
+    background:rgba(255,255,255,0.7);
     backdrop-filter:blur(15px);
     border-radius:25px;
     padding:30px;
-    border:1px solid rgba(255,255,255,0.3);
+    border:1px solid rgba(255,255,255,0.4);
 }
 
 .tentang-box h2,
@@ -352,6 +273,26 @@ section[data-testid="stSidebar"]{
 .tentang-box p,
 .tentang-box li{
     color:#334155;
+}
+
+/* ================= CHEM ICON ================= */
+
+.chem-bg{
+    position:fixed;
+    left:50px;
+    top:250px;
+    font-size:180px;
+    opacity:0.08;
+    z-index:0;
+}
+
+.chem-bg2{
+    position:fixed;
+    right:70px;
+    bottom:80px;
+    font-size:180px;
+    opacity:0.08;
+    z-index:0;
 }
 
 /* ================= SCROLLBAR ================= */
@@ -389,21 +330,16 @@ if not st.session_state.login:
 
     users = load_users()
 
-    col1, col2, col3 = st.columns([1.2,1.6,1.2])
+    col1, col2, col3 = st.columns([1.2, 1.6, 1.2])
 
     with col2:
 
-        st.markdown("<div class='login-card'>",
-        unsafe_allow_html=True)
+        tab1, tab2 = st.tabs([
+            "🔐 Sign In",
+            "📝 Sign Up"
+        ])
 
-        tab1, tab2 = st.tabs(
-            [
-                "🔐 Sign In",
-                "📝 Sign Up"
-            ]
-        )
-        
-# ================= SIGN IN =================
+        # ================= SIGN IN =================
 
         with tab1:
 
@@ -428,14 +364,19 @@ if not st.session_state.login:
                 key="login_password"
             )
 
-            if st.button("🚀 Masuk", use_container_width=True):
+            if st.button(
+                "🚀 Masuk",
+                use_container_width=True
+            ):
 
                 if username in users:
 
                     if users[username]["password"] == hash_password(password):
 
-                        users[username]["last_login"] = datetime.now().strftime(
-                            "%d-%m-%Y %H:%M:%S"
+                        users[username]["last_login"] = (
+                            datetime.now().strftime(
+                                "%d-%m-%Y %H:%M:%S"
+                            )
                         )
 
                         save_users(users)
@@ -451,16 +392,26 @@ if not st.session_state.login:
                         st.rerun()
 
                     else:
+
                         st.error("Password salah")
 
                 else:
+
                     st.error("Username tidak ditemukan")
 
-# ================= SIGN UP =================
+        # ================= SIGN UP =================
 
         with tab2:
 
-            st.subheader("Buat Akun Baru ✨")
+            st.markdown("""
+            <div class='login-box-title'>
+                Create Account ✨
+            </div>
+
+            <div class='login-box-sub'>
+                Buat akun baru untuk mulai menggunakan ChemAssist Ultra
+            </div>
+            """, unsafe_allow_html=True)
 
             nama = st.text_input(
                 "👤 Nama Lengkap",
@@ -489,7 +440,10 @@ if not st.session_state.login:
                 key="signup_konfirmasi"
             )
 
-            if st.button("📝 Daftar", use_container_width=True):
+            if st.button(
+                "📝 Daftar",
+                use_container_width=True
+            ):
 
                 if username_baru in users:
 
@@ -497,23 +451,32 @@ if not st.session_state.login:
 
                 elif password_baru != konfirmasi:
 
-                    st.error("Konfirmasi password tidak cocok")
+                    st.error(
+                        "Konfirmasi password tidak cocok"
+                    )
 
-                elif nama == "" or email == "" or username_baru == "" or password_baru == "":
+                elif (
+                    nama == ""
+                    or email == ""
+                    or username_baru == ""
+                    or password_baru == ""
+                ):
 
-                    st.warning("Semua data wajib diisi")
+                    st.warning(
+                        "Semua data wajib diisi"
+                    )
 
                 else:
 
                     users[username_baru] = {
-
                         "nama": nama,
                         "email": email,
-                        "password": hash_password(password_baru),
+                        "password": hash_password(
+                            password_baru
+                        ),
                         "last_login": datetime.now().strftime(
                             "%d-%m-%Y %H:%M:%S"
                         )
-
                     }
 
                     save_users(users)
@@ -522,15 +485,15 @@ if not st.session_state.login:
                     st.session_state.username = username_baru
                     st.session_state.nama = nama
 
-                    st.success("Akun berhasil dibuat 🎉")
+                    st.success(
+                        "Akun berhasil dibuat 🎉"
+                    )
 
                     time.sleep(1)
 
                     st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
 
     st.stop()
-
 # ================= HEADER =================
 
 st.markdown("""
