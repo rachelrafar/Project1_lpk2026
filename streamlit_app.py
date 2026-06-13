@@ -145,21 +145,41 @@ button[data-baseweb="tab"]{
     box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
+.stButton button{
+    width:100%;
+    border-radius:12px;
+    height:45px;
+    font-weight:600;
+}
+
+.stTextInput input{
+    border-radius:12px;
+}
+
+.stTabs{
+    border-radius:15px;
+}
 </style>
 """, unsafe_allow_html=True)
 
 # ================= LOGIN =================
 
 if not st.session_state.login:
-    st.write("TES LOGIN")
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("""
-    <h1 style='text-align:center;color:#2563EB;'>
-    🧪 ChemAssist Ultra
-    </h1>
-    <h4 style='text-align:center;color:#64748B;'>
-    Smart Chemical Analysis Platform
-    </h4>
+    <div style='text-align:center;'>
+
+        <h1 style='color:#2563EB; margin-bottom:5px;'>
+            🧪 ChemAssist Ultra
+        </h1>
+
+        <p style='color:#64748B; font-size:18px;'>
+            Smart Chemical Analysis Platform
+        </p>
+
+    </div>
     """, unsafe_allow_html=True)
 
     users = load_users()
@@ -168,137 +188,142 @@ if not st.session_state.login:
 
     with col2:
 
-        st.markdown('<div class="login-box">', unsafe_allow_html=True)
+        st.markdown("""
+        <div style="
+            background:white;
+            padding:25px;
+            border-radius:20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        ">
+        </div>
+        """, unsafe_allow_html=True)
 
         tab1, tab2 = st.tabs([
             "🔐 Sign In",
             "📝 Sign Up"
         ])
 
-# ================= SIGN IN =================
+        # ================= SIGN IN =================
 
-    with tab1:
+        with tab1:
 
-        st.subheader("🔐 Login")
+            st.subheader("Selamat Datang 👋")
 
-        username = st.text_input(
-            "Username",
-            key="login_username"
-        )
+            username = st.text_input(
+                "👤 Username",
+                key="login_username"
+            )
 
-        password = st.text_input(
-            "Password",
-            type="password",
-            key="login_password"
-        )
+            password = st.text_input(
+                "🔒 Password",
+                type="password",
+                key="login_password"
+            )
 
-        if st.button("🚀 Masuk"):
+            if st.button("🚀 Masuk", use_container_width=True):
 
-            if username in users:
+                if username in users:
 
-                if users[username]["password"] == hash_password(password):
+                    if users[username]["password"] == hash_password(password):
 
-                    users[username]["last_login"] = datetime.now().strftime(
-                        "%d-%m-%Y %H:%M:%S"
-                    )
+                        users[username]["last_login"] = datetime.now().strftime(
+                            "%d-%m-%Y %H:%M:%S"
+                        )
+
+                        save_users(users)
+
+                        st.session_state.login = True
+                        st.session_state.username = username
+                        st.session_state.nama = users[username]["nama"]
+
+                        st.success("Login berhasil ✅")
+
+                        time.sleep(1)
+
+                        st.rerun()
+
+                    else:
+
+                        st.error("Password salah")
+
+                else:
+
+                    st.error("Username tidak ditemukan")
+
+        # ================= SIGN UP =================
+
+        with tab2:
+
+            st.subheader("Buat Akun Baru ✨")
+
+            nama = st.text_input(
+                "👤 Nama Lengkap",
+                key="signup_nama"
+            )
+
+            email = st.text_input(
+                "📧 Email",
+                key="signup_email"
+            )
+
+            username_baru = st.text_input(
+                "🆔 Username",
+                key="signup_username"
+            )
+
+            password_baru = st.text_input(
+                "🔒 Password",
+                type="password",
+                key="signup_password"
+            )
+
+            konfirmasi = st.text_input(
+                "🔐 Konfirmasi Password",
+                type="password",
+                key="signup_konfirmasi"
+            )
+
+            if st.button("📝 Daftar", use_container_width=True):
+
+                if username_baru in users:
+
+                    st.error("Username sudah digunakan")
+
+                elif password_baru != konfirmasi:
+
+                    st.error("Konfirmasi password tidak cocok")
+
+                elif nama == "" or email == "" or username_baru == "" or password_baru == "":
+
+                    st.warning("Semua data wajib diisi")
+
+                else:
+
+                    users[username_baru] = {
+
+                        "nama": nama,
+                        "email": email,
+                        "password": hash_password(password_baru),
+                        "last_login": datetime.now().strftime(
+                            "%d-%m-%Y %H:%M:%S"
+                        )
+
+                    }
 
                     save_users(users)
 
                     st.session_state.login = True
-                    st.session_state.username = username
-                    st.session_state.nama = users[username]["nama"]
+                    st.session_state.username = username_baru
+                    st.session_state.nama = nama
 
-                    st.success("Login berhasil ✅")
+                    st.success("Akun berhasil dibuat 🎉")
 
                     time.sleep(1)
 
                     st.rerun()
 
-                else:
-
-                    st.error("Password salah")
-
-            else:
-
-                st.error("Username tidak ditemukan")
-
-    # ================= SIGN UP =================
-
-    with tab2:
-
-        st.subheader("📝 Daftar Akun")
-
-        nama = st.text_input(
-            "👤 Nama Lengkap",
-            key="signup_nama"
-        )
-
-        email = st.text_input(
-            "📧 Email",
-            key="signup_email"
-        )
-
-        username_baru = st.text_input(
-            "🆔 Username",
-            key="signup_username"
-        )
-
-        password_baru = st.text_input(
-            "🔒 Password",
-            type="password",
-            key="signup_password"
-        )
-
-        konfirmasi = st.text_input(
-            "🔐 Konfirmasi Password",
-            type="password",
-            key="signup_konfirmasi"
-        )
-
-        if st.button("📝 Daftar"):
-
-            if username_baru in users:
-
-                st.error("Username sudah digunakan")
-
-            elif password_baru != konfirmasi:
-
-                st.error("Konfirmasi password tidak cocok")
-
-            elif nama == "" or email == "" or username_baru == "" or password_baru == "":
-
-                st.warning("Semua data wajib diisi")
-
-            else:
-
-                users[username_baru] = {
-
-                    "nama": nama,
-                    "email": email,
-                    "password": hash_password(password_baru),
-                    "last_login": datetime.now().strftime(
-                        "%d-%m-%Y %H:%M:%S"
-                    )
-
-                }
-
-                save_users(users)
-
-                # AUTO LOGIN SETELAH DAFTAR
-                st.session_state.login = True
-                st.session_state.username = username_baru
-                st.session_state.nama = nama
-
-                st.success(
-                    "Akun berhasil dibuat 🎉"
-                )
-
-                time.sleep(1)
-
-                st.rerun()
-
     st.stop()
-        st.markdown("</div>", unsafe_allow_html=True)
+
 # ================= CSS =================
 
 st.markdown("""
