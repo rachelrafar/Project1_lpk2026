@@ -300,17 +300,37 @@ section[data-testid="stSidebar"]{
     border-radius:20px;
 }
 
+/* ================= LOGIN TABS ================= */
+
+.stTabs{
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(20px);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(37,99,235,0.15);
+}
+
+button[data-baseweb="tab"]{
+    font-size:16px !important;
+    font-weight:700 !important;
+}
+
+.login-box-title{
+    text-align:center;
+    font-size:28px;
+    font-weight:800;
+    color:#2563EB;
+    margin-bottom:20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ================= LOGIN =================
+# ================= LOGIN PAGE =================
 
 if not st.session_state.login:
 
-    st.markdown("""
-    <div class="chem-bg">⚗️</div>
-    <div class="chem-bg2">🧪</div>
-    """, unsafe_allow_html=True)
+    users = load_users()
 
     st.markdown("""
     <div class='login-title'>
@@ -322,9 +342,7 @@ if not st.session_state.login:
     </div>
     """, unsafe_allow_html=True)
 
-    users = load_users()
-
-    col1, col2, col3 = st.columns([1.2, 1.6, 1.2])
+    col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
 
@@ -341,25 +359,22 @@ if not st.session_state.login:
             <div class='login-box-title'>
                 Welcome Back 👋
             </div>
-
-            <div class='login-box-sub'>
-                Login untuk melanjutkan ke ChemAssist Ultra
-            </div>
             """, unsafe_allow_html=True)
 
             username = st.text_input(
-                "👤 Username",
+                "Username",
                 key="login_username"
             )
 
             password = st.text_input(
-                "🔒 Password",
+                "Password",
                 type="password",
                 key="login_password"
             )
 
             if st.button(
-                "🚀 Masuk",
+                "🚀 Login",
+                key="btn_login",
                 use_container_width=True
             ):
 
@@ -401,41 +416,38 @@ if not st.session_state.login:
             <div class='login-box-title'>
                 Create Account ✨
             </div>
-
-            <div class='login-box-sub'>
-                Buat akun baru untuk mulai menggunakan ChemAssist Ultra
-            </div>
             """, unsafe_allow_html=True)
 
             nama = st.text_input(
-                "👤 Nama Lengkap",
+                "Nama Lengkap",
                 key="signup_nama"
             )
 
             email = st.text_input(
-                "📧 Email",
+                "Email",
                 key="signup_email"
             )
 
             username_baru = st.text_input(
-                "🆔 Username",
+                "Username",
                 key="signup_username"
             )
 
             password_baru = st.text_input(
-                "🔒 Password",
+                "Password",
                 type="password",
                 key="signup_password"
             )
 
             konfirmasi = st.text_input(
-                "🔐 Konfirmasi Password",
+                "Konfirmasi Password",
                 type="password",
                 key="signup_konfirmasi"
             )
 
             if st.button(
                 "📝 Daftar",
+                key="btn_signup",
                 use_container_width=True
             ):
 
@@ -474,10 +486,6 @@ if not st.session_state.login:
                     }
 
                     save_users(users)
-
-                    st.session_state.login = True
-                    st.session_state.username = username_baru
-                    st.session_state.nama = nama
 
                     st.success(
                         "Akun berhasil dibuat 🎉"
