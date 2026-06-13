@@ -154,13 +154,12 @@ if not st.session_state.login:
     st.write("TES LOGIN")
 
     st.markdown("""
-    <div class="login-title">
-        🧪 ChemAssist Ultra
-    </div>
-
-    <div class="login-sub">
-        Smart Chemical Analysis Platform
-    </div>
+    <h1 style='text-align:center;color:#2563EB;'>
+    🧪 ChemAssist Ultra
+    </h1>
+    <h4 style='text-align:center;color:#64748B;'>
+    Smart Chemical Analysis Platform
+    </h4>
     """, unsafe_allow_html=True)
 
     users = load_users()
