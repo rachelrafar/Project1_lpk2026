@@ -610,8 +610,8 @@ with st.sidebar:
         st.session_state.login = False
         st.session_state.username = ""
         st.session_state.nama = ""
-
-    st.rerun()
+        
+        st.rerun()
 
 # ================= DARK MODE =================
 
