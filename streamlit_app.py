@@ -63,7 +63,13 @@ st.markdown("""
 /* ================= BACKGROUND ================= */
 
 .stApp{
-    background:red !important;
+    background:linear-gradient(
+        135deg,
+        #F0F9FF,
+        #E0F2FE,
+        #BAE6FD,
+        #7DD3FC
+    ) !important;
 }
 
 .main{
@@ -323,6 +329,24 @@ button[data-baseweb="tab"]{
     margin-bottom:20px;
 }
 
+.login-box{
+
+    background:rgba(255,255,255,0.55);
+
+    padding:40px;
+
+    border-radius:30px;
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.5);
+
+    box-shadow:
+        0 10px 30px rgba(37,99,235,0.20);
+
+    margin-top:20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -345,6 +369,10 @@ if not st.session_state.login:
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
+
+        st.markdown("""
+        <div class="login-box">
+        """, unsafe_allow_html=True)
 
         tab1, tab2 = st.tabs([
             "🔐 Sign In",
@@ -495,7 +523,12 @@ if not st.session_state.login:
 
                     st.rerun()
 
+        st.markdown("""
+        </div>
+        """, unsafe_allow_html=True)
+
     st.stop()
+    
 # ================= HEADER =================
 
 st.markdown("""
