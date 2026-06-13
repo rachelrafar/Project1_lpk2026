@@ -1424,7 +1424,7 @@ dengan prosedur keselamatan laboratorium.
     
 # ================= TENTANG =================
 
-if menu=="ℹ️ Tentang":
+if menu == "ℹ️ Tentang":
 
     st.title("ℹ️ Tentang Aplikasi")
 
@@ -1460,9 +1460,18 @@ if menu=="ℹ️ Tentang":
     kimia dasar, serta perhitungan laboratorium.
     </p>
 
+    <h3>👥 Creator Team</h3>
+
+    <ul>
+        <li><b>Adlina Dhiva Tsaniyah</b> (2560555)</li>
+        <li><b>Davina Faiza Laksono</b> (2560605)</li>
+        <li><b>Rachel Rafa Rashika</b> (2560738)</li>
+        <li><b>Tantri Nirwana Bandiani</b> (2560795)</li>
+    </ul>
+
     <h3>📌 Versi</h3>
 
-    <p>ChemAssist Ultra v5.0</p>
+    <p><b>ChemAssist Ultra v5.0</b></p>
 
     </div>
     """, unsafe_allow_html=True)
