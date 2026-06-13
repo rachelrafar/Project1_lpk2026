@@ -58,69 +58,99 @@ if "nama" not in st.session_state:
     st.session_state.nama = ""
 
 # ================= CSS =================
-
 st.markdown("""
 <style>
 
-/* LOGIN TITLE */
+/* ================= GLOBAL ================= */
+
+.stApp{
+    background:linear-gradient(
+    135deg,
+    #F0F9FF,
+    #E0F2FE,
+    #BAE6FD,
+    #7DD3FC
+    );
+    background-size:400% 400%;
+    animation:bg 15s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+html, body{
+    color:#0F172A;
+}
+
+/* ================= LOGIN ================= */
 
 .login-title{
     text-align:center;
-    color:#2563EB !important;
-    font-size:42px !important;
-    font-weight:700 !important;
-    margin-top:20px;
+    color:#2563EB;
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:5px;
 }
 
 .login-sub{
     text-align:center;
-    color:#64748B !important;
-    font-size:18px !important;
+    color:#475569;
+    font-size:18px;
     margin-bottom:25px;
 }
 
-/* BOX LOGIN */
-
-.stTabs{
-    background:rgba(255,255,255,0.85);
-    padding:25px;
-    border-radius:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.12);
-    border:1px solid rgba(255,255,255,0.4);
+.main .block-container{
+    max-width:900px;
+    padding-top:2rem;
 }
 
-/* INPUT */
+/* ================= TAB LOGIN ================= */
 
-.stTextInput input{
+.stTabs{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px);
+    border-radius:25px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.4);
+    box-shadow:0 8px 24px rgba(37,99,235,0.15);
+}
+
+button[data-baseweb="tab"]{
+    font-weight:700 !important;
+}
+
+/* ================= INPUT ================= */
+
+.stTextInput input,
+.stNumberInput input{
     border-radius:12px !important;
     border:1px solid #CBD5E1 !important;
 }
-
-/* PASSWORD */
 
 .stTextInput div[data-baseweb="input"]{
     border-radius:12px !important;
 }
 
-/* BUTTON */
+/* ================= BUTTON ================= */
 
 .stButton button{
     width:100%;
-    border-radius:12px !important;
-    height:45px;
-    font-weight:600;
-    background:linear-gradient(90deg,#38BDF8,#2563EB);
-    color:white;
+    border-radius:14px !important;
+    height:48px;
+    font-weight:700;
     border:none;
+    color:white;
+    background:linear-gradient(
+    90deg,
+    #38BDF8,
+    #2563EB
+    ) !important;
 }
 
-/* TAB */
-
-button[data-baseweb="tab"]{
-    font-weight:600 !important;
-}
-
-/* ALERT */
+/* ================= ALERT ================= */
 
 .stSuccess,
 .stError,
@@ -128,37 +158,123 @@ button[data-baseweb="tab"]{
     border-radius:12px;
 }
 
-/* BACKGROUND LOGIN */
+/* ================= SIDEBAR ================= */
 
-.main .block-container{
-    padding-top:2rem;
-    max-width:800px;
+section[data-testid="stSidebar"]{
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(18px);
+    border-right:1px solid rgba(255,255,255,0.2);
 }
 
-/* METRIC BOX */
+/* ================= CARD ================= */
+
+.card{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius:28px;
+    padding:28px;
+    margin-bottom:22px;
+    box-shadow:0 8px 24px rgba(37,99,235,0.15);
+}
+
+/* ================= METRIC ================= */
 
 .metric-box{
-    background:rgba(255,255,255,0.8);
-    padding:20px;
-    border-radius:20px;
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(18px);
+    border-radius:25px;
+    padding:25px;
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    box-shadow:0 8px 22px rgba(37,99,235,0.12);
 }
 
-.stButton button{
-    width:100%;
-    border-radius:12px;
-    height:45px;
-    font-weight:600;
+.metric-box h2{
+    font-size:40px;
+    margin-bottom:5px;
 }
 
-.stTextInput input{
-    border-radius:12px;
+.metric-box h3{
+    font-size:34px;
+    font-weight:800;
+    color:#2563EB;
 }
 
-.stTabs{
-    border-radius:15px;
+.metric-box p{
+    color:#334155;
+    font-size:16px;
 }
+
+/* ================= HOME ================= */
+
+.main-title{
+    font-size:65px;
+    font-weight:900;
+    text-align:center;
+    color:#2563EB;
+}
+
+.subtitle{
+    text-align:center;
+    color:#1E40AF;
+    font-size:18px;
+}
+
+/* ================= FEATURE ================= */
+
+.feature-title{
+    font-size:22px;
+    font-weight:700;
+    color:#2563EB;
+    margin-bottom:10px;
+}
+
+.feature-desc{
+    color:#475569;
+    line-height:1.6;
+}
+
+/* ================= INFO BOX ================= */
+
+.info-box{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+/* ================= TENTANG ================= */
+
+.tentang-box{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+.tentang-box h2,
+.tentang-box h3{
+    color:#2563EB;
+}
+
+.tentang-box p,
+.tentang-box li{
+    color:#334155;
+}
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#60A5FA;
+    border-radius:20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -323,237 +439,6 @@ if not st.session_state.login:
                     st.rerun()
 
     st.stop()
-
-# ================= CSS =================
-
-st.markdown("""
-<style>
-
-/* ===== BACKGROUND ===== */
-
-.stApp{
-
-    background:linear-gradient(
-    135deg,
-    #F0F9FF,
-    #E0F2FE,
-    #BAE6FD,
-    #7DD3FC
-    );
-
-    background-size:400% 400%;
-
-    animation:bg 15s ease infinite;
-}
-
-@keyframes bg{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-}
-
-/* ===== HIDE ===== */
-
-button[kind="header"]{
-    display:none;
-}
-
-/* ===== SIDEBAR ===== */
-
-section[data-testid="stSidebar"]{
-
-    background:rgba(255,255,255,0.35);
-
-    backdrop-filter:blur(18px);
-
-    border-right:1px solid rgba(255,255,255,0.2);
-}
-
-/* ===== TEXT ===== */
-
-html, body, [class*="css"]{
-
-    color:#0F172A;
-}
-
-/* ===== TITLE ===== */
-
-.main-title{
-
-    font-size:65px;
-
-    font-weight:900;
-
-    text-align:center;
-
-    color:#2563EB;
-
-    margin-top:-20px;
-}
-
-/* ===== SUBTITLE ===== */
-
-.subtitle{
-
-    text-align:center;
-
-    color:#1E40AF;
-
-    font-size:18px;
-
-    margin-bottom:35px;
-}
-
-/* ===== LOGO ===== */
-
-.logo{
-
-    text-align:center;
-
-    font-size:90px;
-
-    animation:spin 8s linear infinite;
-}
-
-@keyframes spin{
-
-100%{
-transform:rotate(360deg);
-}
-}
-
-/* ===== CARD ===== */
-
-.card{
-
-    background:rgba(255,255,255,0.55);
-
-    border:1px solid rgba(255,255,255,0.5);
-
-    backdrop-filter:blur(18px);
-
-    border-radius:28px;
-
-    padding:28px;
-
-    margin-bottom:22px;
-
-    box-shadow:
-    0 8px 24px rgba(37,99,235,0.15);
-}
-
-/* ===== METRIC ===== */
-
-.metric{
-
-    background:linear-gradient(
-    135deg,
-    rgba(255,255,255,0.65),
-    rgba(255,255,255,0.4));
-
-    padding:30px;
-
-    border-radius:25px;
-
-    text-align:center;
-
-    box-shadow:
-    0 8px 22px rgba(37,99,235,0.12);
-}
-
-.metric-number{
-
-    font-size:48px;
-
-    font-weight:900;
-
-    color:#2563EB;
-}
-
-.metric-label{
-
-    color:#334155;
-
-    font-size:17px;
-}
-
-/* ===== BUTTON ===== */
-
-.stButton > button{
-
-    width:100%;
-
-    background:linear-gradient(
-    90deg,
-    #38BDF8,
-    #2563EB
-    );
-
-    color:white;
-
-    border:none;
-
-    border-radius:16px;
-
-    padding:13px;
-
-    font-size:17px;
-
-    font-weight:bold;
-}
-
-/* ===== PARTICLES ===== */
-
-.particle{
-
-    position:fixed;
-
-    width:12px;
-
-    height:12px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,0.5);
-
-    animation:float 14s infinite linear;
-}
-
-.particle:nth-child(1){left:10%;}
-.particle:nth-child(2){left:30%;}
-.particle:nth-child(3){left:50%;}
-.particle:nth-child(4){left:70%;}
-.particle:nth-child(5){left:90%;}
-
-@keyframes float{
-
-0%{
-transform:translateY(100vh);
-}
-
-100%{
-transform:translateY(-120vh);
-}
-}
-
-</style>
-
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-
-""", unsafe_allow_html=True)
 
 # ================= HEADER =================
 
