@@ -673,27 +673,28 @@ with st.sidebar:
 
     dark_mode = st.toggle("🌙 Dark Mode")
 
-    if dark_mode:
-        sidebar_bg = "#0F172A"
-        nav_bg = "#1E293B"
-        nav_text = "white"
-    else:
-        sidebar_bg = "#E0F2FE"
-        nav_bg = "#FFFFFF"
-        nav_text = "#0F172A"
-
-    selected = option_menu(
-        menu_title="✨ ChemAssist Menu",
-
-        options=[
-            "🏠 Home",
-            "💧 Larutan",
-            "⚗️ pH",
-            "📚 Informasi Bahan Kimia",
-            "🧪 Analisis Kimia",
-            "ℹ️ Tentang"
-        ],
-
+  if dark_mode:
+    st.markdown("""
+    <h2 style="
+        color:white;
+        text-align:center;
+        font-weight:800;
+        margin-bottom:20px;
+    ">
+    ✨ ChemAssist Menu
+    </h2>
+    """, unsafe_allow_html=True)
+else:
+    st.markdown("""
+    <h2 style="
+        color:#0F172A;
+        text-align:center;
+        font-weight:800;
+        margin-bottom:20px;
+    ">
+    ✨ ChemAssist Menu
+    </h2>
+    """, unsafe_allow_html=True)
         icons=[
             "house-fill",
             "droplet-fill",
